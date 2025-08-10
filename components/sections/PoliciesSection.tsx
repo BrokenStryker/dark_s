@@ -1,10 +1,13 @@
+"use client";
+
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 export default function PoliciesSection() {
   return (
-    <section id="policies" className="py-20 px-4 bg-card">
+    <section id="policies" className="py-20 px-4">
       <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="bg-card/80 backdrop-blur-sm p-8 rounded-lg border">
+          <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Salon Policies
           </h2>
@@ -56,6 +59,7 @@ export default function PoliciesSection() {
             </AccordionContent>
           </AccordionItem>
         </Accordion>
+        </div>
       </div>
     </section>
   );

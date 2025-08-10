@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -6,9 +8,10 @@ import { MapPin, Phone, Mail } from "lucide-react";
 
 export default function ContactSection() {
   return (
-    <section id="contact" className="py-20 px-4 bg-card">
+    <section id="contact" className="py-20 px-4">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="bg-card/80 backdrop-blur-sm p-8 rounded-lg border">
+          <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Connect With Us
           </h2>
@@ -97,6 +100,7 @@ export default function ContactSection() {
               </div>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </section>

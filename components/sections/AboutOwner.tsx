@@ -2,9 +2,9 @@ import Image from "next/image";
 
 export default function AboutOwner() {
   return (
-    <section id="owner" className="py-20 px-4 bg-card">
+    <section id="owner" className="py-20 px-4">
       <div className="max-w-6xl mx-auto">
-        <div className="bg-card p-8 rounded-lg border">
+        <div className="bg-card/80 backdrop-blur-sm p-8 rounded-lg border">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             {/* Headshot - shows above text on small screens, left side on large screens */}
             <div className="order-1 lg:order-1">
