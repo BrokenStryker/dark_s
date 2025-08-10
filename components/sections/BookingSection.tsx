@@ -6,7 +6,8 @@ import { Phone } from "lucide-react";
 export default function BookingSection() {
   return (
     <section id="booking" className="py-20 px-4">
-      <div className="max-w-4xl mx-auto text-center">
+      <div className="max-w-4xl mx-auto">
+        <div className="bg-card/80 backdrop-blur-sm p-8 rounded-lg text-center">
         <h2 className="text-4xl md:text-5xl font-bold mb-6">
           Begin Your Transformation
         </h2>
@@ -50,6 +51,7 @@ export default function BookingSection() {
           <Phone className="mr-2 h-5 w-5" />
           Book Your Consultation
         </Button>
+        </div>
       </div>
     </section>
   );

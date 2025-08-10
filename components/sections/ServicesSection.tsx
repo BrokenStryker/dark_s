@@ -178,9 +178,10 @@ export default function ServicesSection() {
   return (
     <section id="services" className="py-20 px-4">
       <div className="max-w-7xl mx-auto">
-        <div className="space-y-16">
-          {serviceCategories.map((category, categoryIndex) => (
-            <div key={categoryIndex} className="bg-card rounded-lg border p-8">
+        <div className="bg-card/80 backdrop-blur-sm p-8 rounded-lg border">
+          <div className="space-y-16">
+            {serviceCategories.map((category, categoryIndex) => (
+              <div key={categoryIndex} className="bg-card/60 backdrop-blur-sm rounded-lg p-8">
               <div className="text-center mb-12">
                 <h3 className="text-3xl md:text-4xl font-bold mb-4">{category.title}</h3>
                 {category.description && (
@@ -270,6 +271,7 @@ export default function ServicesSection() {
               </div>
             </div>
           ))}
+          </div>
         </div>
       </div>
     </section>
