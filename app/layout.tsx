@@ -1,22 +1,32 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter, Cinzel } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const playfairDisplay = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
+const trajanPro = localFont({
+  src: "../font/Trajan Pro Regular.ttf",
+  variable: "--font-trajan",
   display: "swap",
 });
 
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const cinzel = Cinzel({
-  variable: "--font-cinzel",
-  subsets: ["latin"],
+const futura = localFont({
+  src: [
+    {
+      path: "../font/Futura.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../font/Futura LT Medium.ttf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../font/Futura Md BT Bold.ttf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-futura",
   display: "swap",
 });
 
@@ -39,7 +49,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <body
-        className={`${playfairDisplay.variable} ${inter.variable} ${cinzel.variable} antialiased bg-background text-foreground`}
+        className={`${trajanPro.variable} ${futura.variable} antialiased bg-background text-foreground`}
         suppressHydrationWarning
       >
         {children}

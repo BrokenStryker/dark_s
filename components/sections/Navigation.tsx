@@ -8,7 +8,7 @@ export default function Navigation() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-card/70 backdrop-blur-md border-b border-border">
+    <nav className="fixed top-0 w-full z-50 bg-card/90 backdrop-blur-md border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="flex items-center text-foreground hover:text-primary transition-colors">
@@ -17,7 +17,7 @@ export default function Navigation() {
           
           <div className="flex items-center space-x-4">
             <a href="https://www.vagaro.com" target="_blank" rel="noopener noreferrer">
-              <Button size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+              <Button size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground font-futura">
                 Book Now
               </Button>
             </a>
@@ -40,7 +40,7 @@ export default function Navigation() {
                         document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
                         setIsDropdownOpen(false);
                       }}
-                      className="block w-full text-left px-4 py-2 text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+                      className="block w-full text-left px-4 py-2 text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors font-futura"
                     >
                       About
                     </button>
@@ -49,7 +49,7 @@ export default function Navigation() {
                         document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
                         setIsDropdownOpen(false);
                       }}
-                      className="block w-full text-left px-4 py-2 text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+                      className="block w-full text-left px-4 py-2 text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors font-futura"
                     >
                       Services
                     </button>
@@ -58,7 +58,7 @@ export default function Navigation() {
                         document.getElementById('policies')?.scrollIntoView({ behavior: 'smooth' });
                         setIsDropdownOpen(false);
                       }}
-                      className="block w-full text-left px-4 py-2 text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+                      className="block w-full text-left px-4 py-2 text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors font-futura"
                     >
                       Policies
                     </button>
@@ -67,7 +67,7 @@ export default function Navigation() {
                         document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
                         setIsDropdownOpen(false);
                       }}
-                      className="block w-full text-left px-4 py-2 text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+                      className="block w-full text-left px-4 py-2 text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors font-futura"
                     >
                       Contact
                     </button>

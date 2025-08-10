@@ -6,22 +6,22 @@ export default function PoliciesSection() {
   return (
     <section id="policies" className="py-20 px-4">
       <div className="max-w-4xl mx-auto">
-        <div className="bg-card/80 backdrop-blur-sm p-8 rounded-lg border">
+        <div className="bg-card/95 backdrop-blur-sm p-8 rounded-lg border">
           <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 font-trajan">
             Salon Policies
           </h2>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-lg text-muted-foreground font-futura">
             Please review our policies to ensure the best experience for all clients.
           </p>
         </div>
         
         <Accordion type="single" collapsible className="space-y-4">
           <AccordionItem value="booking" className="bg-card px-6 rounded-lg border">
-            <AccordionTrigger className="text-lg font-semibold text-foreground hover:no-underline">
+            <AccordionTrigger className="text-lg font-semibold text-foreground hover:no-underline font-trajan">
               Booking & Scheduling
             </AccordionTrigger>
-            <AccordionContent className="text-muted-foreground pt-4">
+            <AccordionContent className="text-muted-foreground pt-4 font-futura">
               <ul className="space-y-2">
                 <li>• Appointments must be booked at least 48 hours in advance</li>
                 <li>• A 50% deposit is required to secure your appointment</li>
@@ -32,10 +32,10 @@ export default function PoliciesSection() {
           </AccordionItem>
           
           <AccordionItem value="cancellation" className="bg-card px-6 rounded-lg border">
-            <AccordionTrigger className="text-lg font-semibold text-foreground hover:no-underline">
+            <AccordionTrigger className="text-lg font-semibold text-foreground hover:no-underline font-trajan">
               Cancellation Policy
             </AccordionTrigger>
-            <AccordionContent className="text-muted-foreground pt-4">
+            <AccordionContent className="text-muted-foreground pt-4 font-futura">
               <ul className="space-y-2">
                 <li>• 24-hour notice required for cancellations</li>
                 <li>• Deposits are non-refundable for cancellations under 24 hours</li>
@@ -46,10 +46,10 @@ export default function PoliciesSection() {
           </AccordionItem>
           
           <AccordionItem value="salon" className="bg-card px-6 rounded-lg border">
-            <AccordionTrigger className="text-lg font-semibold text-foreground hover:no-underline">
+            <AccordionTrigger className="text-lg font-semibold text-foreground hover:no-underline font-trajan">
               Salon Experience
             </AccordionTrigger>
-            <AccordionContent className="text-muted-foreground pt-4">
+            <AccordionContent className="text-muted-foreground pt-4 font-futura">
               <ul className="space-y-2">
                 <li>• Please arrive 10 minutes early for your appointment</li>
                 <li>• Private, one-on-one service ensures your complete comfort</li>

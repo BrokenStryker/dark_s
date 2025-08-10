@@ -13,33 +13,32 @@ export default function Home() {
       <Navigation />
       
       {/* Spacing between Navigation and Hero */}
-      <div className="h-20" />
+      <div className="h-16" />
       
       <HeroSection />
       
-      {/* Smaller spacing between Hero and About */}
-      <div className="h-12" />
+      {/* Spacing between sections */}
+      <div className="h-2" />
       
       <AboutOwner />
       
-      {/* Standard spacing between sections */}
-      <div className="h-20" />
+      <div className="h-2" />
       
       <ServicesSection />
       
-      <div className="h-20" />
+      <div className="h-2" />
       
       <PoliciesSection />
       
-      <div className="h-20" />
+      <div className="h-2" />
       
       <BookingSection />
       
-      <div className="h-20" />
+      <div className="h-2" />
       
       <ContactSection />
       
-      <div className="h-20" />
+      <div className="h-2" />
       
       <Footer />
     </div>

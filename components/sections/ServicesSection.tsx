@@ -178,14 +178,14 @@ export default function ServicesSection() {
   return (
     <section id="services" className="py-20 px-4">
       <div className="max-w-7xl mx-auto">
-        <div className="bg-card/80 backdrop-blur-sm p-8 rounded-lg border">
+        <div className="bg-card/95 backdrop-blur-sm p-8 rounded-lg border">
           <div className="space-y-16">
             {serviceCategories.map((category, categoryIndex) => (
-              <div key={categoryIndex} className="bg-card/60 backdrop-blur-sm rounded-lg p-8">
+              <div key={categoryIndex} className="bg-card/85 backdrop-blur-sm rounded-lg p-8">
               <div className="text-center mb-12">
-                <h3 className="text-3xl md:text-4xl font-bold mb-4">{category.title}</h3>
+                <h3 className="text-3xl md:text-4xl font-bold mb-4 font-trajan section-title">{category.title}</h3>
                 {category.description && (
-                  <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                  <p className="text-lg text-muted-foreground max-w-3xl mx-auto font-futura">
                     {category.description}
                   </p>
                 )}
@@ -197,8 +197,8 @@ export default function ServicesSection() {
                     <div className="space-y-6">
                       {/* Service Name and Price - Above carousel */}
                       <div className="flex items-center justify-between flex-wrap gap-2">
-                        <h4 className="text-2xl font-semibold">{service.name}</h4>
-                        <Badge variant="secondary" className="bg-primary/20 text-primary text-lg px-3 py-1">
+                        <h4 className="text-2xl font-semibold font-trajan service-name">{service.name}</h4>
+                        <Badge variant="secondary" className="bg-primary/20 text-primary text-lg px-3 py-1 font-futura">
                           {service.price}
                         </Badge>
                       </div>
@@ -261,7 +261,7 @@ export default function ServicesSection() {
                       
                       {/* Service Description - Below carousel */}
                       <div className="text-center">
-                        <p className="text-muted-foreground text-lg leading-relaxed">
+                        <p className="text-muted-foreground text-lg leading-relaxed font-futura">
                           {service.description}
                         </p>
                       </div>

@@ -18,8 +18,8 @@
     --accent-foreground: 220.9 39.3% 11%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 20% 98%;
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
+    --border: 23 11% 13%;
+    --input: 23 11% 13%;
     --ring: 224 71.4% 4.1%;
     --radius: 0.5rem;
   }
@@ -41,8 +41,8 @@
     --accent-foreground: 210 20% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 20% 98%;
-    --border: 215 27.9% 16.9%;
-    --input: 215 27.9% 16.9%;
+    --border: 23 11% 13%;
+    --input: 23 11% 13%;
     --ring: 212.7 26.8% 83.9%;
   }
   
@@ -58,13 +58,37 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
     color: black;
-    font-family: var(--font-inter), sans-serif;
+    font-family: var(--font-futura), sans-serif;
   }
 
-  /* Override all text colors to black and make bold */
-  * {
+  /* Font family classes */
+  .font-trajan {
+    font-family: var(--font-trajan), serif;
+  }
+
+  .font-futura {
+    font-family: var(--font-futura), sans-serif;
+  }
+
+  /* Heading styles with Trajan Pro */
+  h1, h2, h3, h4, h5, h6, .heading {
+    font-family: var(--font-trajan), serif !important;
     color: black !important;
-    font-weight: bold !important;
+    font-weight: normal !important;
+  }
+
+  /* Body text styles with Futura */
+  p, span, div, li, .body-text {
+    font-family: var(--font-futura), sans-serif !important;
+    color: black !important;
+    font-weight: 500 !important;
+  }
+
+  /* Special elements that should use Trajan Pro */
+  .title, .section-title, .service-name, .owner-name {
+    font-family: var(--font-trajan), serif !important;
+    color: black !important;
+    font-weight: normal !important;
   }
 }
 

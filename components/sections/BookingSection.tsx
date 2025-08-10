@@ -7,11 +7,11 @@ export default function BookingSection() {
   return (
     <section id="booking" className="py-20 px-4">
       <div className="max-w-4xl mx-auto">
-        <div className="bg-card/80 backdrop-blur-sm p-8 rounded-lg text-center">
-        <h2 className="text-4xl md:text-5xl font-bold mb-6">
+        <div className="bg-card/95 backdrop-blur-sm p-8 rounded-lg text-center">
+        <h2 className="text-4xl md:text-5xl font-bold mb-6 font-trajan">
           Begin Your Transformation
         </h2>
-        <p className="text-lg text-muted-foreground mb-12">
+        <p className="text-lg text-muted-foreground mb-12 font-futura">
           Ready to experience luxury hair artistry? Follow these simple steps to secure your appointment.
         </p>
         
@@ -20,8 +20,8 @@ export default function BookingSection() {
             <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
               <span className="text-primary-foreground font-bold">1</span>
             </div>
-            <h3 className="text-xl font-semibold mb-2">Initial Consultation</h3>
-            <p className="text-muted-foreground">
+            <h3 className="text-xl font-semibold mb-2 font-trajan">Initial Consultation</h3>
+            <p className="text-muted-foreground font-futura">
               Contact us for a brief consultation to discuss your vision and desired services.
             </p>
           </div>
@@ -30,8 +30,8 @@ export default function BookingSection() {
             <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
               <span className="text-primary-foreground font-bold">2</span>
             </div>
-            <h3 className="text-xl font-semibold mb-2">Schedule & Deposit</h3>
-            <p className="text-muted-foreground">
+            <h3 className="text-xl font-semibold mb-2 font-trajan">Schedule & Deposit</h3>
+            <p className="text-muted-foreground font-futura">
               Choose your preferred date and time, then secure with a 50% deposit.
             </p>
           </div>
@@ -40,14 +40,14 @@ export default function BookingSection() {
             <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
               <span className="text-primary-foreground font-bold">3</span>
             </div>
-            <h3 className="text-xl font-semibold mb-2">Your Experience</h3>
-            <p className="text-muted-foreground">
+            <h3 className="text-xl font-semibold mb-2 font-trajan">Your Experience</h3>
+            <p className="text-muted-foreground font-futura">
               Arrive and indulge in your personalized luxury hair transformation.
             </p>
           </div>
         </div>
         
-        <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 text-lg">
+        <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 text-lg font-futura">
           <Phone className="mr-2 h-5 w-5" />
           Book Your Consultation
         </Button>
