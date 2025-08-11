@@ -5,104 +5,138 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { MapPin, Phone, Mail } from "lucide-react";
+import { SectionContainer } from "@/components/ui/section-container";
+import { ContentCard } from "@/components/ui/content-card";
+import { SectionTitle, BodyText, CardTitle } from "@/components/ui/typography";
+import { LAYOUT, SPACING, TYPOGRAPHY, COMPONENTS } from "@/lib/design-tokens";
+import { cn } from "@/lib/utils";
+
+interface ContactInfoItemProps {
+  icon: React.ReactNode;
+  text: string;
+}
+
+function ContactInfoItem({ icon, text }: ContactInfoItemProps) {
+  return (
+    <div className="flex items-center space-x-3">
+      {icon}
+      <BodyText size="medium">{text}</BodyText>
+    </div>
+  );
+}
+
+interface OperatingHoursRowProps {
+  days: string;
+  hours: string;
+  closed?: boolean;
+}
+
+function OperatingHoursRow({ days, hours, closed = false }: OperatingHoursRowProps) {
+  return (
+    <div className="flex justify-between">
+      <BodyText size="medium">{days}</BodyText>
+      <BodyText size="medium" muted={closed}>{hours}</BodyText>
+    </div>
+  );
+}
 
 export default function ContactSection() {
   return (
-    <section id="contact" className="py-20 px-4">
-      <div className="max-w-6xl mx-auto">
-        <div className="bg-card/95 backdrop-blur-sm p-8 rounded-lg border">
-          <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 font-trajan">
+    <SectionContainer id="contact">
+      <ContentCard variant="section">
+        <div className={cn("text-center", SPACING.marginBottom.xxl)}>
+          <SectionTitle className={SPACING.marginBottom.md}>
             Connect With Us
-          </h2>
-          <p className="text-lg text-muted-foreground font-futura">
+          </SectionTitle>
+          <BodyText muted>
             Ready to begin your transformation? Reach out and let's create something beautiful together.
-          </p>
+          </BodyText>
         </div>
         
-        <div className="grid lg:grid-cols-2 gap-12">
-          <div className="luxury-card p-8 rounded-lg">
-            <h3 className="text-2xl font-semibold mb-6 font-trajan">Send a Message</h3>
-            <form className="space-y-6">
+        <div className={LAYOUT.grid2Col}>
+          <ContentCard variant="luxury">
+            <CardTitle className={SPACING.marginBottom.md}>Send a Message</CardTitle>
+            <form className={SPACING.contentGap}>
               <div>
-                <Label htmlFor="name" className="font-futura">Full Name</Label>
-                <Input id="name" placeholder="Your name" className="bg-input border-border" />
+                <Label htmlFor="name" className={TYPOGRAPHY.fontFutura}>Full Name</Label>
+                <Input id="name" placeholder="Your name" className="section-bg border-border" />
               </div>
               <div>
-                <Label htmlFor="email" className="font-futura">Email Address</Label>
-                <Input id="email" type="email" placeholder="your@email.com" className="bg-input border-border" />
+                <Label htmlFor="email" className={TYPOGRAPHY.fontFutura}>Email Address</Label>
+                <Input id="email" type="email" placeholder="your@email.com" className="section-bg border-border" />
               </div>
               <div>
-                <Label htmlFor="phone" className="font-futura">Phone Number</Label>
-                <Input id="phone" type="tel" placeholder="(555) 123-4567" className="bg-input border-border" />
+                <Label htmlFor="service" className={TYPOGRAPHY.fontFutura}>Interested Service</Label>
+                <Input id="service" placeholder="Which service interests you?" className="section-bg border-border" />
               </div>
               <div>
-                <Label htmlFor="service" className="font-futura">Interested Service</Label>
-                <Input id="service" placeholder="Which service interests you?" className="bg-input border-border" />
-              </div>
-              <div>
-                <Label htmlFor="message" className="font-futura">Message</Label>
+                <Label htmlFor="message" className={TYPOGRAPHY.fontFutura}>Message</Label>
                 <Textarea 
                   id="message" 
-                  rows={4}
+                  rows={6}
                   placeholder="Tell us about your vision..."
-                  className="bg-input border-border"
+                  className="section-bg border-border resize-none"
                 />
               </div>
-              <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-futura">
+              <Button 
+                type="submit" 
+                className={cn(
+                  "w-full",
+                  COMPONENTS.primaryButton,
+                  TYPOGRAPHY.fontFutura
+                )}
+              >
                 Send Message
               </Button>
             </form>
-          </div>
+          </ContentCard>
           
-          <div className="space-y-8">
-            <div className="bg-card p-6 rounded-lg border">
-              <h3 className="text-xl font-semibold mb-4 font-trajan">Contact Information</h3>
+          <div className={SPACING.contentGap}>
+            <ContentCard variant="simple" padding="small">
+              <CardTitle className={SPACING.marginBottom.sm}>Contact Information</CardTitle>
               <div className="space-y-4">
-                <div className="flex items-center space-x-3">
-                  <Phone className="h-5 w-5 text-primary" />
-                  <span className="font-futura">(555) 123-DARK</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <Mail className="h-5 w-5 text-primary" />
-                  <span className="font-futura">hello@darkserenity.salon</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <MapPin className="h-5 w-5 text-primary" />
-                  <span className="font-futura">123 Gothic Avenue, Your City, ST 12345</span>
-                </div>
+                <ContactInfoItem
+                  icon={<Mail className="h-5 w-5 text-primary" />}
+                  text="darkserenitysalon@gmail.com"
+                />
+                <ContactInfoItem
+                  icon={<MapPin className="h-5 w-5 text-primary" />}
+                  text="Sola Salon Studios, 1895 South Rd, Poughkeepsie, NY 12601"
+                />
               </div>
-            </div>
+            </ContentCard>
             
-            <div className="bg-card p-6 rounded-lg border">
-              <h3 className="text-xl font-semibold mb-4 font-trajan">Hours of Operation</h3>
-              <div className="space-y-2">
-                <div className="flex justify-between">
-                  <span className="font-futura">Tuesday - Thursday</span>
-                  <span className="font-futura">10:00 AM - 7:00 PM</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="font-futura">Friday - Saturday</span>
-                  <span className="font-futura">9:00 AM - 8:00 PM</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="font-futura">Sunday - Monday</span>
-                  <span className="text-muted-foreground font-futura">Closed</span>
-                </div>
+            <ContentCard variant="simple" padding="small">
+              <CardTitle className={SPACING.marginBottom.sm}>Location</CardTitle>
+              <div className="aspect-video rounded-lg overflow-hidden">
+                <a 
+                  href="https://www.google.com/maps/dir/?api=1&destination=Sola+Salon+Studios,+1895+South+Rd,+Poughkeepsie,+NY+12601"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full h-full relative group"
+                >
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2987.0!2d-73.9214!3d41.6639!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sSola+Salon+Studios%2C+1895+South+Rd%2C+Poughkeepsie%2C+NY+12601!5e0!3m2!1sen!2sus!4v1"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="pointer-events-none"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-200 flex items-center justify-center">
+                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-primary text-primary-foreground px-4 py-2 rounded-lg shadow-lg">
+                      <MapPin className="inline-block h-4 w-4 mr-2" />
+                      Get Directions
+                    </div>
+                  </div>
+                </a>
               </div>
-            </div>
-            
-            <div className="bg-card p-6 rounded-lg border">
-              <h3 className="text-xl font-semibold mb-4 font-trajan">Location</h3>
-              <div className="aspect-video bg-muted/20 rounded-lg flex items-center justify-center">
-                <MapPin className="h-12 w-12 text-primary" />
-                <span className="ml-2 text-muted-foreground font-futura">Map Integration</span>
-              </div>
-            </div>
+            </ContentCard>
           </div>
         </div>
-        </div>
-      </div>
-    </section>
+      </ContentCard>
+    </SectionContainer>
   );
 }

@@ -3,25 +3,83 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Instagram, Menu } from "lucide-react";
+import { COMPONENTS, LAYOUT, TYPOGRAPHY } from "@/lib/design-tokens";
+import { cn } from "@/lib/utils";
+
+interface NavigationItemProps {
+  children: React.ReactNode;
+  sectionId: string;
+  onClick: () => void;
+}
+
+function NavigationItem({ children, sectionId, onClick }: NavigationItemProps) {
+  const handleClick = () => {
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+    onClick();
+  };
+
+  return (
+    <button
+      onClick={handleClick}
+      className={cn(
+        "block w-full text-left px-4 py-2",
+        TYPOGRAPHY.bodySmall,
+        TYPOGRAPHY.fontFutura,
+        "text-muted-foreground hover:bg-muted hover:text-foreground",
+        COMPONENTS.transition
+      )}
+    >
+      {children}
+    </button>
+  );
+}
+
+const navigationItems = [
+  { label: "About", sectionId: "about" },
+  { label: "Services", sectionId: "services" },
+  { label: "Policies", sectionId: "policies" },
+  { label: "Contact", sectionId: "contact" }
+];
 
 export default function Navigation() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
+  const closeDropdown = () => setIsDropdownOpen(false);
+
   return (
-    <nav className="fixed top-0 w-full z-50 bg-card/90 backdrop-blur-md border-b border-border">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
-          <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="flex items-center text-foreground hover:text-primary transition-colors">
+    <nav className="fixed top-0 w-full z-50 section-bg backdrop-blur-md border-b border-border">
+      <div className={cn(LAYOUT.maxWidthWide, LAYOUT.paddingLarge)}>
+        <div className={cn(LAYOUT.flexBetween, "py-4")}>
+          {/* Instagram Link */}
+          <a 
+            href="https://www.instagram.com" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className={cn(
+              LAYOUT.flexCenter,
+              "text-foreground hover:text-primary",
+              COMPONENTS.transition
+            )}
+          >
             <Instagram className="h-6 w-6" />
           </a>
           
+          {/* Right Side Actions */}
           <div className="flex items-center space-x-4">
+            {/* Book Now Button */}
             <a href="https://www.vagaro.com" target="_blank" rel="noopener noreferrer">
-              <Button size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground font-futura">
+              <Button 
+                size="sm" 
+                className={cn(
+                  COMPONENTS.primaryButton,
+                  TYPOGRAPHY.fontFutura
+                )}
+              >
                 Book Now
               </Button>
             </a>
             
+            {/* Navigation Dropdown */}
             <div className="relative">
               <Button
                 variant="ghost"
@@ -33,44 +91,17 @@ export default function Navigation() {
               </Button>
               
               {isDropdownOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-card rounded-md shadow-lg border border-border z-50">
+                <div className="absolute right-0 mt-2 w-48 card-bg rounded-md shadow-lg border border-border z-50">
                   <div className="py-1">
-                    <button
-                      onClick={() => {
-                        document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
-                        setIsDropdownOpen(false);
-                      }}
-                      className="block w-full text-left px-4 py-2 text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors font-futura"
-                    >
-                      About
-                    </button>
-                    <button
-                      onClick={() => {
-                        document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
-                        setIsDropdownOpen(false);
-                      }}
-                      className="block w-full text-left px-4 py-2 text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors font-futura"
-                    >
-                      Services
-                    </button>
-                    <button
-                      onClick={() => {
-                        document.getElementById('policies')?.scrollIntoView({ behavior: 'smooth' });
-                        setIsDropdownOpen(false);
-                      }}
-                      className="block w-full text-left px-4 py-2 text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors font-futura"
-                    >
-                      Policies
-                    </button>
-                    <button
-                      onClick={() => {
-                        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-                        setIsDropdownOpen(false);
-                      }}
-                      className="block w-full text-left px-4 py-2 text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors font-futura"
-                    >
-                      Contact
-                    </button>
+                    {navigationItems.map((item) => (
+                      <NavigationItem
+                        key={item.sectionId}
+                        sectionId={item.sectionId}
+                        onClick={closeDropdown}
+                      >
+                        {item.label}
+                      </NavigationItem>
+                    ))}
                   </div>
                 </div>
               )}

@@ -92,6 +92,142 @@
   }
 }
 
+@layer components {
+  /* Design System Utility Classes */
+  .luxury-card {
+    background-color: #c8c2bb;
+    backdrop-filter: blur(4px);
+    border-radius: 0.5rem;
+    border: 1px solid hsl(var(--border));
+  }
+
+  .section-bg {
+    background-color: #e4e1dd;
+  }
+
+  .card-bg {
+    background-color: #c8c2bb;
+  }
+
+  .section-spacing {
+    padding: 5rem 1rem;
+  }
+
+  .section-content {
+    max-width: 72rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .content-spacing {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .card-spacing {
+    padding: 2rem;
+  }
+
+  .card-spacing-small {
+    padding: 1.5rem;
+  }
+
+  /* Typography Utilities */
+  .heading-hero {
+    font-size: 2.25rem;
+    font-family: var(--font-trajan), serif;
+    font-weight: 700;
+  }
+
+  @media (min-width: 768px) {
+    .heading-hero {
+      font-size: 3.75rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .heading-hero {
+      font-size: 4.5rem;
+    }
+  }
+
+  .heading-section {
+    font-size: 1.875rem;
+    font-family: var(--font-trajan), serif;
+    font-weight: 700;
+  }
+
+  @media (min-width: 768px) {
+    .heading-section {
+      font-size: 2.25rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .heading-section {
+      font-size: 3rem;
+    }
+  }
+
+  .heading-card {
+    font-size: 1.25rem;
+    font-family: var(--font-trajan), serif;
+    font-weight: 600;
+  }
+
+  @media (min-width: 768px) {
+    .heading-card {
+      font-size: 1.5rem;
+    }
+  }
+
+  .text-body {
+    font-size: 1.125rem;
+    font-family: var(--font-futura), sans-serif;
+  }
+
+  /* Layout Utilities */
+  .grid-2-col {
+    display: grid;
+    gap: 2rem;
+  }
+
+  @media (min-width: 1024px) {
+    .grid-2-col {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3rem;
+    }
+  }
+
+  .grid-3-col {
+    display: grid;
+    gap: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .grid-3-col {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  /* Transition Utilities */
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .hover-scale:hover {
+    transform: scale(1.05);
+  }
+
+  .hover-scale {
+    transform: scale(1);
+    transition: transform 0.2s ease-in-out;
+  }
+}
+
 /* Apply dark mode by default */
 html {
   color-scheme: dark;

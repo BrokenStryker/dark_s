@@ -3,7 +3,6 @@ import HeroSection from "@/components/sections/HeroSection";
 import AboutOwner from "@/components/sections/AboutOwner";
 import ServicesSection from "@/components/sections/ServicesSection";
 import PoliciesSection from "@/components/sections/PoliciesSection";
-import BookingSection from "@/components/sections/BookingSection";
 import ContactSection from "@/components/sections/ContactSection";
 import Footer from "@/components/sections/Footer";
 
@@ -13,32 +12,28 @@ export default function Home() {
       <Navigation />
       
       {/* Spacing between Navigation and Hero */}
-      <div className="h-16" />
+      <div className="h-25" />
       
       <HeroSection />
       
       {/* Spacing between sections */}
-      <div className="h-2" />
+      <div className="h-10" />
       
       <AboutOwner />
       
-      <div className="h-2" />
-      
+      <div className="h-10" />
+
       <ServicesSection />
       
-      <div className="h-2" />
+      <div className="h-10" />
       
       <PoliciesSection />
       
-      <div className="h-2" />
-      
-      <BookingSection />
-      
-      <div className="h-2" />
+      <div className="h-10" />
       
       <ContactSection />
       
-      <div className="h-2" />
+      <div className="h-10" />
       
       <Footer />
     </div>
