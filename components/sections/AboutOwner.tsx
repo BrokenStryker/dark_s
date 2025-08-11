@@ -11,7 +11,7 @@ export default function AboutOwner() {
         <div className={LAYOUT.grid2Col}>
           {/* Headshot - shows above text on small screens, left side on large screens */}
           <div className="order-1 lg:order-1">
-            <div className="flex justify-center lg:justify-start mb-8 lg:mb-0">
+            <div className="flex justify-center mb-8 lg:mb-0">
               <Image
                 src="/headshot.png"
                 alt="Amberrose Seiferth"
@@ -28,12 +28,6 @@ export default function AboutOwner() {
               <OwnerName className={SPACING.marginBottom.sm}>
                 Amberrose Seiferth
               </OwnerName>
-              <SubTitle 
-                muted={false}
-                className="text-primary mb-8"
-              >
-                Master Hair Artist & Salon Owner
-              </SubTitle>
             </div>
             
             <BodyText 
