@@ -23,14 +23,29 @@ export default function Navigation() {
   const handleNavigationClick = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      const navbarHeight = 80; // Adjust this value based on your navbar's actual height
-      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-      const offsetPosition = elementPosition - navbarHeight;
+      // Try to find the ScrollArea viewport
+      const scrollViewport = document.querySelector('[data-slot="scroll-area-viewport"]');
+      const navbarHeight = 80;
       
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
+      if (scrollViewport) {
+        // If using ScrollArea component
+        const elementPosition = element.offsetTop;
+        const offsetPosition = elementPosition - navbarHeight;
+        
+        scrollViewport.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      } else {
+        // Fallback to window scrolling
+        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - navbarHeight;
+        
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
     }
   };
 
