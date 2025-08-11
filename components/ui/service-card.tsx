@@ -31,27 +31,29 @@ export function ServiceCard({ service, className }: ServiceCardProps) {
   return (
     <div className={cn("bg-transparent", SPACING.cardPaddingSmall, className)}>
       <div className={SPACING.contentGap}>
-        {/* Service Name and Price - Above carousel */}
-        <div className="flex items-center justify-between flex-wrap gap-2">
-          <ServiceName>{service.name}</ServiceName>
-          <Badge 
-            variant="secondary" 
-            className="bg-primary/20 text-primary text-lg px-3 py-1 font-futura"
-          >
-            {service.price}
-          </Badge>
-        </div>
-        
         {/* Image Carousel - Middle (full width on mobile) */}
         <div className="flex justify-center -mx-6 sm:mx-0">
           <div className="relative w-full sm:max-w-md">
+            {/* Service Name and Price - Above the image */}
+            <div className="flex items-center justify-between mb-4 px-4 sm:px-0">
+              <div className="flex-1 text-center">
+                <ServiceName>{service.name}</ServiceName>
+              </div>
+              <Badge 
+                variant="secondary" 
+                className="bg-primary/20 text-primary text-lg px-3 py-1 font-futura ml-2"
+              >
+                {service.price}
+              </Badge>
+            </div>
+            
             <div className="relative bg-muted/10 rounded-none sm:rounded-3xl overflow-hidden aspect-[4/5]">
               <Image
                 key={`${service.name}-${currentIndex}`}
                 src={service.images[currentIndex]}
                 alt={`${service.name} - Image ${currentIndex + 1}`}
                 fill
-                className="object-contain transition-opacity duration-300 rounded-none sm:rounded-3xl"
+                className="object-cover transition-opacity duration-300 rounded-none sm:rounded-3xl"
                 onError={handleImageError}
               />
             </div>
