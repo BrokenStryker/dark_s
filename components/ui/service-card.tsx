@@ -43,16 +43,16 @@ export function ServiceCard({ service, className }: ServiceCardProps) {
           </Badge>
         </div>
         
-        {/* Image Carousel - Middle */}
-        <div className="flex justify-center">
-          <div className="relative w-full max-w-md">
-            <div className="relative bg-muted/10 rounded-3xl overflow-hidden aspect-[4/5]">
+        {/* Image Carousel - Middle (full width on mobile) */}
+        <div className="flex justify-center -mx-6 sm:mx-0">
+          <div className="relative w-full sm:max-w-md">
+            <div className="relative bg-muted/10 rounded-none sm:rounded-3xl overflow-hidden aspect-[4/5]">
               <Image
                 key={`${service.name}-${currentIndex}`}
                 src={service.images[currentIndex]}
                 alt={`${service.name} - Image ${currentIndex + 1}`}
                 fill
-                className="object-contain transition-opacity duration-300 rounded-3xl"
+                className="object-contain transition-opacity duration-300 rounded-none sm:rounded-3xl"
                 onError={handleImageError}
               />
             </div>

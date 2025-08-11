@@ -9,10 +9,10 @@ export const SPACING = {
   sectionSmall: '',
   sectionLarge: '',
   
-  // Card padding
-  cardPadding: 'p-8',
-  cardPaddingSmall: 'p-6',
-  cardPaddingLarge: 'p-10',
+  // Card padding (reduced on mobile)
+  cardPadding: 'p-4 sm:p-8',
+  cardPaddingSmall: 'p-3 sm:p-6',
+  cardPaddingLarge: 'p-6 sm:p-10',
   
   // Content gaps
   contentGap: 'space-y-8',
@@ -62,12 +62,12 @@ export const LAYOUT = {
   maxWidthWide: 'max-w-7xl mx-auto',
   maxWidthFull: 'max-w-full mx-auto',
   
-  // Padding
-  padding: 'px-4',
-  paddingLarge: 'sm:px-6 lg:px-8',
+  // Padding (no padding on mobile, add padding on larger screens)
+  padding: 'px-0 sm:px-4',
+  paddingLarge: 'px-0 sm:px-6 lg:px-8',
   
-  // Grid layouts
-  grid2Col: 'grid lg:grid-cols-2 gap-8 lg:gap-12',
+  // Grid layouts (single column on mobile)
+  grid2Col: 'grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12',
   grid3Col: 'grid md:grid-cols-3 gap-8',
   grid4Col: 'grid sm:grid-cols-2 lg:grid-cols-4 gap-6',
   
@@ -89,13 +89,13 @@ export const COLORS = {
 } as const;
 
 export const COMPONENTS = {
-  // Card variants with new colors
-  luxuryCard: `backdrop-blur-sm rounded-lg border`,
-  simpleCard: `rounded-lg border`,
-  glassCard: `backdrop-blur-md rounded-lg border`,
+  // Card variants with new colors (no rounded corners on mobile)
+  luxuryCard: `backdrop-blur-sm rounded-none sm:rounded-lg border`,
+  simpleCard: `rounded-none sm:rounded-lg border`,
+  glassCard: `backdrop-blur-md rounded-none sm:rounded-lg border`,
   
   // Section specific styles
-  sectionCard: `rounded-lg border`,
+  sectionCard: `rounded-none sm:rounded-lg border-x-0 sm:border-x border-y`,
   
   // Button variants
   primaryButton: 'bg-primary hover:bg-primary/90 text-primary-foreground',
