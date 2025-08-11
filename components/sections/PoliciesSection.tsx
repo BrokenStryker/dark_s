@@ -14,15 +14,12 @@ export default function PoliciesSection() {
           <SectionTitle className={SPACING.marginBottom.md}>
             Salon Policies
           </SectionTitle>
-          <BodyText muted>
-            Please review our policies to ensure the best experience for all clients.
-          </BodyText>
         </div>
         
         <div className={cn("max-w-2xl mx-auto", TYPOGRAPHY.fontFutura)}>
           <div className="bg-card/50 backdrop-blur-sm rounded-lg p-6 space-y-6 border border-border/50">
             {/* Appointment Requirements */}
-            <div className="space-y-3">
+            <div className="space-y-2">
               <div className="flex items-start space-x-3">
                 <span className="text-primary mt-1">•</span>
                 <p className="text-muted-foreground leading-relaxed">

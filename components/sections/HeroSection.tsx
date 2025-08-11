@@ -77,9 +77,10 @@ export default function HeroSection() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center">
               <Button 
                 size="lg" 
-                variant="outline" 
                 className={cn(
                   "px-8 py-3 text-lg",
+                  "bg-[#908476] text-white hover:bg-[#908476]/90",
+                  "border-0",
                   TYPOGRAPHY.fontFutura
                 )}
                 onClick={handleViewServices}
