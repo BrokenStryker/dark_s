@@ -1,40 +1,18 @@
 "use client";
 
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Instagram, Menu } from "lucide-react";
-import { COMPONENTS, LAYOUT, TYPOGRAPHY } from "@/lib/design-tokens";
+import { COMPONENTS, LAYOUT, TYPOGRAPHY, COLORS } from "@/lib/design-tokens";
 import { cn } from "@/lib/utils";
 
-interface NavigationItemProps {
-  children: React.ReactNode;
-  sectionId: string;
-  onClick: () => void;
-}
-
-function NavigationItem({ children, sectionId, onClick }: NavigationItemProps) {
-  const handleClick = () => {
-    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
-    onClick();
-  };
-
-  return (
-    <button
-      onClick={handleClick}
-      className={cn(
-        "block w-full text-left px-4 py-2",
-        TYPOGRAPHY.bodySmall,
-        TYPOGRAPHY.fontFutura,
-        "text-muted-foreground hover:bg-muted hover:text-foreground",
-        COMPONENTS.transition
-      )}
-    >
-      {children}
-    </button>
-  );
-}
-
 const navigationItems = [
+  { label: "Home", sectionId: "hero" },
   { label: "About", sectionId: "about" },
   { label: "Services", sectionId: "services" },
   { label: "Policies", sectionId: "policies" },
@@ -42,9 +20,19 @@ const navigationItems = [
 ];
 
 export default function Navigation() {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-  const closeDropdown = () => setIsDropdownOpen(false);
+  const handleNavigationClick = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const navbarHeight = 80; // Adjust this value based on your navbar's actual height
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = elementPosition - navbarHeight;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   return (
     <nav className="fixed top-0 w-full z-50 section-bg backdrop-blur-md border-b border-border">
@@ -67,7 +55,7 @@ export default function Navigation() {
           {/* Right Side Actions */}
           <div className="flex items-center space-x-4">
             {/* Book Now Button */}
-            <a href="https://www.vagaro.com" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.vagaro.com/darkserenityhairsalon" target="_blank" rel="noopener noreferrer">
               <Button 
                 size="sm" 
                 className={cn(
@@ -81,32 +69,37 @@ export default function Navigation() {
             </a>
             
             {/* Navigation Dropdown */}
-            <div className="relative">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="p-2"
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="p-2"
+                >
+                  <Menu className="h-5 w-5" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent 
+                align="end" 
+                className="w-48"
+                style={{ backgroundColor: COLORS.sectionBg }}
               >
-                <Menu className="h-5 w-5" />
-              </Button>
-              
-              {isDropdownOpen && (
-                <div className="absolute right-0 mt-2 w-48 card-bg rounded-md shadow-lg border border-border z-50">
-                  <div className="py-1">
-                    {navigationItems.map((item) => (
-                      <NavigationItem
-                        key={item.sectionId}
-                        sectionId={item.sectionId}
-                        onClick={closeDropdown}
-                      >
-                        {item.label}
-                      </NavigationItem>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
+                {navigationItems.map((item) => (
+                  <DropdownMenuItem
+                    key={item.sectionId}
+                    onClick={() => handleNavigationClick(item.sectionId)}
+                    className={cn(
+                      TYPOGRAPHY.bodySmall,
+                      TYPOGRAPHY.fontFutura,
+                      "cursor-pointer",
+                      "focus:bg-[#c8c2bb] focus:text-foreground"
+                    )}
+                  >
+                    {item.label}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
       </div>

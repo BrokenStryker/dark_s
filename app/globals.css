@@ -236,3 +236,61 @@ html {
 .dark {
   color-scheme: dark;
 }
+
+/* Custom Scrollbar Styles - Sleek Minimal Design */
+/* For Webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(200, 194, 187, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #48423b;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #5a5248;
+}
+
+/* For Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #48423b rgba(200, 194, 187, 0.3);
+}
+
+/* Force scrollbar to always show */
+body {
+  overflow-y: scroll;
+}
+
+/* ScrollArea component custom styling */
+[data-slot="scroll-area-scrollbar"] {
+  display: flex !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+[data-slot="scroll-area-thumb"] {
+  background-color: #48423b !important;
+  opacity: 0.8;
+  transition: opacity 0.2s ease, background-color 0.2s ease;
+}
+
+[data-slot="scroll-area-thumb"]:hover {
+  background-color: #5a5248 !important;
+  opacity: 1;
+}
+
+[data-slot="scroll-area-scrollbar"][data-orientation="vertical"] {
+  width: 8px !important;
+  right: 2px;
+  top: 2px;
+  bottom: 2px;
+}

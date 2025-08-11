@@ -10,7 +10,17 @@ import { cn } from "@/lib/utils";
 
 export default function HeroSection() {
   const handleViewServices = () => {
-    document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
+    const element = document.getElementById('services');
+    if (element) {
+      const navbarHeight = 80; // Same offset as Navigation component
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = elementPosition - navbarHeight;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
   };
 
   return (
