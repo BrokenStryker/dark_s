@@ -1,4 +1,3 @@
-import { ContentCard } from "@/components/ui/content-card";
 import { ServiceCard, Service } from "@/components/ui/service-card";
 import { SectionTitle, BodyText } from "@/components/ui/typography";
 import { SPACING, LAYOUT } from "@/lib/design-tokens";
@@ -17,7 +16,7 @@ interface ServiceCategoryProps {
 
 export function ServiceCategorySection({ category, className }: ServiceCategoryProps) {
   return (
-    <ContentCard variant="section" className={cn("border-0", className)}>
+    <div className={className}>
       {/* Category Header */}
       <div className={cn("text-center", SPACING.marginBottom.xl)}>
         <SectionTitle 
@@ -42,6 +41,6 @@ export function ServiceCategorySection({ category, className }: ServiceCategoryP
           />
         ))}
       </div>
-    </ContentCard>
+    </div>
   );
 }

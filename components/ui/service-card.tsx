@@ -4,7 +4,6 @@ import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { ServiceName, BodyText } from "@/components/ui/typography";
-import { ContentCard } from "@/components/ui/content-card";
 import { useImageCarousel } from "@/hooks/use-image-carousel";
 import { SPACING, COMPONENTS } from "@/lib/design-tokens";
 import { cn } from "@/lib/utils";
@@ -30,7 +29,7 @@ export function ServiceCard({ service, className }: ServiceCardProps) {
   };
 
   return (
-    <ContentCard variant="luxury" padding="small" className={className}>
+    <div className={cn("bg-transparent", SPACING.cardPaddingSmall, className)}>
       <div className={SPACING.contentGap}>
         {/* Service Name and Price - Above carousel */}
         <div className="flex items-center justify-between flex-wrap gap-2">
@@ -112,6 +111,6 @@ export function ServiceCard({ service, className }: ServiceCardProps) {
           </BodyText>
         </div>
       </div>
-    </ContentCard>
+    </div>
   );
 }

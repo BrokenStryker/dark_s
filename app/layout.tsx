@@ -8,22 +8,15 @@ const trajanPro = localFont({
   display: "swap",
 });
 
-const futura = localFont({
+const ebGaramond = localFont({
   src: [
     {
-      path: "../font/Futura.ttf",
-      weight: "400",
+      path: "../font/EBGaramond-VariableFont_wght.ttf",
       style: "normal",
     },
     {
-      path: "../font/Futura LT Medium.ttf",
-      weight: "500",
-      style: "normal",
-    },
-    {
-      path: "../font/Futura Md BT Bold.ttf",
-      weight: "700",
-      style: "normal",
+      path: "../font/EBGaramond-Italic-VariableFont_wght.ttf", 
+      style: "italic",
     },
   ],
   variable: "--font-futura",
@@ -49,7 +42,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <body
-        className={`${trajanPro.variable} ${futura.variable} antialiased bg-background text-foreground`}
+        className={`${trajanPro.variable} ${ebGaramond.variable} antialiased bg-background text-foreground`}
         suppressHydrationWarning
       >
         {children}

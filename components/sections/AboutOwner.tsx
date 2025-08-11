@@ -39,25 +39,30 @@ export default function AboutOwner() {
             <BodyText 
               muted 
               className={SPACING.marginBottom.md}
-            >
-              With over five years of experience in luxury hair artistry, Amberrose brings a unique vision that 
-              combines technical excellence with an eye for the dramatic. Her journey began with a passion for 
-              transforming the ordinary into the extraordinary.
-            </BodyText>
+            >Amberrose is a naturally creative force in the hair industry. 
+            A 2019 graduate of Dutchess BOCES, she brings over six years of professional experience and holds licenses in New York, New Jersey, and Alaska.
+             Renowned for her exceptional hair color techniques, Amberrose specializes in blondes, brunettes, dimensional shades, and effortless lived-in looks. 
+             
             
+            </BodyText>
+
+            <BodyText 
+              muted 
+              className={SPACING.marginBottom.md}
+            >She's always ahead of the latest trends, crafting customized styles that perfectly align with her clients' unique lifestyles and needs. 
+             As the founder of Dark Serenity Salon, she has created a serene haven where clients can escape the everyday, recharge their energy, and indulge in luxurious pampering..
+            
+            </BodyText>
+
             <BodyText 
               muted 
               className={SPACING.marginBottom.md}
             >
-              Specializing in gothic-inspired cuts and colors, Amberrose understands that hair is more than just 
-              an accessory—it's an expression of your innermost self. Each client receives a personalized 
-              consultation to create a look that's both striking and sophisticated.
+            When she's not behind the chair, Amberrose cherishes quality time with her cat, Gizmo. 
+            She stays active by exploring local markets or discovering new food spots, and she loves diving into conversations about movies, books, and music.
+            
             </BodyText>
             
-            <BodyText muted>
-              "I believe in the power of transformation. My goal is to help you discover the beauty that exists 
-              in embracing your darkness, creating looks that are both timeless and boldly individual."
-            </BodyText>
           </div>
         </div>
       </ContentCard>

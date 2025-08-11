@@ -149,7 +149,7 @@ const serviceCategories: ServiceCategory[] = [
 export default function ServicesSection() {
   return (
     <SectionContainer id="services" width="wide">
-      <ContentCard variant="section" className="border-0">
+      <ContentCard variant="section">
         <div className={SPACING.contentGapLarge}>
           {serviceCategories.map((category, categoryIndex) => (
             <ServiceCategorySection

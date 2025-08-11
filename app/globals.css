@@ -58,7 +58,8 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
     color: black;
-    font-family: var(--font-futura), sans-serif;
+    font-family: var(--font-futura), serif;
+    font-weight: 600;
   }
 
   /* Font family classes */
@@ -67,7 +68,8 @@
   }
 
   .font-futura {
-    font-family: var(--font-futura), sans-serif;
+    font-family: var(--font-futura), serif;
+    font-weight: 600;
   }
 
   /* Heading styles with Trajan Pro */
@@ -77,11 +79,11 @@
     font-weight: normal !important;
   }
 
-  /* Body text styles with Futura */
+  /* Body text styles with EBGaramond */
   p, span, div, li, .body-text {
-    font-family: var(--font-futura), sans-serif !important;
+    font-family: var(--font-futura), serif !important;
     color: black !important;
-    font-weight: 500 !important;
+    font-weight: 600 !important;
   }
 
   /* Special elements that should use Trajan Pro */
@@ -186,7 +188,8 @@
 
   .text-body {
     font-size: 1.125rem;
-    font-family: var(--font-futura), sans-serif;
+    font-family: var(--font-futura), serif;
+    font-weight: 600;
   }
 
   /* Layout Utilities */

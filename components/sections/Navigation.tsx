@@ -52,38 +52,41 @@ export default function Navigation() {
   return (
     <nav className="fixed top-0 w-full z-50 section-bg backdrop-blur-md border-b border-border">
       <div className={cn(LAYOUT.maxWidthWide, LAYOUT.paddingLarge)}>
-        <div className={cn(LAYOUT.flexBetween, "py-4")}>
-          {/* Instagram Link */}
-          <a 
-            href="https://www.instagram.com/amberrose.seiferth/?hl=en" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className={cn(
-              LAYOUT.flexCenter,
-              "text-foreground hover:text-primary",
-              COMPONENTS.transition
-            )}
-          >
-            <Instagram className="h-6 w-6" />
-          </a>
+        <div className="grid grid-cols-3 items-center py-4">
+          {/* Left - Instagram Link */}
+          <div className="flex justify-start pl-10">
+            <a 
+              href="https://www.instagram.com/amberrose.seiferth/?hl=en" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className={cn(
+                LAYOUT.flexCenter,
+                "text-foreground hover:text-primary",
+                COMPONENTS.transition
+              )}
+            >
+              <Instagram className="h-6 w-6" />
+            </a>
+          </div>
           
-          {/* Right Side Actions */}
-          <div className="flex items-center space-x-4">
-            {/* Book Now Button */}
+          {/* Center - Book Now Button */}
+          <div className="flex justify-center">
             <a href="https://www.vagaro.com/darkserenityhairsalon" target="_blank" rel="noopener noreferrer">
               <Button 
                 size="sm" 
                 className={cn(
                   "bg-[#48423b] text-white hover:bg-[#48423b]/90",
                   "border-0",
-                  TYPOGRAPHY.fontFutura
+                  TYPOGRAPHY.fontTrajan
                 )}
               >
                 Book Now
               </Button>
             </a>
-            
-            {/* Navigation Dropdown */}
+          </div>
+          
+          {/* Right - Navigation Dropdown */}
+          <div className="flex justify-end pr-10">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
