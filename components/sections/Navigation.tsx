@@ -52,7 +52,7 @@ export default function Navigation() {
         <div className={cn(LAYOUT.flexBetween, "py-4")}>
           {/* Instagram Link */}
           <a 
-            href="https://www.instagram.com" 
+            href="https://www.instagram.com/amberrose.seiferth/?hl=en" 
             target="_blank" 
             rel="noopener noreferrer" 
             className={cn(
@@ -71,7 +71,8 @@ export default function Navigation() {
               <Button 
                 size="sm" 
                 className={cn(
-                  COMPONENTS.primaryButton,
+                  "bg-[#48423b] text-white hover:bg-[#48423b]/90",
+                  "border-0",
                   TYPOGRAPHY.fontFutura
                 )}
               >

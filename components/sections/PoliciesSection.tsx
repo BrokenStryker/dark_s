@@ -1,74 +1,10 @@
 "use client";
 
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { SectionContainer } from "@/components/ui/section-container";
 import { ContentCard } from "@/components/ui/content-card";
 import { SectionTitle, BodyText } from "@/components/ui/typography";
 import { SPACING, TYPOGRAPHY, COMPONENTS } from "@/lib/design-tokens";
 import { cn } from "@/lib/utils";
-
-interface PolicyItemProps {
-  value: string;
-  title: string;
-  items: string[];
-}
-
-function PolicyItem({ value, title, items }: PolicyItemProps) {
-  return (
-    <AccordionItem value={value} className="bg-card px-6 rounded-lg border">
-      <AccordionTrigger 
-        className={cn(
-          TYPOGRAPHY.subTitle,
-          TYPOGRAPHY.fontTrajan,
-          TYPOGRAPHY.fontSemibold,
-          "text-foreground hover:no-underline"
-        )}
-      >
-        {title}
-      </AccordionTrigger>
-      <AccordionContent className="text-muted-foreground pt-4 font-futura">
-        <ul className="space-y-2">
-          {items.map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
-      </AccordionContent>
-    </AccordionItem>
-  );
-}
-
-const policyData = [
-  {
-    value: "booking",
-    title: "Booking & Scheduling",
-    items: [
-      "• Appointments must be booked at least 48 hours in advance",
-      "• A 50% deposit is required to secure your appointment",
-      "• First-time clients require a consultation call prior to booking",
-      "• Appointments are available Tuesday through Saturday"
-    ]
-  },
-  {
-    value: "cancellation",
-    title: "Cancellation Policy",
-    items: [
-      "• 24-hour notice required for cancellations",
-      "• Deposits are non-refundable for cancellations under 24 hours",
-      "• No-shows forfeit full deposit and may be charged full service price",
-      "• Emergency situations will be considered on a case-by-case basis"
-    ]
-  },
-  {
-    value: "salon",
-    title: "Salon Experience",
-    items: [
-      "• Please arrive 10 minutes early for your appointment",
-      "• Private, one-on-one service ensures your complete comfort",
-      "• Light refreshments are provided during longer services",
-      "• Photography for portfolio use requires client consent"
-    ]
-  }
-];
 
 export default function PoliciesSection() {
   return (
@@ -83,16 +19,58 @@ export default function PoliciesSection() {
           </BodyText>
         </div>
         
-        <Accordion type="single" collapsible className="space-y-4">
-          {policyData.map((policy) => (
-            <PolicyItem
-              key={policy.value}
-              value={policy.value}
-              title={policy.title}
-              items={policy.items}
-            />
-          ))}
-        </Accordion>
+        <div className={cn("max-w-2xl mx-auto", TYPOGRAPHY.fontFutura)}>
+          <div className="bg-card/50 backdrop-blur-sm rounded-lg p-6 space-y-6 border border-border/50">
+            {/* Appointment Requirements */}
+            <div className="space-y-3">
+              <div className="flex items-start space-x-3">
+                <span className="text-primary mt-1">•</span>
+                <p className="text-muted-foreground leading-relaxed">
+                  A card on file is required for scheduling all appointments.
+                </p>
+              </div>
+              <div className="flex items-start space-x-3">
+                <span className="text-primary mt-1">•</span>
+                <p className="text-muted-foreground leading-relaxed">
+                  Appointments need to be confirmed through Vagaro 48 hours prior to appointment.
+                </p>
+              </div>
+            </div>
+            
+            {/* Divider */}
+            <div className="border-t border-border/30"></div>
+            
+            {/* Cancellation Policy */}
+            <div className="space-y-4">
+              <h3 className={cn(
+                TYPOGRAPHY.subTitle, 
+                TYPOGRAPHY.fontTrajan, 
+                TYPOGRAPHY.fontSemibold, 
+                "text-foreground tracking-wide"
+              )}>
+                Cancellation Policy
+              </h3>
+              
+              <div className="space-y-3 pl-4">
+                <div className="flex items-start space-x-3">
+                  <span className="text-amber-500 font-semibold mt-1">⚠</span>
+                  <p className="text-muted-foreground leading-relaxed">
+                    <span className="font-semibold text-foreground">48-hour cancellations:</span> Will be charged 
+                    <span className="text-amber-500 font-semibold"> 50%</span> of the appointment cost.
+                  </p>
+                </div>
+                
+                <div className="flex items-start space-x-3">
+                  <span className="text-red-500 font-semibold mt-1">⚠</span>
+                  <p className="text-muted-foreground leading-relaxed">
+                    <span className="font-semibold text-foreground">Same-day cancellations or no-shows:</span> Will be charged 
+                    <span className="text-red-500 font-semibold"> 100%</span> of the appointment cost.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </ContentCard>
     </SectionContainer>
   );
