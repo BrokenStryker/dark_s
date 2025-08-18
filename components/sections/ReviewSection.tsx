@@ -39,10 +39,11 @@ import {
   getClientIdentifier,
   type CreateReviewData
 } from "@/lib/review-service"
+import { MyReviewsDialog } from "@/components/ui/my-reviews-dialog"
 import type { Review } from "@/lib/db/schema"
 import { LAYOUT, SPACING, TYPOGRAPHY, COMPONENTS } from "@/lib/design-tokens"
 import { cn } from "@/lib/utils"
-import { MessageSquarePlus, Clock, User, Quote } from "lucide-react"
+import { MessageSquarePlus, Clock, User, Quote, Eye } from "lucide-react"
 
 const reviewSchema = z.object({
   customer_name: z.string().min(2, "Name must be at least 2 characters").max(50, "Name must be less than 50 characters"),
@@ -67,7 +68,10 @@ export default function ReviewSection() {
   const [loading, setLoading] = useState(false)
   const [canSubmit, setCanSubmit] = useState(true)
   const [dialogOpen, setDialogOpen] = useState(false)
+  const [myReviewsOpen, setMyReviewsOpen] = useState(false)
   const [timeUntilNextReview, setTimeUntilNextReview] = useState<string>("")
+  const [userIdentifier, setUserIdentifier] = useState<string>("")
+  const [mounted, setMounted] = useState(false)
 
   const form = useForm<ReviewFormData>({
     resolver: zodResolver(reviewSchema),
@@ -80,8 +84,13 @@ export default function ReviewSection() {
   })
 
   useEffect(() => {
+    setMounted(true)
+    const identifier = getClientIdentifier()
+    setUserIdentifier(identifier)
     loadReviews()
-    checkSubmissionEligibility()
+    if (identifier) {
+      checkSubmissionEligibility()
+    }
   }, [])
 
   const loadReviews = async () => {
@@ -95,11 +104,13 @@ export default function ReviewSection() {
 
   const checkSubmissionEligibility = async () => {
     try {
-      const identifier = getClientIdentifier()
+      const identifier = userIdentifier || getClientIdentifier()
+      if (!identifier) return
+      
       const canSubmitNow = await checkRateLimit(identifier)
       setCanSubmit(canSubmitNow)
       
-      if (!canSubmitNow) {
+      if (!canSubmitNow && typeof window !== 'undefined') {
         const lastReviewTime = localStorage.getItem('last_review_time')
         if (lastReviewTime) {
           const nextAllowedTime = new Date(lastReviewTime).getTime() + (5 * 60 * 60 * 1000)
@@ -123,17 +134,24 @@ export default function ReviewSection() {
 
     setLoading(true)
     try {
+      const identifier = userIdentifier || getClientIdentifier()
+      if (!identifier) {
+        throw new Error('Unable to get user identifier')
+      }
+      
       const reviewData: CreateReviewData = {
         customerName: data.customer_name,
         rating: data.rating,
         reviewText: data.review_text,
         serviceType: data.service_type,
+        userIdentifier: identifier,
       }
 
-      const identifier = getClientIdentifier()
       await createReview(reviewData)
       await updateRateLimit(identifier)
-      localStorage.setItem('last_review_time', new Date().toISOString())
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('last_review_time', new Date().toISOString())
+      }
       await loadReviews()
       setCanSubmit(false)
       checkSubmissionEligibility()
@@ -166,22 +184,39 @@ export default function ReviewSection() {
               Discover what our clients say about their transformative experiences at Dark Serenity.
             </BodyText>
             
-            {/* Add Review Button */}
-            <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-              <DialogTrigger asChild>
-                <Button 
-                  size="lg"
-                  className={cn(
-                    "bg-[#908476] text-white hover:bg-[#908476]/90",
-                    TYPOGRAPHY.fontFutura,
-                    "gap-2"
-                  )}
-                  disabled={!canSubmit}
-                >
-                  <MessageSquarePlus className="w-5 h-5" />
-                  {canSubmit ? "Share Your Experience" : `Next review in ${timeUntilNextReview}`}
-                </Button>
-              </DialogTrigger>
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+              {/* My Reviews Button - Always Available */}
+              <Button 
+                size="lg"
+                variant="outline"
+                onClick={() => setMyReviewsOpen(true)}
+                className={cn(
+                  "bg-white/80 text-black hover:bg-white border-black/20",
+                  TYPOGRAPHY.fontFutura,
+                  "gap-2"
+                )}
+              >
+                <Eye className="w-5 h-5" />
+                My Reviews
+              </Button>
+
+              {/* Add Review Button */}
+              <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+                <DialogTrigger asChild>
+                  <Button 
+                    size="lg"
+                    className={cn(
+                      "bg-[#908476] text-white hover:bg-[#908476]/90",
+                      TYPOGRAPHY.fontFutura,
+                      "gap-2"
+                    )}
+                    disabled={!canSubmit}
+                  >
+                    <MessageSquarePlus className="w-5 h-5" />
+                    {canSubmit ? "Share Your Experience" : `Next review in ${timeUntilNextReview}`}
+                  </Button>
+                </DialogTrigger>
               
               <DialogContent className="w-[95vw] h-[95vh] max-w-none sm:w-[90vw] sm:h-[90vh] md:w-[80vw] md:h-[85vh] lg:w-[70vw] lg:h-[80vh] xl:w-[60vw] xl:h-[75vh] bg-[#908476] bg-[url('/wallpaper.png')] bg-cover bg-center bg-no-repeat overflow-y-auto">
                 <div className="bg-[#c8c2bb]/95 backdrop-blur-sm rounded-lg p-6 h-full overflow-y-auto">
@@ -299,6 +334,17 @@ export default function ReviewSection() {
                 </div>
               </DialogContent>
             </Dialog>
+            </div>
+
+            {/* My Reviews Dialog */}
+            {mounted && userIdentifier && (
+              <MyReviewsDialog
+                open={myReviewsOpen}
+                onOpenChange={setMyReviewsOpen}
+                userIdentifier={userIdentifier}
+                onReviewUpdated={loadReviews}
+              />
+            )}
           </div>
 
           {/* Reviews Carousel */}

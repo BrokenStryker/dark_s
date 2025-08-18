@@ -7,6 +7,7 @@ export const reviews = pgTable('reviews', {
   rating: integer('rating').notNull(),
   reviewText: text('review_text').notNull(),
   serviceType: varchar('service_type', { length: 100 }).notNull(),
+  userIdentifier: varchar('user_identifier', { length: 255 }),
   isVerified: boolean('is_verified').default(false).notNull(),
   helpfulCount: integer('helpful_count').default(0).notNull(),
   featured: boolean('featured').default(false).notNull(),
@@ -16,6 +17,7 @@ export const reviews = pgTable('reviews', {
   createdAtIdx: index('reviews_created_at_idx').on(table.createdAt),
   ratingIdx: index('reviews_rating_idx').on(table.rating),
   serviceTypeIdx: index('reviews_service_type_idx').on(table.serviceType),
+  userIdentifierIdx: index('reviews_user_identifier_idx').on(table.userIdentifier),
   featuredRatingIdx: index('reviews_featured_rating_idx').on(table.featured, table.rating),
 }))
 

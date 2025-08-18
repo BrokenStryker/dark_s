@@ -5,6 +5,7 @@ export type CreateReviewData = {
   rating: number
   reviewText: string
   serviceType: string
+  userIdentifier?: string
 }
 
 export async function createReview(reviewData: CreateReviewData): Promise<Review> {
@@ -55,6 +56,31 @@ export async function updateReview(id: string, reviewData: CreateReviewData): Pr
   return response.json()
 }
 
+export async function getUserReviews(userIdentifier: string): Promise<Review[]> {
+  const response = await fetch(`/api/reviews/my-reviews?userIdentifier=${encodeURIComponent(userIdentifier)}`, {
+    method: 'GET',
+    cache: 'no-store',
+  })
+
+  if (!response.ok) {
+    const errorData = await response.json()
+    throw new Error(errorData.error || 'Failed to fetch user reviews')
+  }
+
+  return response.json()
+}
+
+export async function deleteReview(id: string, userIdentifier: string): Promise<void> {
+  const response = await fetch(`/api/reviews/${id}?userIdentifier=${encodeURIComponent(userIdentifier)}`, {
+    method: 'DELETE',
+  })
+
+  if (!response.ok) {
+    const errorData = await response.json()
+    throw new Error(errorData.error || 'Failed to delete review')
+  }
+}
+
 export async function checkRateLimit(identifier: string): Promise<boolean> {
   const response = await fetch(`/api/rate-limit?identifier=${encodeURIComponent(identifier)}`, {
     method: 'GET',
@@ -85,6 +111,11 @@ export async function updateRateLimit(identifier: string): Promise<void> {
 }
 
 export function getClientIdentifier(): string {
+  // Check if we're in the browser environment
+  if (typeof window === 'undefined') {
+    return '' // Return empty string during SSR
+  }
+  
   // Use localStorage + a simple hash for client identification
   let identifier = localStorage.getItem('review_identifier')
   if (!identifier) {

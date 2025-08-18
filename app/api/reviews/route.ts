@@ -16,7 +16,7 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { customerName, rating, reviewText, serviceType } = body
+    const { customerName, rating, reviewText, serviceType, userIdentifier } = body
 
     if (!customerName || !rating || !reviewText || !serviceType) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
@@ -31,6 +31,7 @@ export async function POST(request: NextRequest) {
       rating,
       reviewText,
       serviceType,
+      userIdentifier: userIdentifier || null,
     }).returning()
 
     return NextResponse.json(newReview, { status: 201 })
