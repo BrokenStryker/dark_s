@@ -34,8 +34,6 @@ import {
   createReview, 
   getReviews, 
   updateReview, 
-  checkRateLimit, 
-  updateRateLimit, 
   getClientIdentifier,
   type CreateReviewData
 } from "@/lib/review-service"
@@ -43,7 +41,8 @@ import { MyReviewsDialog } from "@/components/ui/my-reviews-dialog"
 import type { Review } from "@/lib/db/schema"
 import { LAYOUT, SPACING, TYPOGRAPHY, COMPONENTS } from "@/lib/design-tokens"
 import { cn } from "@/lib/utils"
-import { MessageSquarePlus, Clock, User, Quote, Eye } from "lucide-react"
+import { MessageSquarePlus, User, Quote, Eye } from "lucide-react"
+import { toast } from "sonner"
 
 const reviewSchema = z.object({
   customer_name: z.string().min(2, "Name must be at least 2 characters").max(50, "Name must be less than 50 characters"),
@@ -55,21 +54,41 @@ const reviewSchema = z.object({
 type ReviewFormData = z.infer<typeof reviewSchema>
 
 const serviceTypes = [
-  "Hair Cut & Style",
-  "Hair Color",
-  "Hair Treatment",
-  "Bridal/Special Event",
-  "Extensions",
+  // Blonding Services
+  "Full Blonding",
+  "Partial Blonding", 
+  "Mini Blonding",
+  "Reverse Balayage",
+  
+  // Color Services
+  "All Over Color",
+  "Root Touch-Up",
+  "Vivid Pop of Color",
+  "Glaze",
+  
+  // Haircut Services
+  "Medium/Long Haircut",
+  "Bang Trim",
+  
+  // Blowdry & Styling Services
+  "Blowout",
+  "Blowout with Extensions",
+  "Brazilian Blowout",
+  "Recovery Package",
+  
+  // Add-On Treatments
+  "Malibu Treatment",
+  "Conditioning Mask",
+  
+  // Other
   "Other"
 ]
 
 export default function ReviewSection() {
   const [reviews, setReviews] = useState<Review[]>([])
   const [loading, setLoading] = useState(false)
-  const [canSubmit, setCanSubmit] = useState(true)
   const [dialogOpen, setDialogOpen] = useState(false)
   const [myReviewsOpen, setMyReviewsOpen] = useState(false)
-  const [timeUntilNextReview, setTimeUntilNextReview] = useState<string>("")
   const [userIdentifier, setUserIdentifier] = useState<string>("")
   const [mounted, setMounted] = useState(false)
 
@@ -88,9 +107,6 @@ export default function ReviewSection() {
     const identifier = getClientIdentifier()
     setUserIdentifier(identifier)
     loadReviews()
-    if (identifier) {
-      checkSubmissionEligibility()
-    }
   }, [])
 
   const loadReviews = async () => {
@@ -102,36 +118,11 @@ export default function ReviewSection() {
     }
   }
 
-  const checkSubmissionEligibility = async () => {
-    try {
-      const identifier = userIdentifier || getClientIdentifier()
-      if (!identifier) return
-      
-      const canSubmitNow = await checkRateLimit(identifier)
-      setCanSubmit(canSubmitNow)
-      
-      if (!canSubmitNow && typeof window !== 'undefined') {
-        const lastReviewTime = localStorage.getItem('last_review_time')
-        if (lastReviewTime) {
-          const nextAllowedTime = new Date(lastReviewTime).getTime() + (5 * 60 * 60 * 1000)
-          const now = new Date().getTime()
-          const timeLeft = nextAllowedTime - now
-          
-          if (timeLeft > 0) {
-            const hours = Math.floor(timeLeft / (1000 * 60 * 60))
-            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60))
-            setTimeUntilNextReview(`${hours}h ${minutes}m`)
-          }
-        }
-      }
-    } catch (error) {
-      console.error("Error checking rate limit:", error)
-    }
+  const handleReviewClick = () => {
+    setDialogOpen(true)
   }
 
   const onSubmit = async (data: ReviewFormData) => {
-    if (!canSubmit) return
-
     setLoading(true)
     try {
       const identifier = userIdentifier || getClientIdentifier()
@@ -148,18 +139,20 @@ export default function ReviewSection() {
       }
 
       await createReview(reviewData)
-      await updateRateLimit(identifier)
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('last_review_time', new Date().toISOString())
-      }
       await loadReviews()
-      setCanSubmit(false)
-      checkSubmissionEligibility()
       
       form.reset()
       setDialogOpen(false)
+      toast.success("Review submitted successfully!", {
+        description: "Thank you for sharing your experience.",
+        duration: 3000,
+      })
     } catch (error) {
       console.error("Error submitting review:", error)
+      toast.error("Failed to submit review", {
+        description: "Please try again later.",
+        duration: 3000,
+      })
     } finally {
       setLoading(false)
     }
@@ -202,21 +195,21 @@ export default function ReviewSection() {
               </Button>
 
               {/* Add Review Button */}
+              <Button 
+                size="lg"
+                onClick={handleReviewClick}
+                className={cn(
+                  "bg-[#908476] text-white hover:bg-[#908476]/90",
+                  "px-8 py-3 text-lg border-0",
+                  TYPOGRAPHY.fontFutura,
+                  "gap-2"
+                )}
+              >
+                <MessageSquarePlus className="w-5 h-5" />
+                Share Your Experience
+              </Button>
+
               <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-                <DialogTrigger asChild>
-                  <Button 
-                    size="lg"
-                    className={cn(
-                      "bg-[#908476] text-white hover:bg-[#908476]/90",
-                      TYPOGRAPHY.fontFutura,
-                      "gap-2"
-                    )}
-                    disabled={!canSubmit}
-                  >
-                    <MessageSquarePlus className="w-5 h-5" />
-                    {canSubmit ? "Share Your Experience" : `Next review in ${timeUntilNextReview}`}
-                  </Button>
-                </DialogTrigger>
               
               <DialogContent className="w-[95vw] h-[95vh] max-w-none sm:w-[90vw] sm:h-[90vh] md:w-[80vw] md:h-[85vh] lg:w-[70vw] lg:h-[80vh] xl:w-[60vw] xl:h-[75vh] bg-[#908476] bg-[url('/wallpaper.png')] bg-cover bg-center bg-no-repeat overflow-y-auto">
                 <div className="bg-[#c8c2bb]/95 backdrop-blur-sm rounded-lg p-6 h-full overflow-y-auto">

@@ -81,34 +81,6 @@ export async function deleteReview(id: string, userIdentifier: string): Promise<
   }
 }
 
-export async function checkRateLimit(identifier: string): Promise<boolean> {
-  const response = await fetch(`/api/rate-limit?identifier=${encodeURIComponent(identifier)}`, {
-    method: 'GET',
-  })
-
-  if (!response.ok) {
-    const errorData = await response.json()
-    throw new Error(errorData.error || 'Failed to check rate limit')
-  }
-
-  const data = await response.json()
-  return data.canSubmit
-}
-
-export async function updateRateLimit(identifier: string): Promise<void> {
-  const response = await fetch('/api/rate-limit', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ identifier }),
-  })
-
-  if (!response.ok) {
-    const errorData = await response.json()
-    throw new Error(errorData.error || 'Failed to update rate limit')
-  }
-}
 
 export function getClientIdentifier(): string {
   // Check if we're in the browser environment

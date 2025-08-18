@@ -50,11 +50,33 @@ const reviewSchema = z.object({
 type ReviewFormData = z.infer<typeof reviewSchema>
 
 const serviceTypes = [
-  "Hair Cut & Style",
-  "Hair Color",
-  "Hair Treatment",
-  "Bridal/Special Event",
-  "Extensions",
+  // Blonding Services
+  "Full Blonding",
+  "Partial Blonding", 
+  "Mini Blonding",
+  "Reverse Balayage",
+  
+  // Color Services
+  "All Over Color",
+  "Root Touch-Up",
+  "Vivid Pop of Color",
+  "Glaze",
+  
+  // Haircut Services
+  "Medium/Long Haircut",
+  "Bang Trim",
+  
+  // Blowdry & Styling Services
+  "Blowout",
+  "Blowout with Extensions",
+  "Brazilian Blowout",
+  "Recovery Package",
+  
+  // Add-On Treatments
+  "Malibu Treatment",
+  "Conditioning Mask",
+  
+  // Other
   "Other"
 ]
 
