@@ -1,0 +1,95 @@
+import type { Review } from './db/schema'
+
+export type CreateReviewData = {
+  customerName: string
+  rating: number
+  reviewText: string
+  serviceType: string
+}
+
+export async function createReview(reviewData: CreateReviewData): Promise<Review> {
+  const response = await fetch('/api/reviews', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(reviewData),
+  })
+
+  if (!response.ok) {
+    const errorData = await response.json()
+    throw new Error(errorData.error || 'Failed to create review')
+  }
+
+  return response.json()
+}
+
+export async function getReviews(): Promise<Review[]> {
+  const response = await fetch('/api/reviews', {
+    method: 'GET',
+    cache: 'no-store',
+  })
+
+  if (!response.ok) {
+    const errorData = await response.json()
+    throw new Error(errorData.error || 'Failed to fetch reviews')
+  }
+
+  return response.json()
+}
+
+export async function updateReview(id: string, reviewData: CreateReviewData): Promise<Review> {
+  const response = await fetch(`/api/reviews/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(reviewData),
+  })
+
+  if (!response.ok) {
+    const errorData = await response.json()
+    throw new Error(errorData.error || 'Failed to update review')
+  }
+
+  return response.json()
+}
+
+export async function checkRateLimit(identifier: string): Promise<boolean> {
+  const response = await fetch(`/api/rate-limit?identifier=${encodeURIComponent(identifier)}`, {
+    method: 'GET',
+  })
+
+  if (!response.ok) {
+    const errorData = await response.json()
+    throw new Error(errorData.error || 'Failed to check rate limit')
+  }
+
+  const data = await response.json()
+  return data.canSubmit
+}
+
+export async function updateRateLimit(identifier: string): Promise<void> {
+  const response = await fetch('/api/rate-limit', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ identifier }),
+  })
+
+  if (!response.ok) {
+    const errorData = await response.json()
+    throw new Error(errorData.error || 'Failed to update rate limit')
+  }
+}
+
+export function getClientIdentifier(): string {
+  // Use localStorage + a simple hash for client identification
+  let identifier = localStorage.getItem('review_identifier')
+  if (!identifier) {
+    identifier = `client_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
+    localStorage.setItem('review_identifier', identifier)
+  }
+  return identifier
+}

@@ -1,6 +1,7 @@
 import { ScrollArea } from "@/components/ui/scroll-area";
 import Navigation from "@/components/sections/Navigation";
 import HeroSection from "@/components/sections/HeroSection";
+import ReviewSection from "@/components/sections/ReviewSection";
 import AboutOwner from "@/components/sections/AboutOwner";
 import ServicesSection from "@/components/sections/ServicesSection";
 import PoliciesSection from "@/components/sections/PoliciesSection";
@@ -19,6 +20,10 @@ export default function Home() {
         <HeroSection />
         
         {/* Spacing between sections */}
+        <div className="h-10" />
+        
+        <ReviewSection />
+        
         <div className="h-10" />
         
         <AboutOwner />
