@@ -13,6 +13,10 @@ export interface Service {
   price: string;
   description: string;
   images: string[];
+  // Dynamic content arrays for carousel-based services (optional)
+  names?: string[];
+  prices?: string[];
+  descriptions?: string[];
 }
 
 interface ServiceCardProps {
@@ -23,9 +27,17 @@ interface ServiceCardProps {
 export function ServiceCard({ service, className }: ServiceCardProps) {
   const { currentIndex, goToNext, goToPrevious, goToIndex } = useImageCarousel(service.images.length);
 
+  // Check if this service has dynamic content
+  const isDynamic = service.names && service.prices && service.descriptions;
+  
+  // Get current content based on carousel position
+  const currentName = isDynamic ? service.names![currentIndex] : service.name;
+  const currentPrice = isDynamic ? service.prices![currentIndex] : service.price;
+  const currentDescription = isDynamic ? service.descriptions![currentIndex] : service.description;
+
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
     const target = e.target as HTMLImageElement;
-    target.src = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='500' viewBox='0 0 400 500'%3E%3Crect width='400' height='500' fill='%23f0f0f0'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='16' fill='%23666'%3E${service.name}%3C/text%3E%3C/svg%3E`;
+    target.src = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='500' viewBox='0 0 400 500'%3E%3Crect width='400' height='500' fill='%23f0f0f0'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='16' fill='%23666'%3E${currentName}%3C/text%3E%3C/svg%3E`;
   };
 
   return (
@@ -37,21 +49,21 @@ export function ServiceCard({ service, className }: ServiceCardProps) {
             {/* Service Name and Price - Above the image */}
             <div className="flex items-center justify-between mb-4 px-4 sm:px-0">
               <div className="flex-1 text-center">
-                <ServiceName>{service.name}</ServiceName>
+                <ServiceName>{currentName}</ServiceName>
               </div>
               <Badge 
                 variant="secondary" 
                 className="bg-primary/20 text-primary text-lg px-3 py-1 font-futura ml-2"
               >
-                {service.price}
+                {currentPrice}
               </Badge>
             </div>
             
             <div className="relative bg-muted/10 rounded-none sm:rounded-3xl overflow-hidden aspect-[4/5]">
               <Image
-                key={`${service.name}-${currentIndex}`}
+                key={`${currentName}-${currentIndex}`}
                 src={service.images[currentIndex]}
-                alt={`${service.name} - Image ${currentIndex + 1}`}
+                alt={`${currentName} - Image ${currentIndex + 1}`}
                 fill
                 className="object-cover transition-opacity duration-300 rounded-none sm:rounded-3xl"
                 onError={handleImageError}
@@ -109,7 +121,7 @@ export function ServiceCard({ service, className }: ServiceCardProps) {
         {/* Service Description - Below carousel */}
         <div className="text-center">
           <BodyText className="leading-relaxed">
-            {service.description}
+            {currentDescription}
           </BodyText>
         </div>
       </div>

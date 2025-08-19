@@ -33,11 +33,12 @@ export function ServiceCategorySection({ category, className }: ServiceCategoryP
       </div>
       
       {/* Services Grid */}
-      <div className={LAYOUT.grid2Col}>
+      <div className={category.services.length === 1 ? "flex justify-center" : LAYOUT.grid2Col}>
         {category.services.map((service, serviceIndex) => (
           <ServiceCard
             key={`${category.title}-${serviceIndex}`}
             service={service}
+            className={category.services.length === 1 ? "max-w-md" : ""}
           />
         ))}
       </div>

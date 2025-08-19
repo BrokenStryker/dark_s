@@ -32,7 +32,7 @@ const serviceCategories: ServiceCategory[] = [
         name: "Reverse Balayage",
         price: "$350",
         description: "Adds lowlights and depth back into previously lightened hair for a richer, more dimensional look. Includes 1 bowl of lowlight color, toner, and haircut.",
-        images: ["/Overallcolor.jpeg", "/Overallcolor1.jpeg", "/Overallcolor2.jpeg"]
+        images: [ "/reverse_bal_2.jpeg", "/reverse_bal.jpeg", "/reverse_bal_1.jpeg"]
       }
     ]
   },
@@ -50,19 +50,19 @@ const serviceCategories: ServiceCategory[] = [
         name: "Root Touch-Up",
         price: "$120",
         description: "Covers regrowth at the roots to match your existing color.",
-        images: ["/root_touchup.jpeg", "/root_touchup1.jpeg", "/root_touchup.jpeg"]
+        images: ["/root_touchup1.jpeg", "/root_touchup.jpeg"]
       },
       {
         name: "Vivid Pop of Color",
         price: "$100",
         description: "Adds a bold, vibrant accent color to your hair.",
-        images: ["/Overallcolor.jpeg", "/Overallcolor1.jpeg", "/Overallcolor2.jpeg"]
+        images: ["/vivids.jpeg"]
       },
       {
         name: "Glaze",
         price: "$80",
         description: "Adds shine, refreshes tone, and enhances color vibrancy.",
-        images: ["/Overallcolor.jpeg", "/Overallcolor1.jpeg", "/Overallcolor2.jpeg"]
+        images: ["/glaze.jpeg", "/glaze_1.jpeg", "/glaze_2.jpeg"]
       }
     ]
   },
@@ -74,13 +74,13 @@ const serviceCategories: ServiceCategory[] = [
         name: "Medium/Long Haircut",
         price: "$70",
         description: "Includes shampoo, blowdry, and style.",
-        images: ["/headshot.png", "/headshot.png", "/headshot.png"]
+        images: ["/haircut.jpeg", "/haircut_1.jpeg"]
       },
       {
         name: "Bang Trim",
         price: "$20",
         description: "Quick refresh for your fringe.",
-        images: ["/headshot.png", "/headshot.png", "/headshot.png"]
+        images: ["/bangtrim.jpeg", "/bangtrim_1.jpeg", "/bangtrim_2.jpeg"]
       }
     ]
   },
@@ -92,25 +92,13 @@ const serviceCategories: ServiceCategory[] = [
         name: "Blowout",
         price: "$50",
         description: "Smooth, polished style with volume.",
-        images: ["/headshot.png", "/headshot.png", "/headshot.png"]
-      },
-      {
-        name: "Blowout with Extensions",
-        price: "$80",
-        description: "Includes styling for both natural hair and extensions.",
-        images: ["/miniblonding.jpeg", "/miniblonding1.jpeg", "/miniblonding2.jpeg"]
+        images: ["/blowout.jpeg", "/blowout_1.jpeg", "/blowout_2.jpeg"]
       },
       {
         name: "Brazilian Blowout",
         price: "$300–$500",
         description: "Long-lasting smoothing treatment for frizz-free, shiny hair.",
-        images: ["/headshot.png", "/headshot.png", "/headshot.png"]
-      },
-      {
-        name: "Recovery Package",
-        price: "$100",
-        description: "Malibu treatment + conditioning mask with a blowdry for deep repair and shine.",
-        images: ["/Overallcolor.jpeg", "/Overallcolor1.jpeg", "/Overallcolor2.jpeg"]
+        images: ["/brazillian_blowout.jpeg"]
       }
     ]
   },
@@ -119,28 +107,28 @@ const serviceCategories: ServiceCategory[] = [
     description: "Enhance your service for healthier, more beautiful hair.",
     services: [
       {
-        name: "Malibu Treatment",
-        price: "$25",
-        description: "Removes buildup from minerals, chlorine, and product.",
-        images: ["/headshot.png", "/headshot.png", "/headshot.png"]
-      },
-      {
-        name: "Conditioning Mask",
-        price: "$20",
-        description: "Deep hydration for soft, smooth hair.",
-        images: ["/headshot.png", "/headshot.png", "/headshot.png"]
-      },
-      {
-        name: "K18 Treatment",
-        price: "$40",
-        description: "Repairs hair at a molecular level for strength and elasticity.",
-        images: ["/headshot.png", "/headshot.png", "/headshot.png"]
-      },
-      {
-        name: "Extra Bowl of Color/Lightener",
-        price: "$20",
-        description: "For additional product needed to achieve your desired look.",
-        images: ["/Overallcolor.jpeg", "/Overallcolor1.jpeg", "/Overallcolor2.jpeg"]
+        name: "Treatment Add-Ons",
+        price: "$20-$40",
+        description: "Select individual treatments to enhance your service",
+        images: ["/malibu_treatment.jpg", "/deepcondition_treatment.jpeg", "/k18_treatment.jpeg", "/Overallcolor.jpeg"],
+        names: [
+          "Malibu Treatment",
+          "Conditioning Mask", 
+          "K18 Treatment",
+          "Extra Bowl of Color/Lightener"
+        ],
+        prices: [
+          "$25",
+          "$20",
+          "$40", 
+          "$20"
+        ],
+        descriptions: [
+          "Removes buildup from minerals, chlorine, and product.",
+          "Deep hydration for soft, smooth hair.",
+          "Repairs hair at a molecular level for strength and elasticity.",
+          "For additional product needed to achieve your desired look."
+        ]
       }
     ]
   }

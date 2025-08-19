@@ -174,7 +174,7 @@ export default function ReviewSection() {
               Client Reviews
             </SectionTitle>
             <BodyText muted className={SPACING.marginBottom.lg}>
-              Discover what our clients say about their transformative experiences at Dark Serenity.
+              Discover what our clients say about their experiences at Dark Serenity.
             </BodyText>
             
             {/* Action Buttons */}
