@@ -1,11 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { db } from '@/lib/db/connection'
-import { reviews, type NewReview } from '@/lib/db/schema'
-import { desc } from 'drizzle-orm'
+import { createServerSupabaseClient, type DatabaseReview } from '@/lib/supabase-server'
 
 export async function GET() {
   try {
-    const allReviews = await db.select().from(reviews).orderBy(desc(reviews.createdAt))
+    const supabase = createServerSupabaseClient()
+    
+    const { data: allReviews, error } = await supabase
+      .from('reviews')
+      .select('*')
+      .order('created_at', { ascending: false })
+    
+    if (error) {
+      console.error('Supabase error:', error)
+      return NextResponse.json({ error: 'Failed to fetch reviews' }, { status: 500 })
+    }
+    
     return NextResponse.json(allReviews)
   } catch (error) {
     console.error('Error fetching reviews:', error)
@@ -26,13 +35,24 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Rating must be between 1 and 5' }, { status: 400 })
     }
 
-    const [newReview] = await db.insert(reviews).values({
-      customerName,
-      rating,
-      reviewText,
-      serviceType,
-      userIdentifier: userIdentifier || null,
-    }).returning()
+    const supabase = createServerSupabaseClient()
+    
+    const { data: newReview, error } = await supabase
+      .from('reviews')
+      .insert({
+        customer_name: customerName,
+        rating,
+        review_text: reviewText,
+        service_type: serviceType,
+        user_identifier: userIdentifier || null,
+      })
+      .select()
+      .single()
+
+    if (error) {
+      console.error('Supabase error:', error)
+      return NextResponse.json({ error: 'Failed to create review' }, { status: 500 })
+    }
 
     return NextResponse.json(newReview, { status: 201 })
   } catch (error) {

@@ -110,24 +110,21 @@ const serviceCategories: ServiceCategory[] = [
         name: "Treatment Add-Ons",
         price: "$20-$40",
         description: "Select individual treatments to enhance your service",
-        images: ["/malibu_treatment.jpg", "/deepcondition_treatment.jpeg", "/k18_treatment.jpeg", "/Overallcolor.jpeg"],
+        images: ["/malibu_treatment.jpg", "/deepcondition_treatment.jpeg", "/k18_treatment.jpeg"],
         names: [
           "Malibu Treatment",
           "Conditioning Mask", 
-          "K18 Treatment",
-          "Extra Bowl of Color/Lightener"
+          "K18 Treatment"
         ],
         prices: [
           "$25",
           "$20",
-          "$40", 
-          "$20"
+          "$40"
         ],
         descriptions: [
           "Removes buildup from minerals, chlorine, and product.",
           "Deep hydration for soft, smooth hair.",
-          "Repairs hair at a molecular level for strength and elasticity.",
-          "For additional product needed to achieve your desired look."
+          "Repairs hair at a molecular level for strength and elasticity."
         ]
       }
     ]

@@ -1,14 +1,10 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
-import { MapPin, Phone, Mail } from "lucide-react";
+import { MapPin, Mail } from "lucide-react";
 import { SectionContainer } from "@/components/ui/section-container";
 import { ContentCard } from "@/components/ui/content-card";
 import { SectionTitle, BodyText, CardTitle } from "@/components/ui/typography";
-import { LAYOUT, SPACING, TYPOGRAPHY, COMPONENTS } from "@/lib/design-tokens";
+import { LAYOUT, SPACING } from "@/lib/design-tokens";
 import { cn } from "@/lib/utils";
 
 interface ContactInfoItemProps {
@@ -41,6 +37,7 @@ function OperatingHoursRow({ days, hours, closed = false }: OperatingHoursRowPro
 }
 
 export default function ContactSection() {
+
   return (
     <SectionContainer id="contact">
       <ContentCard variant="section">
@@ -53,45 +50,8 @@ export default function ContactSection() {
           </BodyText>
         </div>
         
-        <div className={LAYOUT.grid2Col}>
-          <ContentCard variant="luxury">
-            <CardTitle className={SPACING.marginBottom.md}>Send a Message</CardTitle>
-            <form className={SPACING.contentGap}>
-              <div>
-                <Label htmlFor="name" className={TYPOGRAPHY.fontFutura}>Full Name</Label>
-                <Input id="name" placeholder="Your name" className="section-bg border-border" />
-              </div>
-              <div>
-                <Label htmlFor="email" className={TYPOGRAPHY.fontFutura}>Email Address</Label>
-                <Input id="email" type="email" placeholder="your@email.com" className="section-bg border-border" />
-              </div>
-              <div>
-                <Label htmlFor="service" className={TYPOGRAPHY.fontFutura}>Interested Service</Label>
-                <Input id="service" placeholder="Which service interests you?" className="section-bg border-border" />
-              </div>
-              <div>
-                <Label htmlFor="message" className={TYPOGRAPHY.fontFutura}>Message</Label>
-                <Textarea 
-                  id="message" 
-                  rows={6}
-                  placeholder="Tell us about your vision..."
-                  className="section-bg border-border resize-none"
-                />
-              </div>
-              <Button 
-                type="submit" 
-                className={cn(
-                  "w-full",
-                  COMPONENTS.primaryButton,
-                  TYPOGRAPHY.fontFutura
-                )}
-              >
-                Send Message
-              </Button>
-            </form>
-          </ContentCard>
-          
-          <div className={SPACING.contentGap}>
+        <div className="max-w-4xl mx-auto">
+          <div className={LAYOUT.grid2Col}>
             <ContentCard variant="simple" padding="small">
               <CardTitle className={SPACING.marginBottom.sm}>Contact Information</CardTitle>
               <div className="space-y-4">

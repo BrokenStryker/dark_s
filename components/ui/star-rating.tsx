@@ -42,7 +42,7 @@ export function StarRating({
             className={cn(
               sizeClasses[size],
               star <= rating
-                ? "fill-yellow-400 text-yellow-400"
+                ? "fill-black text-black"
                 : "fill-gray-200 text-gray-200"
             )}
           />

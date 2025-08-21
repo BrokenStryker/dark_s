@@ -1,13 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { db } from '@/lib/db/connection'
-import { reviews } from '@/lib/db/schema'
-import { eq } from 'drizzle-orm'
+import { createServerSupabaseClient } from '@/lib/supabase-server'
 
-export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
+export async function PUT(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const body = await request.json()
     const { customerName, rating, reviewText, serviceType, userIdentifier } = body
-    const { id } = params
+    const { id } = await params
 
     if (!customerName || !rating || !reviewText || !serviceType) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
@@ -17,33 +15,39 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
       return NextResponse.json({ error: 'Rating must be between 1 and 5' }, { status: 400 })
     }
 
+    const supabase = createServerSupabaseClient()
+
     // First, verify the review belongs to the user
-    const [existingReview] = await db
-      .select()
-      .from(reviews)
-      .where(eq(reviews.id, id))
-      .limit(1)
+    const { data: existingReview, error: fetchError } = await supabase
+      .from('reviews')
+      .select('*')
+      .eq('id', id)
+      .eq('user_identifier', userIdentifier)
+      .single()
 
-    if (!existingReview) {
-      return NextResponse.json({ error: 'Review not found' }, { status: 404 })
+    if (fetchError || !existingReview) {
+      return NextResponse.json({ error: 'Review not found or unauthorized' }, { status: 404 })
     }
 
-    // Only check userIdentifier if both exist (for backwards compatibility)
-    if (userIdentifier && existingReview.userIdentifier && existingReview.userIdentifier !== userIdentifier) {
-      return NextResponse.json({ error: 'Unauthorized to edit this review' }, { status: 403 })
-    }
-
-    const [updatedReview] = await db
-      .update(reviews)
-      .set({
-        customerName,
+    // Update the review
+    const { data: updatedReview, error: updateError } = await supabase
+      .from('reviews')
+      .update({
+        customer_name: customerName,
         rating,
-        reviewText,
-        serviceType,
-        updatedAt: new Date(),
+        review_text: reviewText,
+        service_type: serviceType,
+        updated_at: new Date().toISOString(),
       })
-      .where(eq(reviews.id, id))
-      .returning()
+      .eq('id', id)
+      .eq('user_identifier', userIdentifier)
+      .select()
+      .single()
+
+    if (updateError) {
+      console.error('Supabase update error:', updateError)
+      return NextResponse.json({ error: 'Failed to update review' }, { status: 500 })
+    }
 
     return NextResponse.json(updatedReview)
   } catch (error) {
@@ -52,33 +56,41 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
   }
 }
 
-export async function DELETE(request: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { searchParams } = new URL(request.url)
     const userIdentifier = searchParams.get('userIdentifier')
-    const { id } = params
+    const { id } = await params
 
     if (!userIdentifier) {
       return NextResponse.json({ error: 'User identifier is required' }, { status: 400 })
     }
 
+    const supabase = createServerSupabaseClient()
+
     // First, verify the review belongs to the user
-    const [existingReview] = await db
-      .select()
-      .from(reviews)
-      .where(eq(reviews.id, id))
-      .limit(1)
+    const { data: existingReview, error: fetchError } = await supabase
+      .from('reviews')
+      .select('*')
+      .eq('id', id)
+      .eq('user_identifier', userIdentifier)
+      .single()
 
-    if (!existingReview) {
-      return NextResponse.json({ error: 'Review not found' }, { status: 404 })
+    if (fetchError || !existingReview) {
+      return NextResponse.json({ error: 'Review not found or unauthorized' }, { status: 404 })
     }
 
-    // Only check userIdentifier if both exist (for backwards compatibility)
-    if (userIdentifier && existingReview.userIdentifier && existingReview.userIdentifier !== userIdentifier) {
-      return NextResponse.json({ error: 'Unauthorized to delete this review' }, { status: 403 })
-    }
+    // Delete the review
+    const { error: deleteError } = await supabase
+      .from('reviews')
+      .delete()
+      .eq('id', id)
+      .eq('user_identifier', userIdentifier)
 
-    await db.delete(reviews).where(eq(reviews.id, id))
+    if (deleteError) {
+      console.error('Supabase delete error:', deleteError)
+      return NextResponse.json({ error: 'Failed to delete review' }, { status: 500 })
+    }
 
     return NextResponse.json({ success: true })
   } catch (error) {

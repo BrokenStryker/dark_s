@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { db } from '@/lib/db/connection'
-import { reviews } from '@/lib/db/schema'
-import { eq, desc } from 'drizzle-orm'
+import { createServerSupabaseClient } from '@/lib/supabase-server'
 
 export async function GET(request: NextRequest) {
   try {
@@ -12,11 +10,18 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'User identifier is required' }, { status: 400 })
     }
 
-    const userReviews = await db
-      .select()
-      .from(reviews)
-      .where(eq(reviews.userIdentifier, userIdentifier))
-      .orderBy(desc(reviews.createdAt))
+    const supabase = createServerSupabaseClient()
+    
+    const { data: userReviews, error } = await supabase
+      .from('reviews')
+      .select('*')
+      .eq('user_identifier', userIdentifier)
+      .order('created_at', { ascending: false })
+
+    if (error) {
+      console.error('Supabase error:', error)
+      return NextResponse.json({ error: 'Failed to fetch user reviews' }, { status: 500 })
+    }
 
     return NextResponse.json(userReviews)
   } catch (error) {

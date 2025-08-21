@@ -35,7 +35,7 @@ import {
   deleteReview,
   type CreateReviewData
 } from "@/lib/review-service"
-import type { Review } from "@/lib/db/schema"
+import type { Review } from "@/lib/supabase"
 import { TYPOGRAPHY } from "@/lib/design-tokens"
 import { cn } from "@/lib/utils"
 import { Edit3, Trash2, Calendar, Star, MessageSquare } from "lucide-react"
@@ -126,10 +126,10 @@ export function MyReviewsDialog({ open, onOpenChange, userIdentifier, onReviewUp
   const handleEditReview = (review: Review) => {
     setEditingReview(review)
     form.reset({
-      customer_name: review.customerName,
+      customer_name: review.customer_name,
       rating: review.rating,
-      review_text: review.reviewText,
-      service_type: review.serviceType
+      review_text: review.review_text,
+      service_type: review.service_type
     })
   }
 
@@ -206,7 +206,7 @@ export function MyReviewsDialog({ open, onOpenChange, userIdentifier, onReviewUp
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2 text-sm text-black/60">
                             <Calendar className="w-4 h-4" />
-                            {new Date(review.createdAt).toLocaleDateString('en-US', {
+                            {new Date(review.created_at).toLocaleDateString('en-US', {
                               year: 'numeric',
                               month: 'long',
                               day: 'numeric'
@@ -240,18 +240,18 @@ export function MyReviewsDialog({ open, onOpenChange, userIdentifier, onReviewUp
                         <div className="flex items-center justify-between">
                           <StarRating rating={review.rating} readonly size="sm" />
                           <span className="text-sm text-black/60 bg-black/5 px-2 py-1 rounded">
-                            {review.serviceType}
+                            {review.service_type}
                           </span>
                         </div>
 
                         {/* Review text */}
                         <div className="bg-black/5 rounded-lg p-3">
-                          <p className="text-black leading-relaxed">{review.reviewText}</p>
+                          <p className="text-black leading-relaxed">{review.review_text}</p>
                         </div>
 
                         {/* Customer name */}
                         <div className="text-sm text-black/60">
-                          <strong>Posted by:</strong> {review.customerName}
+                          <strong>Posted by:</strong> {review.customer_name}
                         </div>
                       </div>
                     </CardContent>

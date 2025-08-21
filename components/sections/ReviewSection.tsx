@@ -91,6 +91,7 @@ export default function ReviewSection() {
   const [myReviewsOpen, setMyReviewsOpen] = useState(false)
   const [userIdentifier, setUserIdentifier] = useState<string>("")
   const [mounted, setMounted] = useState(false)
+  const [selectedService, setSelectedService] = useState<string>("All Services")
 
   const form = useForm<ReviewFormData>({
     resolver: zodResolver(reviewSchema),
@@ -121,6 +122,11 @@ export default function ReviewSection() {
   const handleReviewClick = () => {
     setDialogOpen(true)
   }
+
+  // Filter reviews based on selected service
+  const filteredReviews = selectedService === "All Services" 
+    ? reviews 
+    : reviews.filter(review => review.serviceType === selectedService)
 
   const onSubmit = async (data: ReviewFormData) => {
     setLoading(true)
@@ -329,6 +335,25 @@ export default function ReviewSection() {
             </Dialog>
             </div>
 
+            {/* Service Filter */}
+            <div className="flex justify-center mb-6">
+              <Select value={selectedService} onValueChange={setSelectedService}>
+                <SelectTrigger className="w-[280px] bg-white/80 border-black/20 text-black">
+                  <SelectValue placeholder="Filter by service" />
+                </SelectTrigger>
+                <SelectContent className="bg-white border-black/20">
+                  <SelectItem value="All Services" className="text-black focus:bg-[#c8c2bb]/50">
+                    All Services
+                  </SelectItem>
+                  {serviceTypes.map((service) => (
+                    <SelectItem key={service} value={service} className="text-black focus:bg-[#c8c2bb]/50">
+                      {service}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
             {/* My Reviews Dialog */}
             {mounted && userIdentifier && (
               <MyReviewsDialog
@@ -341,11 +366,16 @@ export default function ReviewSection() {
           </div>
 
           {/* Reviews Carousel */}
-          {reviews.length === 0 ? (
+          {filteredReviews.length === 0 ? (
             <Card className={cn(COMPONENTS.luxuryCard, "bg-card/50")}>
               <CardContent className="text-center py-12">
                 <Quote className="w-12 h-12 mx-auto mb-4 text-muted-foreground/50" />
-                <BodyText muted>No reviews yet. Be the first to share your experience!</BodyText>
+                <BodyText muted>
+                  {reviews.length === 0 
+                    ? "No reviews yet. Be the first to share your experience!"
+                    : `No reviews for ${selectedService} yet`
+                  }
+                </BodyText>
               </CardContent>
             </Card>
           ) : (
@@ -358,7 +388,7 @@ export default function ReviewSection() {
                 className="w-full"
               >
                 <CarouselContent className="-ml-2 md:-ml-4">
-                  {reviews.map((review) => (
+                  {filteredReviews.map((review) => (
                     <CarouselItem key={review.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
                       <Card className={cn(COMPONENTS.luxuryCard, "bg-card/50 h-full")}>
                         <CardContent className="p-6">
@@ -398,10 +428,10 @@ export default function ReviewSection() {
                   ))}
                 </CarouselContent>
                 
-                {reviews.length > 3 && (
+                {filteredReviews.length > 3 && (
                   <>
-                    <CarouselPrevious className="left-4" />
-                    <CarouselNext className="right-4" />
+                    <CarouselPrevious className="-left-8" />
+                    <CarouselNext className="-right-8" />
                   </>
                 )}
               </Carousel>
