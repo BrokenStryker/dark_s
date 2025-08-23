@@ -49,7 +49,19 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
       return NextResponse.json({ error: 'Failed to update review' }, { status: 500 })
     }
 
-    return NextResponse.json(updatedReview)
+    // Transform snake_case to camelCase to match frontend expectations
+    const transformedReview = {
+      id: updatedReview.id,
+      customerName: updatedReview.customer_name,
+      rating: updatedReview.rating,
+      reviewText: updatedReview.review_text,
+      serviceType: updatedReview.service_type,
+      userIdentifier: updatedReview.user_identifier,
+      createdAt: updatedReview.created_at,
+      updatedAt: updatedReview.updated_at,
+    }
+    
+    return NextResponse.json(transformedReview)
   } catch (error) {
     console.error('Error updating review:', error)
     return NextResponse.json({ error: 'Failed to update review' }, { status: 500 })
