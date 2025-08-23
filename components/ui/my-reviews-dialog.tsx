@@ -35,16 +35,16 @@ import {
   deleteReview,
   type CreateReviewData
 } from "@/lib/review-service"
-import type { Review } from "@/lib/supabase"
+import type { Review } from "@/lib/db/schema"
 import { TYPOGRAPHY } from "@/lib/design-tokens"
 import { cn } from "@/lib/utils"
 import { Edit3, Trash2, Calendar, Star, MessageSquare } from "lucide-react"
 
 const reviewSchema = z.object({
-  customer_name: z.string().min(2, "Name must be at least 2 characters").max(50, "Name must be less than 50 characters"),
+  customerName: z.string().min(2, "Name must be at least 2 characters").max(50, "Name must be less than 50 characters"),
   rating: z.number().min(1).max(5),
-  review_text: z.string().min(10, "Review must be at least 10 characters").max(1000, "Review must be less than 1000 characters"),
-  service_type: z.string().min(1, "Please select a service type")
+  reviewText: z.string().min(10, "Review must be at least 10 characters").max(1000, "Review must be less than 1000 characters"),
+  serviceType: z.string().min(1, "Please select a service type")
 })
 
 type ReviewFormData = z.infer<typeof reviewSchema>
@@ -96,10 +96,10 @@ export function MyReviewsDialog({ open, onOpenChange, userIdentifier, onReviewUp
   const form = useForm<ReviewFormData>({
     resolver: zodResolver(reviewSchema),
     defaultValues: {
-      customer_name: "",
+      customerName: "",
       rating: 5,
-      review_text: "",
-      service_type: ""
+      reviewText: "",
+      serviceType: ""
     }
   })
 
@@ -126,10 +126,10 @@ export function MyReviewsDialog({ open, onOpenChange, userIdentifier, onReviewUp
   const handleEditReview = (review: Review) => {
     setEditingReview(review)
     form.reset({
-      customer_name: review.customer_name,
+      customerName: review.customerName,
       rating: review.rating,
-      review_text: review.review_text,
-      service_type: review.service_type
+      reviewText: review.reviewText,
+      serviceType: review.serviceType
     })
   }
 
@@ -139,10 +139,10 @@ export function MyReviewsDialog({ open, onOpenChange, userIdentifier, onReviewUp
     try {
       setLoading(true)
       const reviewData: CreateReviewData = {
-        customerName: data.customer_name,
+        customerName: data.customerName,
         rating: data.rating,
-        reviewText: data.review_text,
-        serviceType: data.service_type,
+        reviewText: data.reviewText,
+        serviceType: data.serviceType,
         userIdentifier,
       }
 
@@ -206,7 +206,7 @@ export function MyReviewsDialog({ open, onOpenChange, userIdentifier, onReviewUp
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2 text-sm text-black/60">
                             <Calendar className="w-4 h-4" />
-                            {new Date(review.created_at).toLocaleDateString('en-US', {
+                            {new Date(review.createdAt).toLocaleDateString('en-US', {
                               year: 'numeric',
                               month: 'long',
                               day: 'numeric'
@@ -240,18 +240,18 @@ export function MyReviewsDialog({ open, onOpenChange, userIdentifier, onReviewUp
                         <div className="flex items-center justify-between">
                           <StarRating rating={review.rating} readonly size="sm" />
                           <span className="text-sm text-black/60 bg-black/5 px-2 py-1 rounded">
-                            {review.service_type}
+                            {review.serviceType}
                           </span>
                         </div>
 
                         {/* Review text */}
                         <div className="bg-black/5 rounded-lg p-3">
-                          <p className="text-black leading-relaxed">{review.review_text}</p>
+                          <p className="text-black leading-relaxed">{review.reviewText}</p>
                         </div>
 
                         {/* Customer name */}
                         <div className="text-sm text-black/60">
-                          <strong>Posted by:</strong> {review.customer_name}
+                          <strong>Posted by:</strong> {review.customerName}
                         </div>
                       </div>
                     </CardContent>
@@ -278,7 +278,7 @@ export function MyReviewsDialog({ open, onOpenChange, userIdentifier, onReviewUp
               <form onSubmit={form.handleSubmit(handleUpdateReview)} className="space-y-6">
                 <FormField
                   control={form.control}
-                  name="customer_name"
+                  name="customerName"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="text-black font-semibold">Your Name</FormLabel>
@@ -297,7 +297,7 @@ export function MyReviewsDialog({ open, onOpenChange, userIdentifier, onReviewUp
 
                 <FormField
                   control={form.control}
-                  name="service_type"
+                  name="serviceType"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="text-black font-semibold">Service Received</FormLabel>
@@ -345,7 +345,7 @@ export function MyReviewsDialog({ open, onOpenChange, userIdentifier, onReviewUp
 
                 <FormField
                   control={form.control}
-                  name="review_text"
+                  name="reviewText"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="text-black font-semibold">Your Review</FormLabel>
