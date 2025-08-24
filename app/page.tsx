@@ -1,4 +1,3 @@
-import { ScrollArea } from "@/components/ui/scroll-area";
 import Navigation from "@/components/sections/Navigation";
 import HeroSection from "@/components/sections/HeroSection";
 import ReviewSection from "@/components/sections/ReviewSection";
@@ -10,40 +9,38 @@ import Footer from "@/components/sections/Footer";
 
 export default function Home() {
   return (
-    <ScrollArea className="h-screen w-full">
-      <div className="min-h-screen bg-background">
-        <Navigation />
-        
-        {/* Spacing between Navigation and Hero */}
-        <div className="h-25" />
-        
-        <HeroSection />
-        
-        {/* Spacing between sections */}
-        <div className="h-10" />
-        
-        <ReviewSection />
-        
-        <div className="h-10" />
-        
-        <AboutOwner />
-        
-        <div className="h-10" />
+    <div className="min-h-screen bg-background">
+      <Navigation />
+      
+      {/* Spacing between Navigation and Hero */}
+      <div className="h-25" />
+      
+      <HeroSection />
+      
+      {/* Spacing between sections */}
+      <div className="h-10" />
+      
+      <ReviewSection />
+      
+      <div className="h-10" />
+      
+      <AboutOwner />
+      
+      <div className="h-10" />
 
-        <ServicesSection />
-        
-        <div className="h-10" />
-        
-        <PoliciesSection />
-        
-        <div className="h-10" />
-        
-        <ContactSection />
-        
-        <div className="h-10" />
-        
-        <Footer />
-      </div>
-    </ScrollArea>
+      <ServicesSection />
+      
+      <div className="h-10" />
+      
+      <PoliciesSection />
+      
+      <div className="h-10" />
+      
+      <ContactSection />
+      
+      <div className="h-10" />
+      
+      <Footer />
+    </div>
   );
 }

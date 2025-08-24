@@ -217,7 +217,7 @@ export default function ReviewSection() {
 
               <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
               
-              <DialogContent className="w-[95vw] h-[95vh] max-w-none sm:w-[90vw] sm:h-[90vh] md:w-[80vw] md:h-[85vh] lg:w-[70vw] lg:h-[80vh] xl:w-[60vw] xl:h-[75vh] bg-[#908476] bg-[url('/wallpaper.png')] bg-cover bg-center bg-no-repeat overflow-y-auto">
+              <DialogContent className="w-full max-w-[calc(100vw-1rem)] max-h-[calc(100vh-1rem)] sm:max-w-[90vw] sm:max-h-[90vh] md:max-w-[80vw] md:max-h-[85vh] lg:max-w-[70vw] lg:max-h-[80vh] xl:max-w-[60vw] xl:max-h-[75vh] bg-[#908476] bg-[url('/wallpaper.png')] bg-cover bg-center bg-no-repeat overflow-y-auto">
                 <div className="bg-[#c8c2bb]/95 backdrop-blur-sm rounded-lg p-6 h-full overflow-y-auto">
                   <DialogHeader className="mb-6">
                     <DialogTitle className={cn(TYPOGRAPHY.cardTitle, "text-black")}>Share Your Experience</DialogTitle>

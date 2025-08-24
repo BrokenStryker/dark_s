@@ -273,32 +273,27 @@ html {
   scrollbar-color: #48423b rgba(200, 194, 187, 0.3);
 }
 
-/* Force scrollbar to always show */
+/* Allow natural scrolling behavior on mobile */
 body {
-  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
-/* ScrollArea component custom styling */
-[data-slot="scroll-area-scrollbar"] {
-  display: flex !important;
-  opacity: 1 !important;
-  visibility: visible !important;
+/* Custom scrollbar styles for any remaining scroll containers */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
 }
 
-[data-slot="scroll-area-thumb"] {
-  background-color: #48423b !important;
-  opacity: 0.8;
-  transition: opacity 0.2s ease, background-color 0.2s ease;
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(200, 194, 187, 0.3);
+  border-radius: 4px;
 }
 
-[data-slot="scroll-area-thumb"]:hover {
-  background-color: #5a5248 !important;
-  opacity: 1;
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #48423b;
+  border-radius: 4px;
+  transition: background 0.2s ease;
 }
 
-[data-slot="scroll-area-scrollbar"][data-orientation="vertical"] {
-  width: 8px !important;
-  right: 2px;
-  top: 2px;
-  bottom: 2px;
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #5a5248;
 }

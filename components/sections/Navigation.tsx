@@ -23,29 +23,14 @@ export default function Navigation() {
   const handleNavigationClick = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      // Try to find the ScrollArea viewport
-      const scrollViewport = document.querySelector('[data-slot="scroll-area-viewport"]');
       const navbarHeight = 80;
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = elementPosition - navbarHeight;
       
-      if (scrollViewport) {
-        // If using ScrollArea component
-        const elementPosition = element.offsetTop;
-        const offsetPosition = elementPosition - navbarHeight;
-        
-        scrollViewport.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
-      } else {
-        // Fallback to window scrolling
-        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-        const offsetPosition = elementPosition - navbarHeight;
-        
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
-      }
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
   };
 
@@ -54,7 +39,7 @@ export default function Navigation() {
       <div className={cn(LAYOUT.maxWidthWide, LAYOUT.paddingLarge)}>
         <div className="grid grid-cols-3 items-center py-4">
           {/* Left - Instagram Link */}
-          <div className="flex justify-start pl-10">
+          <div className="flex justify-start pl-2 sm:pl-10">
             <a 
               href="https://www.instagram.com/amberrose.seiferth/?hl=en" 
               target="_blank" 
@@ -86,7 +71,7 @@ export default function Navigation() {
           </div>
           
           {/* Right - Navigation Dropdown */}
-          <div className="flex justify-end pr-10">
+          <div className="flex justify-end pr-2 sm:pr-10">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
