@@ -61,7 +61,7 @@ export default function ContactSection() {
                 />
                 <ContactInfoItem
                   icon={<MapPin className="h-5 w-5 text-primary" />}
-                  text="Sola Salon Studios, 1895 South Rd, Poughkeepsie, NY 12601"
+                  text="Sola Salon Studios, 1895 South Rd, Studio 25 Poughkeepsie, NY 12601"
                 />
               </div>
             </ContentCard>
