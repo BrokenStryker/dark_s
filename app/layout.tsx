@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
+import { PostHogProvider } from "@/components/providers/PostHogProvider";
 
 const trajanPro = localFont({
   src: "../font/Trajan Pro Regular.ttf",
@@ -51,7 +52,9 @@ export default function RootLayout({
         className={`${trajanPro.variable} ${ebGaramond.variable} antialiased bg-background text-foreground`}
         suppressHydrationWarning
       >
-        {children}
+        <PostHogProvider>
+          {children}
+        </PostHogProvider>
         <Toaster />
       </body>
     </html>

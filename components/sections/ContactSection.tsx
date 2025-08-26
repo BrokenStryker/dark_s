@@ -6,6 +6,7 @@ import { ContentCard } from "@/components/ui/content-card";
 import { SectionTitle, BodyText, CardTitle } from "@/components/ui/typography";
 import { LAYOUT, SPACING } from "@/lib/design-tokens";
 import { cn } from "@/lib/utils";
+import { usePostHog } from "@/hooks/use-posthog";
 
 interface ContactInfoItemProps {
   icon: React.ReactNode;
@@ -37,6 +38,14 @@ function OperatingHoursRow({ days, hours, closed = false }: OperatingHoursRowPro
 }
 
 export default function ContactSection() {
+  const { track } = usePostHog();
+
+  const handleGetDirectionsClick = () => {
+    track('get_directions_clicked', {
+      location: 'Sola Salon Studios',
+      address: '1895 South Rd, Studio 25 Poughkeepsie, NY 12601'
+    });
+  };
 
   return (
     <SectionContainer id="contact">
@@ -74,6 +83,7 @@ export default function ContactSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block w-full h-full relative group"
+                  onClick={handleGetDirectionsClick}
                 >
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2987.0!2d-73.9214!3d41.6639!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sSola+Salon+Studios%2C+1895+South+Rd%2C+Poughkeepsie%2C+NY+12601!5e0!3m2!1sen!2sus!4v1"
