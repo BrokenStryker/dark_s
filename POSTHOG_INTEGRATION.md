@@ -1,6 +1,6 @@
 # PostHog Integration
 
-PostHog has been successfully installed and configured for this Next.js application.
+PostHog has been successfully installed and configured for this Next.js 15.4.6 application using the recommended instrumentation approach.
 
 ## Configuration
 
@@ -15,8 +15,7 @@ NEXT_PUBLIC_POSTHOG_HOST=https://us.i.posthog.com
 ## File Structure
 
 ```
-lib/
-  posthog.ts              # PostHog initialization and configuration
+instrumentation-client.js # PostHog initialization (Next.js 15.3+ approach)
 hooks/
   use-posthog.ts          # Custom hook for easy PostHog usage
 components/

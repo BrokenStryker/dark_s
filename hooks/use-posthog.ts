@@ -1,22 +1,20 @@
-import { getPostHog } from '@/lib/posthog'
+import posthog from 'posthog-js'
 
 export const usePostHog = () => {
-  const posthog = getPostHog()
-
   const track = (event: string, properties?: Record<string, any>) => {
-    if (posthog) {
+    if (typeof window !== 'undefined') {
       posthog.capture(event, properties)
     }
   }
 
   const identify = (distinctId: string, properties?: Record<string, any>) => {
-    if (posthog) {
+    if (typeof window !== 'undefined') {
       posthog.identify(distinctId, properties)
     }
   }
 
   const reset = () => {
-    if (posthog) {
+    if (typeof window !== 'undefined') {
       posthog.reset()
     }
   }
@@ -25,6 +23,6 @@ export const usePostHog = () => {
     track,
     identify,
     reset,
-    isLoaded: !!posthog
+    isLoaded: typeof window !== 'undefined'
   }
 }

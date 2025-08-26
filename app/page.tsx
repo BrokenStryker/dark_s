@@ -1,3 +1,6 @@
+'use client'
+
+import { useEffect } from "react";
 import Navigation from "@/components/sections/Navigation";
 import HeroSection from "@/components/sections/HeroSection";
 import ReviewSection from "@/components/sections/ReviewSection";
@@ -6,8 +9,18 @@ import ServicesSection from "@/components/sections/ServicesSection";
 import PoliciesSection from "@/components/sections/PoliciesSection";
 import ContactSection from "@/components/sections/ContactSection";
 import Footer from "@/components/sections/Footer";
+import { usePostHog } from "@/hooks/use-posthog";
 
 export default function Home() {
+  const { track } = usePostHog();
+
+  useEffect(() => {
+    // Manual test event to verify PostHog is working
+    track('homepage_loaded', { 
+      timestamp: new Date().toISOString(),
+      page: 'home'
+    });
+  }, [track]);
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
