@@ -89,13 +89,13 @@ export const COLORS = {
 } as const;
 
 export const COMPONENTS = {
-  // Card variants with new colors (no rounded corners on mobile)
-  luxuryCard: `backdrop-blur-sm rounded-none sm:rounded-lg border`,
-  simpleCard: `rounded-none sm:rounded-lg border`,
-  glassCard: `backdrop-blur-md rounded-none sm:rounded-lg border`,
+  // Card variants with new colors (rounded corners on all devices)
+  luxuryCard: `backdrop-blur-sm rounded-lg border`,
+  simpleCard: `rounded-lg border`,
+  glassCard: `backdrop-blur-md rounded-lg border`,
   
   // Section specific styles
-  sectionCard: `rounded-none sm:rounded-lg border-x-0 sm:border-x border-y`,
+  sectionCard: `rounded-lg border-x-0 sm:border-x border-y`,
   
   // Button variants
   primaryButton: 'bg-primary hover:bg-primary/90 text-primary-foreground',

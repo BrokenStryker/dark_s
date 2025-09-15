@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -20,6 +21,39 @@ const navigationItems = [
 ];
 
 export default function Navigation() {
+  const [isScrolling, setIsScrolling] = useState(false);
+  const [scrollTimeout, setScrollTimeout] = useState<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Set scrolling state to true
+      setIsScrolling(true);
+
+      // Clear existing timeout
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
+
+      // Set new timeout to reset scrolling state after user stops scrolling
+      const timeout = setTimeout(() => {
+        setIsScrolling(false);
+      }, 150); // 150ms delay after scrolling stops
+
+      setScrollTimeout(timeout);
+    };
+
+    // Add scroll event listener
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    // Cleanup
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
+    };
+  }, [scrollTimeout]);
+
   const handleNavigationClick = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -35,7 +69,12 @@ export default function Navigation() {
   };
 
   return (
-    <nav className="fixed top-0 w-full z-50 section-bg backdrop-blur-md border-b border-border">
+    <nav className={cn(
+      "fixed top-0 w-full z-50 border-b border-border transition-all duration-300 ease-out",
+      isScrolling 
+        ? "bg-[#e4e1dd]/20 backdrop-blur-xl" // Liquid glass effect when scrolling
+        : "section-bg backdrop-blur-md"      // Solid when not scrolling
+    )}>
       <div className={cn(LAYOUT.maxWidthWide, LAYOUT.paddingLarge)}>
         {/* Mobile Layout */}
         <div className="flex sm:hidden items-center py-4">
@@ -46,7 +85,7 @@ export default function Navigation() {
                 size="sm" 
                 className={cn(
                   "section-bg text-foreground hover:bg-[#48423b]/20",
-                  "border border-border flex items-center gap-2",
+                  "border border-border flex items-center gap-2 rounded-lg",
                   TYPOGRAPHY.fontTrajan
                 )}
               >
@@ -60,7 +99,7 @@ export default function Navigation() {
                 size="sm" 
                 className={cn(
                   "section-bg text-foreground hover:bg-[#48423b]/20",
-                  "border border-border flex items-center gap-2",
+                  "border border-border flex items-center gap-2 rounded-lg",
                   TYPOGRAPHY.fontTrajan
                 )}
               >
@@ -80,7 +119,7 @@ export default function Navigation() {
                 size="sm" 
                 className={cn(
                   "bg-[#48423b] text-white hover:bg-[#48423b]/90",
-                  "border-0 ml-2",
+                  "border-0 ml-2 rounded-lg",
                   TYPOGRAPHY.fontTrajan
                 )}
               >
@@ -131,7 +170,7 @@ export default function Navigation() {
                 size="sm" 
                 className={cn(
                   "section-bg text-foreground hover:bg-[#48423b]/20",
-                  "border border-border flex items-center gap-2",
+                  "border border-border flex items-center gap-2 rounded-lg",
                   TYPOGRAPHY.fontTrajan
                 )}
               >
@@ -145,7 +184,7 @@ export default function Navigation() {
                 size="sm" 
                 className={cn(
                   "section-bg text-foreground hover:bg-[#48423b]/20",
-                  "border border-border flex items-center gap-2",
+                  "border border-border flex items-center gap-2 rounded-lg",
                   TYPOGRAPHY.fontTrajan
                 )}
               >

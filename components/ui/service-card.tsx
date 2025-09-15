@@ -59,13 +59,13 @@ export function ServiceCard({ service, className }: ServiceCardProps) {
               </Badge>
             </div>
             
-            <div className="relative bg-muted/10 rounded-none sm:rounded-3xl overflow-hidden aspect-[4/5]">
+            <div className="relative bg-muted/10 rounded-3xl overflow-hidden aspect-[4/5]">
               <Image
                 key={`${currentName}-${currentIndex}`}
                 src={service.images[currentIndex]}
                 alt={`${currentName} - Image ${currentIndex + 1}`}
                 fill
-                className="object-cover transition-opacity duration-300 rounded-none sm:rounded-3xl"
+                className="object-cover transition-opacity duration-300 rounded-3xl"
                 onError={handleImageError}
               />
             </div>

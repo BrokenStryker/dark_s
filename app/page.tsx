@@ -26,7 +26,7 @@ export default function Home() {
       <Navigation />
       
       {/* Spacing between Navigation and Hero */}
-      <div className="h-25" />
+      <div className="h-17" />
       
       <HeroSection />
       

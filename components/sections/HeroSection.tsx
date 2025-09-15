@@ -65,7 +65,7 @@ export default function HeroSection() {
                 className={cn(
                   "px-8 py-3 text-lg",
                   "bg-[#908476] text-white hover:bg-[#908476]/90",
-                  "border-0",
+                  "border-0 rounded-lg",
                   TYPOGRAPHY.fontFutura
                 )}
                 onClick={handleViewServices}

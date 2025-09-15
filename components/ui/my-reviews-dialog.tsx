@@ -199,7 +199,7 @@ export function MyReviewsDialog({ open, onOpenChange, userIdentifier, onReviewUp
                 </div>
               ) : (
                 myReviews.map((review) => (
-                  <Card key={review.id} className="bg-white/90 border-black/20">
+                  <Card key={review.id} className="bg-white/90 border-black/20 rounded-lg">
                     <CardContent className="p-4">
                       <div className="space-y-4">
                         {/* Header with date and actions */}
@@ -218,7 +218,7 @@ export function MyReviewsDialog({ open, onOpenChange, userIdentifier, onReviewUp
                               size="sm"
                               onClick={() => handleEditReview(review)}
                               disabled={loading}
-                              className="bg-white/50 hover:bg-white/80 border-black/20"
+                              className="bg-white/50 hover:bg-white/80 border-black/20 rounded-lg"
                             >
                               <Edit3 className="w-4 h-4 mr-1" />
                               Edit
@@ -228,7 +228,7 @@ export function MyReviewsDialog({ open, onOpenChange, userIdentifier, onReviewUp
                               size="sm"
                               onClick={() => setDeletingReview(review)}
                               disabled={loading}
-                              className="bg-red-50/50 hover:bg-red-100/80 border-red-300/50 text-red-600"
+                              className="bg-red-50/50 hover:bg-red-100/80 border-red-300/50 text-red-600 rounded-lg"
                             >
                               <Trash2 className="w-4 h-4 mr-1" />
                               Delete
@@ -287,7 +287,7 @@ export function MyReviewsDialog({ open, onOpenChange, userIdentifier, onReviewUp
                           placeholder="Enter your name" 
                           {...field}
                           disabled={loading}
-                          className="bg-white/90 border-black/20 text-black placeholder:text-black/60"
+                          className="bg-white/90 border-black/20 text-black placeholder:text-black/60 rounded-lg"
                         />
                       </FormControl>
                       <FormMessage />
@@ -307,11 +307,11 @@ export function MyReviewsDialog({ open, onOpenChange, userIdentifier, onReviewUp
                         disabled={loading}
                       >
                         <FormControl>
-                          <SelectTrigger className="bg-white/90 border-black/20 text-black">
+                          <SelectTrigger className="bg-white/90 border-black/20 text-black rounded-lg">
                             <SelectValue placeholder="Select service type" />
                           </SelectTrigger>
                         </FormControl>
-                        <SelectContent className="bg-white border-black/20">
+                        <SelectContent className="bg-white border-black/20 rounded-lg">
                           {serviceTypes.map((service) => (
                             <SelectItem key={service} value={service} className="text-black focus:bg-[#c8c2bb]/50">
                               {service}
@@ -355,7 +355,7 @@ export function MyReviewsDialog({ open, onOpenChange, userIdentifier, onReviewUp
                           rows={5}
                           {...field}
                           disabled={loading}
-                          className="bg-white/90 border-black/20 text-black placeholder:text-black/60 min-h-[120px]"
+                          className="bg-white/90 border-black/20 text-black placeholder:text-black/60 min-h-[120px] rounded-lg"
                         />
                       </FormControl>
                       <FormMessage />
@@ -369,7 +369,7 @@ export function MyReviewsDialog({ open, onOpenChange, userIdentifier, onReviewUp
                     variant="outline"
                     onClick={() => setEditingReview(null)}
                     disabled={loading}
-                    className="bg-white/50 hover:bg-white/80 border-black/20"
+                    className="bg-white/50 hover:bg-white/80 border-black/20 rounded-lg"
                   >
                     Cancel
                   </Button>
@@ -393,7 +393,7 @@ export function MyReviewsDialog({ open, onOpenChange, userIdentifier, onReviewUp
 
       {/* Delete Confirmation Dialog */}
       <AlertDialog open={!!deletingReview} onOpenChange={(open) => !open && setDeletingReview(null)}>
-        <AlertDialogContent className="bg-[#c8c2bb] border-black/20">
+        <AlertDialogContent className="bg-[#c8c2bb] border-black/20 rounded-lg">
           <AlertDialogHeader>
             <AlertDialogTitle className="text-black">Delete Review</AlertDialogTitle>
             <AlertDialogDescription className="text-black/80">
@@ -403,7 +403,7 @@ export function MyReviewsDialog({ open, onOpenChange, userIdentifier, onReviewUp
           <AlertDialogFooter>
             <AlertDialogCancel 
               disabled={loading}
-              className="bg-white/50 hover:bg-white/80 border-black/20 text-black"
+              className="bg-white/50 hover:bg-white/80 border-black/20 text-black rounded-lg"
             >
               Cancel
             </AlertDialogCancel>

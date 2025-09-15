@@ -191,7 +191,7 @@ export default function ReviewSection() {
                 variant="outline"
                 onClick={() => setMyReviewsOpen(true)}
                 className={cn(
-                  "bg-white/80 text-black hover:bg-white border-black/20",
+                  "bg-white/80 text-black hover:bg-white border-black/20 rounded-lg",
                   TYPOGRAPHY.fontFutura,
                   "gap-2"
                 )}
@@ -206,7 +206,7 @@ export default function ReviewSection() {
                 onClick={handleReviewClick}
                 className={cn(
                   "bg-[#908476] text-white hover:bg-[#908476]/90",
-                  "px-8 py-3 text-lg border-0",
+                  "px-8 py-3 text-lg border-0 rounded-lg",
                   TYPOGRAPHY.fontFutura,
                   "gap-2"
                 )}
@@ -239,7 +239,7 @@ export default function ReviewSection() {
                               placeholder="Enter your name" 
                               {...field}
                               disabled={loading}
-                              className="bg-white/90 border-black/20 text-black placeholder:text-black/60"
+                              className="bg-white/90 border-black/20 text-black placeholder:text-black/60 rounded-lg"
                             />
                           </FormControl>
                           <FormMessage />
@@ -259,11 +259,11 @@ export default function ReviewSection() {
                             disabled={loading}
                           >
                             <FormControl>
-                              <SelectTrigger className="bg-white/90 border-black/20 text-black">
+                              <SelectTrigger className="bg-white/90 border-black/20 text-black rounded-lg">
                                 <SelectValue placeholder="Select service type" className="placeholder:text-black/60" />
                               </SelectTrigger>
                             </FormControl>
-                            <SelectContent className="bg-white border-black/20">
+                            <SelectContent className="bg-white border-black/20 rounded-lg">
                               {serviceTypes.map((service) => (
                                 <SelectItem key={service} value={service} className="text-black focus:bg-[#c8c2bb]/50">
                                   {service}
@@ -307,7 +307,7 @@ export default function ReviewSection() {
                               rows={5}
                               {...field}
                               disabled={loading}
-                              className="bg-white/90 border-black/20 text-black placeholder:text-black/60 min-h-[120px]"
+                              className="bg-white/90 border-black/20 text-black placeholder:text-black/60 min-h-[120px] rounded-lg"
                             />
                           </FormControl>
                           <FormMessage />
@@ -338,10 +338,10 @@ export default function ReviewSection() {
             {/* Service Filter */}
             <div className="flex justify-center mb-6">
               <Select value={selectedService} onValueChange={setSelectedService}>
-                <SelectTrigger className="w-[280px] bg-white/80 border-black/20 text-black">
+                <SelectTrigger className="w-[280px] bg-white/80 border-black/20 text-black rounded-lg">
                   <SelectValue placeholder="Filter by service" />
                 </SelectTrigger>
-                <SelectContent className="bg-white border-black/20">
+                <SelectContent className="bg-white border-black/20 rounded-lg">
                   <SelectItem value="All Services" className="text-black focus:bg-[#c8c2bb]/50">
                     All Services
                   </SelectItem>
