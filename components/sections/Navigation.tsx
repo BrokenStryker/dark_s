@@ -38,19 +38,34 @@ export default function Navigation() {
     <nav className="fixed top-0 w-full z-50 section-bg backdrop-blur-md border-b border-border">
       <div className={cn(LAYOUT.maxWidthWide, LAYOUT.paddingLarge)}>
         <div className="grid grid-cols-3 items-center py-4">
-          {/* Left - Instagram Link */}
-          <div className="flex justify-start pl-2 sm:pl-10">
-            <a 
-              href="https://www.instagram.com/amberrose.seiferth/?hl=en" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className={cn(
-                LAYOUT.flexCenter,
-                "text-foreground hover:text-primary",
-                COMPONENTS.transition
-              )}
-            >
-              <Instagram className="h-6 w-6" />
+          {/* Left - Instagram Links */}
+          <div className="flex justify-start pl-2 sm:pl-10 gap-2">
+            <a href="https://www.instagram.com/amberrose.seiferth/?hl=en" target="_blank" rel="noopener noreferrer">
+              <Button 
+                size="sm" 
+                className={cn(
+                  "section-bg text-foreground hover:bg-[#48423b]/20",
+                  "border border-border flex items-center gap-2",
+                  TYPOGRAPHY.fontTrajan
+                )}
+              >
+                <Instagram className="h-4 w-4" />
+                Personal
+              </Button>
+            </a>
+            
+            <a href="https://www.instagram.com/darkserenityhairsalon/?hl=en" target="_blank" rel="noopener noreferrer">
+              <Button 
+                size="sm" 
+                className={cn(
+                  "section-bg text-foreground hover:bg-[#48423b]/20",
+                  "border border-border flex items-center gap-2",
+                  TYPOGRAPHY.fontTrajan
+                )}
+              >
+                <Instagram className="h-4 w-4" />
+                Salon
+              </Button>
             </a>
           </div>
           
