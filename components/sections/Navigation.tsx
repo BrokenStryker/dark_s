@@ -11,6 +11,7 @@ import {
 import { Instagram, Menu } from "lucide-react";
 import { COMPONENTS, LAYOUT, TYPOGRAPHY, COLORS } from "@/lib/design-tokens";
 import { cn } from "@/lib/utils";
+import { usePostHog } from "@/hooks/use-posthog";
 
 const navigationItems = [
   { label: "Home", sectionId: "hero" },
@@ -23,6 +24,7 @@ const navigationItems = [
 export default function Navigation() {
   const [isScrolling, setIsScrolling] = useState(false);
   const [scrollTimeout, setScrollTimeout] = useState<NodeJS.Timeout | null>(null);
+  const { track } = usePostHog();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -68,6 +70,34 @@ export default function Navigation() {
     }
   };
 
+  // PostHog tracking functions
+  const handlePersonalInstagramClick = () => {
+    track('header_personal_instagram_clicked', {
+      button_location: 'header',
+      button_type: 'personal_instagram',
+      url: 'https://www.instagram.com/amberrose.seiferth/?hl=en',
+      timestamp: new Date().toISOString()
+    });
+  };
+
+  const handleSalonInstagramClick = () => {
+    track('header_salon_instagram_clicked', {
+      button_location: 'header',
+      button_type: 'salon_instagram',
+      url: 'https://www.instagram.com/darkserenityhairsalon/?hl=en',
+      timestamp: new Date().toISOString()
+    });
+  };
+
+  const handleBookNowClick = () => {
+    track('header_book_now_clicked', {
+      button_location: 'header',
+      button_type: 'book_now',
+      url: 'https://www.vagaro.com/darkserenityhairsalon',
+      timestamp: new Date().toISOString()
+    });
+  };
+
   return (
     <nav className={cn(
       "fixed top-0 w-full z-50 border-b border-border transition-all duration-300 ease-out",
@@ -83,6 +113,7 @@ export default function Navigation() {
             <a href="https://www.instagram.com/amberrose.seiferth/?hl=en" target="_blank" rel="noopener noreferrer">
               <Button 
                 size="sm" 
+                onClick={handlePersonalInstagramClick}
                 className={cn(
                   "section-bg text-foreground hover:bg-[#48423b]/20",
                   "border border-border flex items-center gap-2 rounded-lg",
@@ -97,6 +128,7 @@ export default function Navigation() {
             <a href="https://www.instagram.com/darkserenityhairsalon/?hl=en" target="_blank" rel="noopener noreferrer">
               <Button 
                 size="sm" 
+                onClick={handleSalonInstagramClick}
                 className={cn(
                   "section-bg text-foreground hover:bg-[#48423b]/20",
                   "border border-border flex items-center gap-2 rounded-lg",
@@ -117,6 +149,7 @@ export default function Navigation() {
             <a href="https://www.vagaro.com/darkserenityhairsalon" target="_blank" rel="noopener noreferrer">
               <Button 
                 size="sm" 
+                onClick={handleBookNowClick}
                 className={cn(
                   "bg-[#48423b] text-white hover:bg-[#48423b]/90",
                   "border-0 ml-2 rounded-lg",
@@ -168,6 +201,7 @@ export default function Navigation() {
             <a href="https://www.instagram.com/amberrose.seiferth/?hl=en" target="_blank" rel="noopener noreferrer">
               <Button 
                 size="sm" 
+                onClick={handlePersonalInstagramClick}
                 className={cn(
                   "section-bg text-foreground hover:bg-[#48423b]/20",
                   "border border-border flex items-center gap-2 rounded-lg",
@@ -182,6 +216,7 @@ export default function Navigation() {
             <a href="https://www.instagram.com/darkserenityhairsalon/?hl=en" target="_blank" rel="noopener noreferrer">
               <Button 
                 size="sm" 
+                onClick={handleSalonInstagramClick}
                 className={cn(
                   "section-bg text-foreground hover:bg-[#48423b]/20",
                   "border border-border flex items-center gap-2 rounded-lg",

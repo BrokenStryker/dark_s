@@ -29,6 +29,11 @@ export const metadata: Metadata = {
   title: "Dark Serenity | Luxury Hair Salon by Amberrose Seiferth",
   description: "Experience the art of luxury hair styling with gothic elegance and personalized artistry.",
   keywords: "luxury hair salon, premium hair services, gothic hair styling, Amberrose Seiferth, dark aesthetic hair, high-end salon, exclusive hair services",
+  icons: {
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
+  },
   openGraph: {
     title: "Dark Serenity | Luxury Hair Salon",
     description: "Experience the art of luxury hair styling with gothic elegance and personalized artistry.",
