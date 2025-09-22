@@ -17,7 +17,8 @@ export const staticReviews: StaticReview[] = [
     reviewText: "Absolutely amazing experience! The blonding service was exactly what I wanted. My hair has never looked better and feels so healthy. Will definitely be back!",
     serviceType: "Full Blonding",
     createdAt: "2024-11-15T10:30:00Z",
-    updatedAt: "2024-11-15T10:30:00Z"
+    updatedAt: "2024-11-15T10:30:00Z",
+    image: "/fullblonding.jpeg"
   },
   {
     id: "2",
@@ -26,7 +27,8 @@ export const staticReviews: StaticReview[] = [
     reviewText: "The best hair salon experience I've ever had! The attention to detail and the final result exceeded my expectations. Highly recommend!",
     serviceType: "Partial Blonding",
     createdAt: "2024-11-10T14:20:00Z",
-    updatedAt: "2024-11-10T14:20:00Z"
+    updatedAt: "2024-11-10T14:20:00Z",
+    image: "/partialblonding.jpeg"
   },
   {
     id: "3",
@@ -35,7 +37,8 @@ export const staticReviews: StaticReview[] = [
     reviewText: "Perfect color match! The all over color service was flawless and the salon has such a relaxing atmosphere. Thank you for making me feel beautiful!",
     serviceType: "All Over Color",
     createdAt: "2024-11-08T16:45:00Z",
-    updatedAt: "2024-11-08T16:45:00Z"
+    updatedAt: "2024-11-08T16:45:00Z",
+    image: "/Overallcolor.jpeg"
   },
   {
     id: "4",
@@ -44,7 +47,8 @@ export const staticReviews: StaticReview[] = [
     reviewText: "The Brazilian Blowout changed my life! My hair is so much more manageable now and looks salon-fresh every day. Worth every penny!",
     serviceType: "Brazilian Blowout",
     createdAt: "2024-11-05T11:15:00Z",
-    updatedAt: "2024-11-05T11:15:00Z"
+    updatedAt: "2024-11-05T11:15:00Z",
+    image: "/brazillian_blowout.jpeg"
   },
   {
     id: "5",
@@ -53,7 +57,8 @@ export const staticReviews: StaticReview[] = [
     reviewText: "Amazing haircut! The stylist really listened to what I wanted and delivered perfectly. The salon is beautiful and the service is top-notch.",
     serviceType: "Medium/Long Haircut",
     createdAt: "2024-11-02T13:30:00Z",
-    updatedAt: "2024-11-02T13:30:00Z"
+    updatedAt: "2024-11-02T13:30:00Z",
+    image: "/haircut.jpeg"
   },
   {
     id: "6",
@@ -62,7 +67,8 @@ export const staticReviews: StaticReview[] = [
     reviewText: "The vivid pop of color was exactly what I needed! So vibrant and beautiful. The whole team is professional and talented.",
     serviceType: "Vivid Pop of Color",
     createdAt: "2024-10-28T09:20:00Z",
-    updatedAt: "2024-10-28T09:20:00Z"
+    updatedAt: "2024-10-28T09:20:00Z",
+    image: "/vivids.jpeg"
   },
   {
     id: "7",
@@ -71,7 +77,8 @@ export const staticReviews: StaticReview[] = [
     reviewText: "Best blowout ever! My hair looked incredible and lasted for days. The styling was perfect and the atmosphere is so relaxing.",
     serviceType: "Blowout",
     createdAt: "2024-10-25T15:45:00Z",
-    updatedAt: "2024-10-25T15:45:00Z"
+    updatedAt: "2024-10-25T15:45:00Z",
+    image: "/blowout.jpeg"
   },
   {
     id: "8",
@@ -80,6 +87,7 @@ export const staticReviews: StaticReview[] = [
     reviewText: "The conditioning mask treatment made my hair feel like silk! Such a luxurious experience and my hair has never been healthier.",
     serviceType: "Conditioning Mask",
     createdAt: "2024-10-20T12:10:00Z",
-    updatedAt: "2024-10-20T12:10:00Z"
+    updatedAt: "2024-10-20T12:10:00Z",
+    image: "/deepcondition_treatment.jpeg"
   }
 ];
