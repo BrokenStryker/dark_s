@@ -13,7 +13,7 @@ export default function Footer() {
           Where Gothic Romance Meets Hair Artistry
         </SubTitle>
         <BodyText size="small" muted>
-          © 2024 Dark Serenity. All rights reserved. | Luxury Hair Salon by Amberrose Seiferth
+          © 2024 Dark Serenity. All rights reserved. | Luxury Hair Salon by Amberrose 
         </BodyText>
       </div>
     </footer>

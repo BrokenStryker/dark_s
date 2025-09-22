@@ -26,9 +26,9 @@ const ebGaramond = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Dark Serenity | Luxury Hair Salon by Amberrose Seiferth",
+  title: "Dark Serenity | Luxury Hair Salon by Amberrose",
   description: "Experience the art of luxury hair styling with gothic elegance and personalized artistry.",
-  keywords: "luxury hair salon, premium hair services, gothic hair styling, Amberrose Seiferth, dark aesthetic hair, high-end salon, exclusive hair services",
+  keywords: "luxury hair salon, premium hair services, gothic hair styling, Amberrose, dark aesthetic hair, high-end salon, exclusive hair services",
   icons: {
     icon: "/favicon.png",
     shortcut: "/favicon.png",

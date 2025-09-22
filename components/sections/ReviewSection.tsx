@@ -40,26 +40,16 @@ export default function ReviewSection() {
           </div>
 
           {/* Reviews Carousel */}
-          {filteredReviews.length === 0 ? (
-            <Card className={cn(COMPONENTS.luxuryCard, "bg-card/50")}>
-              <CardContent className="text-center py-12">
-                <Quote className="w-12 h-12 mx-auto mb-4 text-muted-foreground/50" />
-                <BodyText muted>
-                  No reviews for {selectedService} yet
-                </BodyText>
-              </CardContent>
-            </Card>
-          ) : (
-            <div className="relative">
-              <Carousel
-                opts={{
-                  align: "start",
-                  loop: true,
-                }}
-                className="w-full"
-              >
-                <CarouselContent className="-ml-2 md:-ml-4">
-                  {filteredReviews.map((review) => (
+          <div className="relative">
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-2 md:-ml-4">
+                {staticReviews.map((review) => (
                     <CarouselItem key={review.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
                       <Card className={cn(COMPONENTS.luxuryCard, "bg-card/50 h-full")}>
                         <CardContent className="p-6">
@@ -96,18 +86,17 @@ export default function ReviewSection() {
                         </CardContent>
                       </Card>
                     </CarouselItem>
-                  ))}
-                </CarouselContent>
+                ))}
+              </CarouselContent>
 
-                {filteredReviews.length > 3 && (
-                  <>
-                    <CarouselPrevious className="-left-8" />
-                    <CarouselNext className="-right-8" />
-                  </>
-                )}
-              </Carousel>
-            </div>
-          )}
+              {staticReviews.length > 3 && (
+                <>
+                  <CarouselPrevious className="-left-8" />
+                  <CarouselNext className="-right-8" />
+                </>
+              )}
+            </Carousel>
+          </div>
         </div>
       </ContentCard>
     </SectionContainer>
