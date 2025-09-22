@@ -4,7 +4,7 @@ import { SectionTitle, BodyText } from "@/components/ui/typography";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
-import { useImageCarousel } from "@/hooks/use-image-carousel";
+import { useSwipeableCarousel } from "@/hooks/use-swipeable-carousel";
 import { SPACING, COMPONENTS } from "@/lib/design-tokens";
 import { cn } from "@/lib/utils";
 
@@ -25,36 +25,9 @@ interface ServiceAccordionItemProps {
 }
 
 function ServiceAccordionItem({ service, index }: ServiceAccordionItemProps) {
-  const { currentIndex, goToNext, goToPrevious, goToIndex } = useImageCarousel(service.images.length);
-
-  // Touch handling for mobile swipe
-  const [touchStart, setTouchStart] = React.useState<number | null>(null);
-  const [touchEnd, setTouchEnd] = React.useState<number | null>(null);
-
-  const minSwipeDistance = 50;
-
-  const onTouchStart = (e: React.TouchEvent) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const onTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
-
-    if (isLeftSwipe) {
-      goToNext();
-    } else if (isRightSwipe) {
-      goToPrevious();
-    }
-  };
+  const { currentIndex, goToNext, goToPrevious, goToIndex, touchHandlers } = useSwipeableCarousel({
+    totalItems: service.images.length
+  });
 
   // Check if this service has dynamic content
   const isDynamic = service.names && service.prices && service.descriptions;
@@ -95,9 +68,7 @@ function ServiceAccordionItem({ service, index }: ServiceAccordionItemProps) {
               <div
                 className="flex overflow-hidden cursor-pointer"
                 onClick={goToNext}
-                onTouchStart={onTouchStart}
-                onTouchMove={onTouchMove}
-                onTouchEnd={onTouchEnd}
+                {...touchHandlers}
               >
                 <div
                   className="flex transition-transform duration-300 ease-out"

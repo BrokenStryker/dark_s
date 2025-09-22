@@ -9,9 +9,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Instagram, Menu } from "lucide-react";
-import { COMPONENTS, LAYOUT, TYPOGRAPHY, COLORS } from "@/lib/design-tokens";
+import { COMPONENTS, LAYOUT, TYPOGRAPHY, COLORS, SEMANTIC_COLORS } from "@/lib/design-tokens";
 import { cn } from "@/lib/utils";
 import { usePostHog } from "@/hooks/use-posthog";
+import { AnalyticsService } from "@/lib/analytics-service";
 
 const navigationItems = [
   { label: "Home", sectionId: "hero" },
@@ -77,32 +78,32 @@ export default function Navigation() {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  // PostHog tracking functions
+  // Centralized tracking functions
   const handlePersonalInstagramClick = () => {
-    track('header_personal_instagram_clicked', {
-      button_location: 'header',
-      button_type: 'personal_instagram',
-      url: 'https://www.instagram.com/amberrose.seiferth/?hl=en',
-      timestamp: new Date().toISOString()
-    });
+    AnalyticsService.trackButtonClick(
+      'personal_instagram',
+      'header',
+      track,
+      'https://www.instagram.com/amberrose.seiferth/?hl=en'
+    );
   };
 
   const handleSalonInstagramClick = () => {
-    track('header_salon_instagram_clicked', {
-      button_location: 'header',
-      button_type: 'salon_instagram',
-      url: 'https://www.instagram.com/darkserenityhairsalon/?hl=en',
-      timestamp: new Date().toISOString()
-    });
+    AnalyticsService.trackButtonClick(
+      'salon_instagram',
+      'header',
+      track,
+      'https://www.instagram.com/darkserenityhairsalon/?hl=en'
+    );
   };
 
   const handleBookNowClick = () => {
-    track('header_book_now_clicked', {
-      button_location: 'header',
-      button_type: 'book_now',
-      url: 'https://www.vagaro.com/darkserenityhairsalon',
-      timestamp: new Date().toISOString()
-    });
+    AnalyticsService.trackButtonClick(
+      'book_now',
+      'header',
+      track,
+      'https://www.vagaro.com/darkserenityhairsalon'
+    );
   };
 
   return (
@@ -121,9 +122,9 @@ export default function Navigation() {
                 onClick={handlePersonalInstagramClick}
                 className={cn(
                   isScrolling
-                    ? "bg-transparent hover:bg-white/10"
-                    : "bg-[#908476] hover:bg-[#48423b]/20",
-                  "text-foreground border border-border flex items-center gap-2 rounded-lg transition-all duration-1000 min-w-[110px]",
+                    ? SEMANTIC_COLORS.navigation.secondary
+                    : SEMANTIC_COLORS.navigation.primary,
+                  "flex items-center gap-2 rounded-lg min-w-[110px]",
                   TYPOGRAPHY.fontTrajan
                 )}
               >
@@ -138,9 +139,9 @@ export default function Navigation() {
                 onClick={handleSalonInstagramClick}
                 className={cn(
                   isScrolling
-                    ? "bg-transparent hover:bg-white/10"
-                    : "bg-[#908476] hover:bg-[#48423b]/20",
-                  "text-foreground border border-border flex items-center gap-2 rounded-lg transition-all duration-1000 min-w-[110px]",
+                    ? SEMANTIC_COLORS.navigation.secondary
+                    : SEMANTIC_COLORS.navigation.primary,
+                  "flex items-center gap-2 rounded-lg min-w-[110px]",
                   TYPOGRAPHY.fontTrajan
                 )}
               >
@@ -157,7 +158,7 @@ export default function Navigation() {
               size="sm"
               onClick={toggleMobileMenu}
               className={cn(
-                "text-foreground border border-border p-2 rounded-lg transition-all duration-1000 shadow-none",
+                "p-2 rounded-lg shadow-none",
                 isScrolling
                   ? "bg-transparent hover:bg-white/10"
                   : "bg-[#908476] hover:bg-[#48423b]/20"
@@ -176,7 +177,7 @@ export default function Navigation() {
           )}
         >
           <div className="px-6 py-4">
-            <div className="bg-[#e4e1dd]/30 backdrop-blur-sm rounded-xl p-4 border border-border/20">
+            <div className={cn(SEMANTIC_COLORS.navigation.background, "rounded-xl p-4 border border-border/20")}>
               <div className="flex flex-col space-y-2">
                 {navigationItems.map((item) => (
                   <button
@@ -208,9 +209,9 @@ export default function Navigation() {
                 onClick={handlePersonalInstagramClick}
                 className={cn(
                   isScrolling
-                    ? "bg-transparent hover:bg-white/10"
-                    : "bg-[#908476] hover:bg-[#48423b]/20",
-                  "text-foreground border border-border flex items-center gap-2 rounded-lg transition-all duration-1000 min-w-[88px]",
+                    ? SEMANTIC_COLORS.navigation.secondary
+                    : SEMANTIC_COLORS.navigation.primary,
+                  "flex items-center gap-2 rounded-lg min-w-[88px]",
                   TYPOGRAPHY.fontTrajan
                 )}
               >
@@ -225,9 +226,9 @@ export default function Navigation() {
                 onClick={handleSalonInstagramClick}
                 className={cn(
                   isScrolling
-                    ? "bg-transparent hover:bg-white/10"
-                    : "bg-[#908476] hover:bg-[#48423b]/20",
-                  "text-foreground border border-border flex items-center gap-2 rounded-lg transition-all duration-1000 min-w-[88px]",
+                    ? SEMANTIC_COLORS.navigation.secondary
+                    : SEMANTIC_COLORS.navigation.primary,
+                  "flex items-center gap-2 rounded-lg min-w-[88px]",
                   TYPOGRAPHY.fontTrajan
                 )}
               >
@@ -245,9 +246,9 @@ export default function Navigation() {
                   variant="ghost"
                   size="sm"
                   className={cn(
-                    "text-foreground border border-border p-2 transition-all duration-1000 shadow-none",
+                    "p-2 shadow-none",
                     isScrolling
-                      ? "bg-transparent hover:bg-white/10"
+                      ? SEMANTIC_COLORS.navigation.secondary
                       : "bg-[#908476] hover:bg-[#48423b]/20"
                   )}
                 >
@@ -257,7 +258,7 @@ export default function Navigation() {
               <DropdownMenuContent 
                 align="end" 
                 className="w-48"
-                style={{ backgroundColor: COLORS.sectionBg }}
+                className={SEMANTIC_COLORS.surface.section}
               >
                 {navigationItems.map((item) => (
                   <DropdownMenuItem
@@ -267,7 +268,7 @@ export default function Navigation() {
                       TYPOGRAPHY.bodySmall,
                       TYPOGRAPHY.fontFutura,
                       "cursor-pointer text-foreground",
-                      "focus:bg-[#c8c2bb] focus:text-foreground"
+                      SEMANTIC_COLORS.focus.dropdown
                     )}
                   >
                     {item.label}

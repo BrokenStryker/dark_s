@@ -11,16 +11,14 @@ import ContactSection from "@/components/sections/ContactSection";
 import Footer from "@/components/sections/Footer";
 import MobileStickyButton from "@/components/ui/mobile-sticky-button";
 import { usePostHog } from "@/hooks/use-posthog";
+import { AnalyticsService } from "@/lib/analytics-service";
 
 export default function Home() {
   const { track } = usePostHog();
 
   useEffect(() => {
-    // Manual test event to verify PostHog is working
-    track('homepage_loaded', { 
-      timestamp: new Date().toISOString(),
-      page: 'home'
-    });
+    // Track homepage load using centralized service
+    AnalyticsService.trackPageView('homepage', track);
   }, [track]);
   return (
     <div className="min-h-screen bg-background">

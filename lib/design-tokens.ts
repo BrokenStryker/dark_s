@@ -82,10 +82,48 @@ export const COLORS = {
   // Section background colors
   sectionBg: '#e4e1dd',
   cardBg: '#c8c2bb',
-  
+
   // CSS custom property equivalents
   sectionBgRgb: '228, 225, 221', // RGB values for #e4e1dd
   cardBgRgb: '200, 194, 187'     // RGB values for #c8c2bb
+} as const;
+
+// Semantic color system for consistent theming
+export const SEMANTIC_COLORS = {
+  // Navigation styles (replaces inline hex colors)
+  navigation: {
+    // Replaces: bg-[#908476] hover:bg-[#48423b]/20
+    primary: 'bg-sage-500 hover:bg-warmBrown-600/20 text-foreground border border-border transition-all duration-1000',
+    // Replaces: bg-transparent hover:bg-white/10
+    secondary: 'bg-transparent hover:bg-white/10 text-foreground border border-border transition-all duration-1000',
+    // Replaces: bg-[#e4e1dd]/30
+    background: 'bg-sage-200/30 backdrop-blur-sm'
+  },
+
+  // CTA button styles
+  cta: {
+    // Replaces: bg-[#48423b] text-white hover:bg-[#48423b]/90
+    primary: 'bg-warmBrown-600 text-white hover:bg-warmBrown-600/90 transition-all duration-200',
+    secondary: 'bg-sage-500 text-foreground hover:bg-sage-600 transition-all duration-200'
+  },
+
+  // Focus and dropdown states
+  focus: {
+    // Replaces: focus:bg-[#c8c2bb]
+    dropdown: 'focus:bg-sage-400 focus:text-foreground',
+    ring: 'focus:ring-2 focus:ring-sage-500',
+    border: 'focus:border-sage-500'
+  },
+
+  // Surface colors
+  surface: {
+    // Replaces style={{ backgroundColor: COLORS.sectionBg }}
+    section: 'bg-sage-200',
+    // Replaces style={{ backgroundColor: COLORS.cardBg }}
+    card: 'bg-sage-400',
+    elevated: 'bg-white',
+    transparent: 'bg-transparent'
+  }
 } as const;
 
 export const COMPONENTS = {

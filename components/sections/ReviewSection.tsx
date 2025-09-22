@@ -7,43 +7,16 @@ import { SectionContainer } from "@/components/ui/section-container"
 import { ContentCard } from "@/components/ui/content-card"
 import { SectionTitle, BodyText } from "@/components/ui/typography"
 import { staticReviews } from "@/lib/static-reviews"
-import { useImageCarousel } from "@/hooks/use-image-carousel"
+import { useSwipeableCarousel } from "@/hooks/use-swipeable-carousel"
 import { SPACING, TYPOGRAPHY } from "@/lib/design-tokens"
 import { cn } from "@/lib/utils"
 import { Quote, ArrowUpRight } from "lucide-react"
 
 export default function ReviewSection() {
-  const { currentIndex, goToNext, goToPrevious, goToIndex } = useImageCarousel(staticReviews.length)
+  const { currentIndex, goToNext, goToPrevious, goToIndex, touchHandlers } = useSwipeableCarousel({
+    totalItems: staticReviews.length
+  })
   const scrollContainerRef = React.useRef<HTMLDivElement>(null)
-
-  // Touch handling for mobile swipe
-  const [touchStart, setTouchStart] = React.useState<number | null>(null)
-  const [touchEnd, setTouchEnd] = React.useState<number | null>(null)
-
-  const minSwipeDistance = 50
-
-  const onTouchStart = (e: React.TouchEvent) => {
-    setTouchEnd(null)
-    setTouchStart(e.targetTouches[0].clientX)
-  }
-
-  const onTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX)
-  }
-
-  const onTouchEnd = () => {
-    if (!touchStart || !touchEnd) return
-
-    const distance = touchStart - touchEnd
-    const isLeftSwipe = distance > minSwipeDistance
-    const isRightSwipe = distance < -minSwipeDistance
-
-    if (isLeftSwipe) {
-      goToNext()
-    } else if (isRightSwipe) {
-      goToPrevious()
-    }
-  }
 
   const currentReview = staticReviews[currentIndex]
 
@@ -136,9 +109,7 @@ export default function ReviewSection() {
               <div
                 className="flex overflow-hidden cursor-pointer"
                 onClick={goToNext}
-                onTouchStart={onTouchStart}
-                onTouchMove={onTouchMove}
-                onTouchEnd={onTouchEnd}
+                {...touchHandlers}
               >
                 <div
                   className="flex transition-transform duration-300 ease-out"
@@ -171,9 +142,7 @@ export default function ReviewSection() {
               {/* Review Text Box - Overlapping the bottom of image */}
               <div
                 className="absolute -bottom-32 left-0 right-0 mx-4"
-                onTouchStart={onTouchStart}
-                onTouchMove={onTouchMove}
-                onTouchEnd={onTouchEnd}
+                {...touchHandlers}
               >
                 <div className="bg-white rounded-2xl shadow-lg p-8 border border-border">
                   <div className="space-y-4">

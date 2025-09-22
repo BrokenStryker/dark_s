@@ -1,20 +1,21 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { TYPOGRAPHY } from "@/lib/design-tokens";
+import { TYPOGRAPHY, SEMANTIC_COLORS } from "@/lib/design-tokens";
 import { cn } from "@/lib/utils";
 import { usePostHog } from "@/hooks/use-posthog";
+import { AnalyticsService } from "@/lib/analytics-service";
 
 export default function MobileStickyButton() {
   const { track } = usePostHog();
 
   const handleBookNowClick = () => {
-    track('mobile_sticky_book_now_clicked', {
-      button_location: 'mobile_sticky_bottom',
-      button_type: 'book_now',
-      url: 'https://www.vagaro.com/darkserenityhairsalon',
-      timestamp: new Date().toISOString()
-    });
+    AnalyticsService.trackButtonClick(
+      'book_now',
+      'mobile_sticky_bottom',
+      track,
+      'https://www.vagaro.com/darkserenityhairsalon'
+    );
   };
 
   return (
@@ -24,7 +25,7 @@ export default function MobileStickyButton() {
           size="lg"
           className={cn(
             "w-full px-8 py-6 text-lg",
-            "bg-[#48423b] text-white hover:bg-[#48423b]/90",
+            SEMANTIC_COLORS.cta.primary,
             "border-0 rounded-lg shadow-lg",
             TYPOGRAPHY.fontTrajan
           )}

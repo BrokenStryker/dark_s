@@ -2,20 +2,21 @@
 
 import { Button } from "@/components/ui/button";
 import { SectionTitle } from "@/components/ui/typography";
-import { TYPOGRAPHY } from "@/lib/design-tokens";
+import { TYPOGRAPHY, SEMANTIC_COLORS } from "@/lib/design-tokens";
 import { cn } from "@/lib/utils";
 import { usePostHog } from "@/hooks/use-posthog";
+import { AnalyticsService } from "@/lib/analytics-service";
 
 export default function HeroSection() {
   const { track } = usePostHog();
 
   const handleBookNowClick = () => {
-    track('hero_book_now_clicked', {
-      button_location: 'hero',
-      button_type: 'book_now',
-      url: 'https://www.vagaro.com/darkserenityhairsalon',
-      timestamp: new Date().toISOString()
-    });
+    AnalyticsService.trackButtonClick(
+      'book_now',
+      'hero',
+      track,
+      'https://www.vagaro.com/darkserenityhairsalon'
+    );
   };
 
   return (
@@ -55,7 +56,7 @@ export default function HeroSection() {
                 size="lg"
                 className={cn(
                   "px-8 py-4 text-lg",
-                  "bg-[#48423b] text-white hover:bg-[#48423b]/90",
+                  SEMANTIC_COLORS.cta.primary,
                   "border-0 rounded-lg shadow-lg",
                   TYPOGRAPHY.fontTrajan
                 )}

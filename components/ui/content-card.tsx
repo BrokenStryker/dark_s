@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { SPACING, COMPONENTS, COLORS } from "@/lib/design-tokens";
+import { SPACING, COMPONENTS, COLORS, SEMANTIC_COLORS } from "@/lib/design-tokens";
 
 interface ContentCardProps {
   children: React.ReactNode;
@@ -28,18 +28,18 @@ export function ContentCard({
   };
 
   // Apply background colors based on variant (removed section background for seamless transitions)
-  const backgroundStyle = variant === 'section'
-    ? {}
-    : { backgroundColor: COLORS.cardBg };
+  const backgroundClasses = variant === 'section'
+    ? ''
+    : SEMANTIC_COLORS.surface.card;
 
   return (
-    <div 
+    <div
       className={cn(
         variantClasses[variant],
         paddingClasses[padding],
+        backgroundClasses,
         className
       )}
-      style={backgroundStyle}
     >
       {children}
     </div>

@@ -7,6 +7,7 @@ import { SectionTitle, BodyText, CardTitle } from "@/components/ui/typography";
 import { LAYOUT, SPACING } from "@/lib/design-tokens";
 import { cn } from "@/lib/utils";
 import { usePostHog } from "@/hooks/use-posthog";
+import { AnalyticsService } from "@/lib/analytics-service";
 
 interface ContactInfoItemProps {
   icon: React.ReactNode;
@@ -41,10 +42,11 @@ export default function ContactSection() {
   const { track } = usePostHog();
 
   const handleGetDirectionsClick = () => {
-    track('get_directions_clicked', {
-      location: 'Sola Salon Studios',
-      address: '1895 South Rd, Studio 25 Poughkeepsie, NY 12601'
-    });
+    AnalyticsService.trackExternalLink(
+      'get_directions',
+      'https://www.google.com/maps/dir/?api=1&destination=Sola+Salon+Studios,+1895+South+Rd,+Poughkeepsie,+NY+12601',
+      track
+    );
   };
 
   return (
