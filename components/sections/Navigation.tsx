@@ -24,6 +24,7 @@ const navigationItems = [
 export default function Navigation() {
   const [isScrolling, setIsScrolling] = useState(false);
   const [scrollTimeout, setScrollTimeout] = useState<NodeJS.Timeout | null>(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { track } = usePostHog();
 
   useEffect(() => {
@@ -62,12 +63,18 @@ export default function Navigation() {
       const navbarHeight = 80;
       const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
       const offsetPosition = elementPosition - navbarHeight;
-      
+
       window.scrollTo({
         top: offsetPosition,
         behavior: 'smooth'
       });
     }
+    // Close mobile menu after navigation
+    setIsMobileMenuOpen(false);
+  };
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   // PostHog tracking functions
@@ -146,44 +153,50 @@ export default function Navigation() {
           {/* Spacer */}
           <div className="flex-1"></div>
           
-          {/* Right - Navigation Dropdown */}
+          {/* Right - Navigation Button */}
           <div className="flex items-center gap-0 pr-2">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="sm"
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={toggleMobileMenu}
+              className={cn(
+                "p-2 rounded-lg border-b border-border/30 transition-all duration-300 shadow-none",
+                isScrolling
+                  ? "bg-section-bg hover:bg-[#48423b]/20"
+                  : "bg-section-bg hover:bg-[#48423b]/20"
+              )}
+            >
+              <Menu className="h-8 w-8" />
+            </Button>
+          </div>
+        </div>
+
+        {/* Mobile Navigation Drawer */}
+        <div
+          className={cn(
+            "overflow-hidden transition-all duration-300 ease-in-out sm:hidden",
+            "bg-white/10 backdrop-blur-md border-t border-border/30",
+            isMobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+          )}
+        >
+          <div className="px-6 py-4">
+            <div className="flex flex-col space-y-2">
+              {navigationItems.map((item) => (
+                <button
+                  key={item.sectionId}
+                  onClick={() => handleNavigationClick(item.sectionId)}
                   className={cn(
-                    "p-1 transition-all duration-300",
-                    isScrolling
-                      ? "bg-transparent hover:bg-white/10"
-                      : "hover:bg-accent"
+                    TYPOGRAPHY.bodySmall,
+                    TYPOGRAPHY.fontFutura,
+                    "text-left py-2 px-3 rounded-lg transition-all duration-200",
+                    "hover:bg-white/20 focus:bg-white/20",
+                    "text-foreground"
                   )}
                 >
-                  <Menu className="h-5 w-5" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent 
-                align="end" 
-                className="w-48"
-                style={{ backgroundColor: COLORS.sectionBg }}
-              >
-                {navigationItems.map((item) => (
-                  <DropdownMenuItem
-                    key={item.sectionId}
-                    onClick={() => handleNavigationClick(item.sectionId)}
-                    className={cn(
-                      TYPOGRAPHY.bodySmall,
-                      TYPOGRAPHY.fontFutura,
-                      "cursor-pointer",
-                      "focus:bg-[#c8c2bb] focus:text-foreground"
-                    )}
-                  >
-                    {item.label}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
+                  {item.label}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -240,7 +253,7 @@ export default function Navigation() {
                       : "hover:bg-accent"
                   )}
                 >
-                  <Menu className="h-5 w-5" />
+                  <Menu className="h-8 w-8" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent 

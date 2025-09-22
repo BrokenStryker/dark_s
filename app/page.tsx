@@ -9,6 +9,7 @@ import ServicesSection from "@/components/sections/ServicesSection";
 import PoliciesSection from "@/components/sections/PoliciesSection";
 import ContactSection from "@/components/sections/ContactSection";
 import Footer from "@/components/sections/Footer";
+import MobileStickyButton from "@/components/ui/mobile-sticky-button";
 import { usePostHog } from "@/hooks/use-posthog";
 
 export default function Home() {
@@ -50,6 +51,9 @@ export default function Home() {
       <div className="h-10" />
       
       <Footer />
+
+      {/* Mobile sticky book now button */}
+      <MobileStickyButton />
     </div>
   );
 }

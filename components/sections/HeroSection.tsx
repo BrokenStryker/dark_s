@@ -39,16 +39,18 @@ export default function HeroSection() {
         <div className="w-full max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-left">
             <SectionTitle
+              as="h1"
               className={cn(
-                "mb-8 text-white drop-shadow-lg",
-                TYPOGRAPHY.fontLight,
-                "text-4xl md:text-6xl lg:text-7xl"
+                "mb-8 drop-shadow-lg",
+                TYPOGRAPHY.fontBold,
+                "text-4xl md:text-6xl lg:text-7xl",
+                "hero-title" // Add specific class to override global CSS rules
               )}
             >
               Hair You'll Love, No Matter What
             </SectionTitle>
 
-            <a href="https://www.vagaro.com/darkserenityhairsalon" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.vagaro.com/darkserenityhairsalon" target="_blank" rel="noopener noreferrer" className="hidden sm:block">
               <Button
                 size="lg"
                 className={cn(
