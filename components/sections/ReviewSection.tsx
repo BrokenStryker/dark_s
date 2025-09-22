@@ -101,17 +101,13 @@ export default function ReviewSection() {
                   key={review.id}
                   onClick={() => goToIndex(index)}
                   className={cn(
-                    "relative transition-all duration-300 whitespace-nowrap pb-2",
+                    "transition-all duration-300 whitespace-nowrap pb-2",
                     index === currentIndex
-                      ? "font-bold text-foreground text-lg"
-                      : "text-muted-foreground text-base hover:text-foreground/70"
+                      ? "font-bold text-foreground text-lg border-b-2 border-foreground"
+                      : "text-muted-foreground text-base hover:text-foreground/70 border-b-2 border-transparent"
                   )}
                 >
                   {review.customerName}
-                  {/* Underline indicator */}
-                  {index === currentIndex && (
-                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-foreground rounded-full transition-all duration-300" />
-                  )}
                 </button>
               ))}
             </div>
