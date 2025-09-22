@@ -89,7 +89,7 @@ export default function ReviewSection() {
                 "text-foreground"
               )}
             >
-              See What People Have To Say
+              Word on the street
             </SectionTitle>
           </div>
 
@@ -131,7 +131,7 @@ export default function ReviewSection() {
           </div>
 
           {/* Image Carousel with Review Overlay */}
-          <div className="flex justify-center mb-24">
+          <div className="flex justify-center mb-32">
             <div className="relative w-full max-w-lg">
               <div
                 className="flex overflow-hidden cursor-pointer"
@@ -170,7 +170,7 @@ export default function ReviewSection() {
 
               {/* Review Text Box - Overlapping the bottom of image */}
               <div
-                className="absolute -bottom-20 left-0 right-0 mx-4"
+                className="absolute -bottom-32 left-0 right-0 mx-4"
                 onTouchStart={onTouchStart}
                 onTouchMove={onTouchMove}
                 onTouchEnd={onTouchEnd}

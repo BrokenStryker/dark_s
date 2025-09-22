@@ -160,12 +160,12 @@ export function ServiceCategorySection({ category, className }: ServiceCategoryP
       <div className={cn("text-center", SPACING.marginBottom.md)}>
         <SectionTitle
           as="h3"
-          className={cn(SPACING.marginBottom.sm, "section-title", "text-2xl sm:text-3xl md:text-4xl lg:text-5xl")}
+          className={cn(SPACING.marginBottom.xs, "section-title", "text-2xl sm:text-3xl md:text-4xl lg:text-5xl")}
         >
           {category.title}
         </SectionTitle>
         {category.description && (
-          <BodyText muted className="max-w-3xl mx-auto">
+          <BodyText muted className="max-w-3xl mx-auto text-center sm:text-center">
             {category.description.split('\n').map((line, index) => (
               <span key={index}>
                 {line}
