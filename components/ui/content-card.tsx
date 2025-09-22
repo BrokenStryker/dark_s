@@ -27,9 +27,9 @@ export function ContentCard({
     large: SPACING.cardPaddingLarge
   };
 
-  // Apply background colors based on variant
-  const backgroundStyle = variant === 'section' 
-    ? { backgroundColor: COLORS.sectionBg }
+  // Apply background colors based on variant (removed section background for seamless transitions)
+  const backgroundStyle = variant === 'section'
+    ? {}
     : { backgroundColor: COLORS.cardBg };
 
   return (

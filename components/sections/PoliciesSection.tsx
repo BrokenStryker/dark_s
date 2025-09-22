@@ -34,8 +34,6 @@ export default function PoliciesSection() {
               </div>
             </div>
             
-            {/* Divider */}
-            <div className="border-t border-border/30"></div>
             
             {/* Cancellation Policy */}
             <div className="space-y-4">

@@ -23,7 +23,7 @@ export default function MobileStickyButton() {
         <Button
           size="lg"
           className={cn(
-            "w-full px-8 py-4 text-lg",
+            "w-full px-8 py-6 text-lg",
             "bg-[#48423b] text-white hover:bg-[#48423b]/90",
             "border-0 rounded-lg shadow-lg",
             TYPOGRAPHY.fontTrajan

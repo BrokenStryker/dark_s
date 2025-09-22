@@ -112,9 +112,9 @@ export default function Navigation() {
     )}>
       <div className={cn(LAYOUT.maxWidthWide, LAYOUT.paddingLarge)}>
         {/* Mobile Layout */}
-        <div className="flex sm:hidden items-center py-4">
-          {/* Left - Instagram Links */}
-          <div className="flex justify-start pl-2 gap-2">
+        <div className="flex sm:hidden items-center py-4 relative">
+          {/* Centered Instagram Links */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 flex gap-2">
             <a href="https://www.instagram.com/amberrose.seiferth/?hl=en" target="_blank" rel="noopener noreferrer">
               <Button
                 size="sm"
@@ -149,12 +149,9 @@ export default function Navigation() {
               </Button>
             </a>
           </div>
-          
-          {/* Spacer */}
-          <div className="flex-1"></div>
-          
+
           {/* Right - Navigation Button */}
-          <div className="flex items-center gap-0 pr-2">
+          <div className="flex items-center gap-0 pr-2 ml-auto">
             <Button
               variant="ghost"
               size="sm"
