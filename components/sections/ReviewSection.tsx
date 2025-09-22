@@ -1,23 +1,76 @@
 "use client"
 
-import { Card, CardContent } from "@/components/ui/card"
+import React from "react"
+import Image from "next/image"
 import { StarRating } from "@/components/ui/star-rating"
 import { SectionContainer } from "@/components/ui/section-container"
 import { ContentCard } from "@/components/ui/content-card"
 import { SectionTitle, BodyText } from "@/components/ui/typography"
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel"
 import { staticReviews } from "@/lib/static-reviews"
-import { SPACING, TYPOGRAPHY, COMPONENTS } from "@/lib/design-tokens"
+import { useImageCarousel } from "@/hooks/use-image-carousel"
+import { SPACING, TYPOGRAPHY } from "@/lib/design-tokens"
 import { cn } from "@/lib/utils"
-import { User, Quote } from "lucide-react"
+import { Quote } from "lucide-react"
 
 export default function ReviewSection() {
+  const { currentIndex, goToNext, goToPrevious, goToIndex } = useImageCarousel(staticReviews.length)
+  const scrollContainerRef = React.useRef<HTMLDivElement>(null)
+
+  // Touch handling for mobile swipe
+  const [touchStart, setTouchStart] = React.useState<number | null>(null)
+  const [touchEnd, setTouchEnd] = React.useState<number | null>(null)
+
+  const minSwipeDistance = 50
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null)
+    setTouchStart(e.targetTouches[0].clientX)
+  }
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX)
+  }
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return
+
+    const distance = touchStart - touchEnd
+    const isLeftSwipe = distance > minSwipeDistance
+    const isRightSwipe = distance < -minSwipeDistance
+
+    if (isLeftSwipe) {
+      goToNext()
+    } else if (isRightSwipe) {
+      goToPrevious()
+    }
+  }
+
+  const currentReview = staticReviews[currentIndex]
+
+  // Auto-scroll selected name to flush left
+  React.useEffect(() => {
+    if (scrollContainerRef.current) {
+      const container = scrollContainerRef.current
+      const selectedButton = container.children[0].children[currentIndex] as HTMLElement
+
+      if (selectedButton) {
+        const containerRect = container.getBoundingClientRect()
+        const buttonRect = selectedButton.getBoundingClientRect()
+        const containerPadding = 16 // px-4 = 16px padding
+        const scrollLeft = container.scrollLeft + (buttonRect.left - containerRect.left) - containerPadding
+
+        container.scrollTo({
+          left: Math.max(0, scrollLeft),
+          behavior: 'smooth'
+        })
+      }
+    }
+  }, [currentIndex])
+
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    const target = e.target as HTMLImageElement
+    target.src = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='500' viewBox='0 0 400 500'%3E%3Crect width='400' height='500' fill='%23f0f0f0'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='16' fill='%23666'%3E${currentReview.serviceType}%3C/text%3E%3C/svg%3E`
+  }
 
   return (
     <SectionContainer id="reviews">
@@ -32,70 +85,119 @@ export default function ReviewSection() {
                 "text-foreground"
               )}
             >
-              What People Have To Say
+              See What People Have To Say
             </SectionTitle>
-            <BodyText muted className={SPACING.marginBottom.lg}>
-              Discover what our clients say about their experiences at Dark Serenity.
-            </BodyText>
           </div>
 
-          {/* Reviews Carousel */}
-          <div className="relative">
-            <Carousel
-              opts={{
-                align: "start",
-                loop: true,
-              }}
-              className="w-full"
-            >
-              <CarouselContent className="-ml-2 md:-ml-4">
-                {staticReviews.map((review) => (
-                    <CarouselItem key={review.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
-                      <Card className={cn(COMPONENTS.luxuryCard, "bg-card/50 h-full")}>
-                        <CardContent className="p-6">
-                          <div className="space-y-4">
-                            {/* Header with Name and Rating */}
-                            <div className="flex items-center justify-between">
-                              <div className="flex items-center gap-2">
-                                <User className="w-4 h-4 text-muted-foreground" />
-                                <span className="font-medium text-sm">{review.customerName}</span>
-                              </div>
-                              <StarRating rating={review.rating} readonly size="sm" />
-                            </div>
+          {/* Reviewer Names Navigation */}
+          <div
+            ref={scrollContainerRef}
+            className="overflow-x-auto pb-2 scrollbar-hide"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            <div className="flex gap-6 min-w-max px-4 lg:justify-center lg:min-w-full">
+              {staticReviews.map((review, index) => (
+                <button
+                  key={review.id}
+                  onClick={() => goToIndex(index)}
+                  className={cn(
+                    "relative transition-all duration-300 whitespace-nowrap pb-2",
+                    index === currentIndex
+                      ? "font-bold text-foreground text-lg"
+                      : "text-muted-foreground text-base hover:text-foreground/70"
+                  )}
+                >
+                  {review.customerName}
+                  {/* Underline indicator */}
+                  {index === currentIndex && (
+                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-foreground rounded-full transition-all duration-300" />
+                  )}
+                </button>
+              ))}
+            </div>
+          </div>
 
-                            {/* Service Type */}
-                            <div className="text-xs text-muted-foreground border-l-2 border-muted pl-2">
-                              {review.serviceType}
-                            </div>
+          {/* Image Carousel with Review Overlay */}
+          <div className="flex justify-center mb-32">
+            <div className="relative w-full max-w-lg">
+              <div
+                className="flex overflow-hidden cursor-pointer"
+                onClick={goToNext}
+                onTouchStart={onTouchStart}
+                onTouchMove={onTouchMove}
+                onTouchEnd={onTouchEnd}
+              >
+                <div
+                  className="flex transition-transform duration-300 ease-out"
+                  style={{
+                    transform: `translateX(-${currentIndex * 78}%)`,
+                    width: `${staticReviews.length * 78}%`
+                  }}
+                >
+                  {staticReviews.map((review, reviewIndex) => (
+                    <div
+                      key={review.id}
+                      className="relative flex-shrink-0 w-[78%] aspect-[4/5] rounded-3xl overflow-hidden bg-muted/10 mr-4"
+                    >
+                      <Image
+                        src={review.image}
+                        alt={`${review.customerName} - ${review.serviceType}`}
+                        fill
+                        className="object-cover rounded-3xl"
+                        onError={handleImageError}
+                      />
+                      {reviewIndex !== currentIndex && (
+                        <div className="absolute inset-0 bg-black/30 rounded-3xl" />
+                      )}
 
-                            {/* Review Text */}
-                            <div className="relative">
-                              <Quote className="w-4 h-4 text-muted-foreground/30 absolute -top-1 -left-1" />
-                              <p className="text-sm leading-relaxed pl-3">{review.reviewText}</p>
-                            </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
 
-                            {/* Date */}
-                            <div className="text-xs text-muted-foreground pt-2 border-t">
-                              {new Date(review.createdAt).toLocaleDateString('en-US', {
-                                year: 'numeric',
-                                month: 'long',
-                                day: 'numeric'
-                              })}
-                            </div>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    </CarouselItem>
-                ))}
-              </CarouselContent>
+              {/* Review Text Box - Positioned further down the page */}
+              <div className="absolute -bottom-36 left-0 right-0 mx-4">
+                <div className="bg-white rounded-2xl shadow-lg p-6 border border-border">
+                  <div className="space-y-4">
+                    {/* Rating */}
+                    <StarRating rating={currentReview.rating} readonly size="sm" />
 
-              {staticReviews.length > 3 && (
-                <>
-                  <CarouselPrevious className="-left-8" />
-                  <CarouselNext className="-right-8" />
-                </>
+                    {/* Review Text */}
+                    <div className="relative">
+                      <Quote className="w-4 h-4 text-muted-foreground/30 absolute -top-1 -left-1" />
+                      <p className="text-foreground text-sm leading-relaxed pl-5">
+                        {currentReview.reviewText}
+                      </p>
+                    </div>
+
+                    {/* Service Type */}
+                    <div className="text-xs text-muted-foreground font-medium">
+                      {currentReview.serviceType}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Carousel Indicators */}
+              {staticReviews.length > 1 && (
+                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
+                  {staticReviews.map((_, reviewIndex) => (
+                    <button
+                      key={reviewIndex}
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        goToIndex(reviewIndex)
+                      }}
+                      className={cn(
+                        "w-2 h-2 rounded-full transition-colors",
+                        currentIndex === reviewIndex ? 'bg-white' : 'bg-white/50'
+                      )}
+                      aria-label={`Go to review ${reviewIndex + 1}`}
+                    />
+                  ))}
+                </div>
               )}
-            </Carousel>
+            </div>
           </div>
         </div>
       </ContentCard>
