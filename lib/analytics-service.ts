@@ -179,10 +179,3 @@ export const createTrackingHandler = (
   };
 };
 
-// Export types for use in components
-export type {
-  TrackingEvent,
-  ButtonClickProperties,
-  NavigationProperties,
-  PageViewProperties
-};

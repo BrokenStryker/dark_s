@@ -14,13 +14,13 @@ export default function MobileStickyButton() {
       'book_now',
       'mobile_sticky_bottom',
       track,
-      'https://www.vagaro.com/darkserenityhairsalon'
+      'https://www.vagaro.com/darkserenityhairsalon/services?fbclid=PAZXh0bgNhZW0CMTEAAaf4G6jwAxKbhDFtnjj6AFAoXTmW5q9I856LosxDBznyVmYu1bJBlPuMRdDF4w_aem_rWVd9MvE-9k3BnPPRnAR8w'
     );
   };
 
   return (
     <div className="sm:hidden fixed bottom-0 left-0 right-0 z-50 p-4 bg-gradient-to-t from-black/50 to-transparent">
-      <a href="https://www.vagaro.com/darkserenityhairsalon" target="_blank" rel="noopener noreferrer">
+      <a href="https://www.vagaro.com/darkserenityhairsalon/services?fbclid=PAZXh0bgNhZW0CMTEAAaf4G6jwAxKbhDFtnjj6AFAoXTmW5q9I856LosxDBznyVmYu1bJBlPuMRdDF4w_aem_rWVd9MvE-9k3BnPPRnAR8w" target="_blank" rel="noopener noreferrer">
         <Button
           size="lg"
           className={cn(

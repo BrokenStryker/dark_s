@@ -15,7 +15,7 @@ export default function HeroSection() {
       'book_now',
       'hero',
       track,
-      'https://www.vagaro.com/darkserenityhairsalon'
+      'https://www.vagaro.com/darkserenityhairsalon/services?fbclid=PAZXh0bgNhZW0CMTEAAaf4G6jwAxKbhDFtnjj6AFAoXTmW5q9I856LosxDBznyVmYu1bJBlPuMRdDF4w_aem_rWVd9MvE-9k3BnPPRnAR8w'
     );
   };
 
@@ -51,7 +51,7 @@ export default function HeroSection() {
               Hair You'll Love, No Matter What
             </SectionTitle>
 
-            <a href="https://www.vagaro.com/darkserenityhairsalon" target="_blank" rel="noopener noreferrer" className="hidden sm:block">
+            <a href="https://www.vagaro.com/darkserenityhairsalon/services?fbclid=PAZXh0bgNhZW0CMTEAAaf4G6jwAxKbhDFtnjj6AFAoXTmW5q9I856LosxDBznyVmYu1bJBlPuMRdDF4w_aem_rWVd9MvE-9k3BnPPRnAR8w" target="_blank" rel="noopener noreferrer" className="hidden sm:block">
               <Button
                 size="lg"
                 className={cn(

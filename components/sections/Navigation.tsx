@@ -255,10 +255,9 @@ export default function Navigation() {
                   <Menu className="h-8 w-8" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent 
-                align="end" 
-                className="w-48"
-                className={SEMANTIC_COLORS.surface.section}
+              <DropdownMenuContent
+                align="end"
+                className={cn("w-48", SEMANTIC_COLORS.surface.section)}
               >
                 {navigationItems.map((item) => (
                   <DropdownMenuItem
