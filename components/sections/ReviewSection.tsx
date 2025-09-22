@@ -10,7 +10,7 @@ import { staticReviews } from "@/lib/static-reviews"
 import { useImageCarousel } from "@/hooks/use-image-carousel"
 import { SPACING, TYPOGRAPHY } from "@/lib/design-tokens"
 import { cn } from "@/lib/utils"
-import { Quote } from "lucide-react"
+import { Quote, ArrowUpRight } from "lucide-react"
 
 export default function ReviewSection() {
   const { currentIndex, goToNext, goToPrevious, goToIndex } = useImageCarousel(staticReviews.length)
@@ -77,7 +77,7 @@ export default function ReviewSection() {
       <ContentCard variant="section">
         <div className={SPACING.contentGap}>
           {/* Header Section */}
-          <div className="text-center">
+          <div className="text-left mb-4">
             <SectionTitle
               className={cn(
                 SPACING.marginBottom.sm,
@@ -87,6 +87,19 @@ export default function ReviewSection() {
             >
               See What People Have To Say
             </SectionTitle>
+          </div>
+
+          {/* Review Link - Flush Left */}
+          <div className="text-left mb-2">
+            <a
+              href="https://g.page/r/CZNXAlFktbS1EAE/review"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-base text-muted-foreground hover:text-foreground underline transition-all duration-200 group"
+            >
+              Leave your own review
+              <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </a>
           </div>
 
           {/* Reviewer Names Navigation */}

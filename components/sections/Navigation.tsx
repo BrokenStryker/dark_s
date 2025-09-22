@@ -190,7 +190,6 @@ export default function Navigation() {
                     TYPOGRAPHY.fontFutura,
                     "text-left py-2 px-3 rounded-lg transition-all duration-200",
                     "hover:bg-white/20 focus:bg-white/20",
-                    "text-white"
                   )}
                 >
                   {item.label}
@@ -268,7 +267,7 @@ export default function Navigation() {
                     className={cn(
                       TYPOGRAPHY.bodySmall,
                       TYPOGRAPHY.fontFutura,
-                      "cursor-pointer",
+                      "cursor-pointer text-foreground",
                       "focus:bg-[#c8c2bb] focus:text-foreground"
                     )}
                   >
