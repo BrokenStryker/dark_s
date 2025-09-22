@@ -46,7 +46,7 @@ function ServiceAccordionItem({ service, index }: ServiceAccordionItemProps) {
           <h4 className="text-lg font-medium text-left">{service.name}</h4>
           <Badge
             variant="secondary"
-            className="bg-primary/20 text-primary px-3 py-1"
+            className="bg-primary/20 text-primary px-3 py-1 text-lg font-medium"
           >
             {service.price}
           </Badge>
@@ -133,7 +133,12 @@ export function ServiceCategorySection({ category, className }: ServiceCategoryP
         </SectionTitle>
         {category.description && (
           <BodyText muted className="max-w-3xl mx-auto">
-            {category.description}
+            {category.description.split('\n').map((line, index) => (
+              <span key={index}>
+                {line}
+                {index < category.description.split('\n').length - 1 && <br />}
+              </span>
+            ))}
           </BodyText>
         )}
       </div>

@@ -122,8 +122,8 @@ export default function Navigation() {
                 className={cn(
                   isScrolling
                     ? "bg-transparent hover:bg-white/10"
-                    : "section-bg hover:bg-[#48423b]/20",
-                  "text-foreground border border-border flex items-center gap-2 rounded-lg transition-all duration-300 min-w-[110px]",
+                    : "bg-[#908476] hover:bg-[#48423b]/20",
+                  "text-foreground border border-border flex items-center gap-2 rounded-lg transition-all duration-1000 min-w-[110px]",
                   TYPOGRAPHY.fontTrajan
                 )}
               >
@@ -139,8 +139,8 @@ export default function Navigation() {
                 className={cn(
                   isScrolling
                     ? "bg-transparent hover:bg-white/10"
-                    : "section-bg hover:bg-[#48423b]/20",
-                  "text-foreground border border-border flex items-center gap-2 rounded-lg transition-all duration-300 min-w-[110px]",
+                    : "bg-[#908476] hover:bg-[#48423b]/20",
+                  "text-foreground border border-border flex items-center gap-2 rounded-lg transition-all duration-1000 min-w-[110px]",
                   TYPOGRAPHY.fontTrajan
                 )}
               >
@@ -160,10 +160,10 @@ export default function Navigation() {
               size="sm"
               onClick={toggleMobileMenu}
               className={cn(
-                "p-2 rounded-lg transition-all duration-300 shadow-none",
+                "text-foreground border border-border p-2 rounded-lg transition-all duration-1000 shadow-none",
                 isScrolling
-                  ? "bg-section-bg hover:bg-[#48423b]/20"
-                  : "bg-section-bg hover:bg-[#48423b]/20"
+                  ? "bg-transparent hover:bg-white/10"
+                  : "bg-[#908476] hover:bg-[#48423b]/20"
               )}
             >
               <Menu className="h-8 w-8" />
@@ -211,8 +211,8 @@ export default function Navigation() {
                 className={cn(
                   isScrolling
                     ? "bg-transparent hover:bg-white/10"
-                    : "section-bg hover:bg-[#48423b]/20",
-                  "text-foreground border border-border flex items-center gap-2 rounded-lg transition-all duration-300 min-w-[88px]",
+                    : "bg-[#908476] hover:bg-[#48423b]/20",
+                  "text-foreground border border-border flex items-center gap-2 rounded-lg transition-all duration-1000 min-w-[88px]",
                   TYPOGRAPHY.fontTrajan
                 )}
               >
@@ -228,8 +228,8 @@ export default function Navigation() {
                 className={cn(
                   isScrolling
                     ? "bg-transparent hover:bg-white/10"
-                    : "section-bg hover:bg-[#48423b]/20",
-                  "text-foreground border border-border flex items-center gap-2 rounded-lg transition-all duration-300 min-w-[88px]",
+                    : "bg-[#908476] hover:bg-[#48423b]/20",
+                  "text-foreground border border-border flex items-center gap-2 rounded-lg transition-all duration-1000 min-w-[88px]",
                   TYPOGRAPHY.fontTrajan
                 )}
               >
@@ -247,10 +247,10 @@ export default function Navigation() {
                   variant="ghost"
                   size="sm"
                   className={cn(
-                    "p-2 transition-all duration-300 shadow-none",
+                    "text-foreground border border-border p-2 transition-all duration-1000 shadow-none",
                     isScrolling
                       ? "bg-transparent hover:bg-white/10"
-                      : "hover:bg-accent"
+                      : "bg-[#908476] hover:bg-[#48423b]/20"
                   )}
                 >
                   <Menu className="h-8 w-8" />
