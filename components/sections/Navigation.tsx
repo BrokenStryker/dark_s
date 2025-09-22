@@ -40,7 +40,7 @@ export default function Navigation() {
       // Set new timeout to reset scrolling state after user stops scrolling
       const timeout = setTimeout(() => {
         setIsScrolling(false);
-      }, 150); // 150ms delay after scrolling stops
+      }, 500); // 500ms delay after scrolling stops
 
       setScrollTimeout(timeout);
     };
