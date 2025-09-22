@@ -100,10 +100,8 @@ export default function Navigation() {
 
   return (
     <nav className={cn(
-      "fixed top-0 w-full z-50 border-b border-border transition-all duration-300 ease-out",
-      isScrolling 
-        ? "bg-[#e4e1dd]/20 backdrop-blur-xl" // Liquid glass effect when scrolling
-        : "section-bg backdrop-blur-md"      // Solid when not scrolling
+      "fixed top-4 mx-4 z-50 rounded-xl border border-border/30 transition-all duration-300 ease-out",
+      "bg-white/10 backdrop-blur-md shadow-lg"
     )}>
       <div className={cn(LAYOUT.maxWidthWide, LAYOUT.paddingLarge)}>
         {/* Mobile Layout */}
@@ -111,12 +109,14 @@ export default function Navigation() {
           {/* Left - Instagram Links */}
           <div className="flex justify-start pl-2 gap-2">
             <a href="https://www.instagram.com/amberrose.seiferth/?hl=en" target="_blank" rel="noopener noreferrer">
-              <Button 
-                size="sm" 
+              <Button
+                size="sm"
                 onClick={handlePersonalInstagramClick}
                 className={cn(
-                  "section-bg text-foreground hover:bg-[#48423b]/20",
-                  "border border-border flex items-center gap-2 rounded-lg",
+                  isScrolling
+                    ? "bg-transparent hover:bg-white/10"
+                    : "section-bg hover:bg-[#48423b]/20",
+                  "text-foreground border border-border flex items-center gap-2 rounded-lg transition-all duration-300",
                   TYPOGRAPHY.fontTrajan
                 )}
               >
@@ -124,14 +124,16 @@ export default function Navigation() {
                 Personal
               </Button>
             </a>
-            
+
             <a href="https://www.instagram.com/darkserenityhairsalon/?hl=en" target="_blank" rel="noopener noreferrer">
-              <Button 
-                size="sm" 
+              <Button
+                size="sm"
                 onClick={handleSalonInstagramClick}
                 className={cn(
-                  "section-bg text-foreground hover:bg-[#48423b]/20",
-                  "border border-border flex items-center gap-2 rounded-lg",
+                  isScrolling
+                    ? "bg-transparent hover:bg-white/10"
+                    : "section-bg hover:bg-[#48423b]/20",
+                  "text-foreground border border-border flex items-center gap-2 rounded-lg transition-all duration-300",
                   TYPOGRAPHY.fontTrajan
                 )}
               >
@@ -151,7 +153,12 @@ export default function Navigation() {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="p-1"
+                  className={cn(
+                    "p-1 transition-all duration-300",
+                    isScrolling
+                      ? "bg-transparent hover:bg-white/10"
+                      : "hover:bg-accent"
+                  )}
                 >
                   <Menu className="h-5 w-5" />
                 </Button>
@@ -185,12 +192,14 @@ export default function Navigation() {
           {/* Left - Instagram Links */}
           <div className="flex justify-start pl-10 gap-2">
             <a href="https://www.instagram.com/amberrose.seiferth/?hl=en" target="_blank" rel="noopener noreferrer">
-              <Button 
-                size="sm" 
+              <Button
+                size="sm"
                 onClick={handlePersonalInstagramClick}
                 className={cn(
-                  "section-bg text-foreground hover:bg-[#48423b]/20",
-                  "border border-border flex items-center gap-2 rounded-lg",
+                  isScrolling
+                    ? "bg-transparent hover:bg-white/10"
+                    : "section-bg hover:bg-[#48423b]/20",
+                  "text-foreground border border-border flex items-center gap-2 rounded-lg transition-all duration-300",
                   TYPOGRAPHY.fontTrajan
                 )}
               >
@@ -198,14 +207,16 @@ export default function Navigation() {
                 Personal
               </Button>
             </a>
-            
+
             <a href="https://www.instagram.com/darkserenityhairsalon/?hl=en" target="_blank" rel="noopener noreferrer">
-              <Button 
-                size="sm" 
+              <Button
+                size="sm"
                 onClick={handleSalonInstagramClick}
                 className={cn(
-                  "section-bg text-foreground hover:bg-[#48423b]/20",
-                  "border border-border flex items-center gap-2 rounded-lg",
+                  isScrolling
+                    ? "bg-transparent hover:bg-white/10"
+                    : "section-bg hover:bg-[#48423b]/20",
+                  "text-foreground border border-border flex items-center gap-2 rounded-lg transition-all duration-300",
                   TYPOGRAPHY.fontTrajan
                 )}
               >
@@ -222,7 +233,12 @@ export default function Navigation() {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="p-2"
+                  className={cn(
+                    "p-2 transition-all duration-300",
+                    isScrolling
+                      ? "bg-transparent hover:bg-white/10"
+                      : "hover:bg-accent"
+                  )}
                 >
                   <Menu className="h-5 w-5" />
                 </Button>
