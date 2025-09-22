@@ -3,7 +3,6 @@ import { SectionTitle, BodyText } from "@/components/ui/typography";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useImageCarousel } from "@/hooks/use-image-carousel";
 import { SPACING, COMPONENTS } from "@/lib/design-tokens";
 import { cn } from "@/lib/utils";
@@ -63,61 +62,55 @@ function ServiceAccordionItem({ service, index }: ServiceAccordionItemProps) {
           {/* Image Carousel */}
           <div className="flex justify-center">
             <div className="relative w-full max-w-md">
-              <div className="relative bg-muted/10 rounded-3xl overflow-hidden aspect-[4/5]">
-                <Image
-                  key={`${currentName}-${currentIndex}`}
-                  src={service.images[currentIndex]}
-                  alt={`${currentName} - Image ${currentIndex + 1}`}
-                  fill
-                  className="object-cover transition-opacity duration-300 rounded-3xl"
-                  onError={handleImageError}
-                />
+              <div
+                className="flex overflow-hidden cursor-pointer"
+                onClick={goToNext}
+              >
+                <div
+                  className="flex transition-transform duration-300 ease-out"
+                  style={{
+                    transform: `translateX(-${currentIndex * 78}%)`,
+                    width: `${service.images.length * 78}%`
+                  }}
+                >
+                  {service.images.map((image, imageIndex) => (
+                    <div
+                      key={imageIndex}
+                      className="relative flex-shrink-0 w-[78%] aspect-[4/5] rounded-3xl overflow-hidden bg-muted/10 mr-4"
+                    >
+                      <Image
+                        src={image}
+                        alt={`${currentName} - Image ${imageIndex + 1}`}
+                        fill
+                        className="object-cover rounded-3xl"
+                        onError={handleImageError}
+                      />
+                      {imageIndex !== currentIndex && (
+                        <div className="absolute inset-0 bg-black/30 rounded-3xl" />
+                      )}
+                    </div>
+                  ))}
+                </div>
               </div>
 
-              {/* Carousel Navigation */}
+              {/* Carousel Indicators */}
               {service.images.length > 1 && (
-                <>
-                  <button
-                    onClick={goToPrevious}
-                    className={cn(
-                      "absolute left-2 top-1/2 transform -translate-y-1/2",
-                      "bg-black/70 hover:bg-black/90 text-white rounded-full p-2",
-                      COMPONENTS.transition,
-                      "z-20"
-                    )}
-                    aria-label="Previous image"
-                  >
-                    <ChevronLeft className="h-5 w-5" />
-                  </button>
-
-                  <button
-                    onClick={goToNext}
-                    className={cn(
-                      "absolute right-2 top-1/2 transform -translate-y-1/2",
-                      "bg-black/70 hover:bg-black/90 text-white rounded-full p-2",
-                      COMPONENTS.transition,
-                      "z-20"
-                    )}
-                    aria-label="Next image"
-                  >
-                    <ChevronRight className="h-5 w-5" />
-                  </button>
-
-                  {/* Carousel Indicators */}
-                  <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-                    {service.images.map((_, imageIndex) => (
-                      <button
-                        key={imageIndex}
-                        onClick={() => goToIndex(imageIndex)}
-                        className={cn(
-                          "w-2 h-2 rounded-full transition-colors",
-                          currentIndex === imageIndex ? 'bg-white' : 'bg-white/50'
-                        )}
-                        aria-label={`Go to image ${imageIndex + 1}`}
-                      />
-                    ))}
-                  </div>
-                </>
+                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
+                  {service.images.map((_, imageIndex) => (
+                    <button
+                      key={imageIndex}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        goToIndex(imageIndex);
+                      }}
+                      className={cn(
+                        "w-2 h-2 rounded-full transition-colors",
+                        currentIndex === imageIndex ? 'bg-white' : 'bg-white/50'
+                      )}
+                      aria-label={`Go to image ${imageIndex + 1}`}
+                    />
+                  ))}
+                </div>
               )}
             </div>
           </div>
