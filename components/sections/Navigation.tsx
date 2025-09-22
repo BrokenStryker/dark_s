@@ -108,7 +108,7 @@ export default function Navigation() {
   return (
     <nav className={cn(
       "fixed top-4 left-4 right-4 z-50 rounded-xl border border-border/30 transition-all duration-300 ease-out",
-      "bg-white/10 backdrop-blur-md shadow-lg"
+      "bg-white/10 backdrop-blur-md shadow-none"
     )}>
       <div className={cn(LAYOUT.maxWidthWide, LAYOUT.paddingLarge)}>
         {/* Mobile Layout */}
@@ -123,7 +123,7 @@ export default function Navigation() {
                   isScrolling
                     ? "bg-transparent hover:bg-white/10"
                     : "section-bg hover:bg-[#48423b]/20",
-                  "text-foreground border border-border flex items-center gap-2 rounded-lg transition-all duration-300",
+                  "text-foreground border border-border flex items-center gap-2 rounded-lg transition-all duration-300 min-w-[110px]",
                   TYPOGRAPHY.fontTrajan
                 )}
               >
@@ -140,7 +140,7 @@ export default function Navigation() {
                   isScrolling
                     ? "bg-transparent hover:bg-white/10"
                     : "section-bg hover:bg-[#48423b]/20",
-                  "text-foreground border border-border flex items-center gap-2 rounded-lg transition-all duration-300",
+                  "text-foreground border border-border flex items-center gap-2 rounded-lg transition-all duration-300 min-w-[110px]",
                   TYPOGRAPHY.fontTrajan
                 )}
               >
@@ -160,7 +160,7 @@ export default function Navigation() {
               size="sm"
               onClick={toggleMobileMenu}
               className={cn(
-                "p-2 rounded-lg border-b border-border/30 transition-all duration-300 shadow-none",
+                "p-2 rounded-lg transition-all duration-300 shadow-none",
                 isScrolling
                   ? "bg-section-bg hover:bg-[#48423b]/20"
                   : "bg-section-bg hover:bg-[#48423b]/20"
@@ -190,7 +190,7 @@ export default function Navigation() {
                     TYPOGRAPHY.fontFutura,
                     "text-left py-2 px-3 rounded-lg transition-all duration-200",
                     "hover:bg-white/20 focus:bg-white/20",
-                    "text-foreground"
+                    "text-white"
                   )}
                 >
                   {item.label}
@@ -212,7 +212,7 @@ export default function Navigation() {
                   isScrolling
                     ? "bg-transparent hover:bg-white/10"
                     : "section-bg hover:bg-[#48423b]/20",
-                  "text-foreground border border-border flex items-center gap-2 rounded-lg transition-all duration-300",
+                  "text-foreground border border-border flex items-center gap-2 rounded-lg transition-all duration-300 min-w-[88px]",
                   TYPOGRAPHY.fontTrajan
                 )}
               >
@@ -229,7 +229,7 @@ export default function Navigation() {
                   isScrolling
                     ? "bg-transparent hover:bg-white/10"
                     : "section-bg hover:bg-[#48423b]/20",
-                  "text-foreground border border-border flex items-center gap-2 rounded-lg transition-all duration-300",
+                  "text-foreground border border-border flex items-center gap-2 rounded-lg transition-all duration-300 min-w-[88px]",
                   TYPOGRAPHY.fontTrajan
                 )}
               >
@@ -247,7 +247,7 @@ export default function Navigation() {
                   variant="ghost"
                   size="sm"
                   className={cn(
-                    "p-2 transition-all duration-300",
+                    "p-2 transition-all duration-300 shadow-none",
                     isScrolling
                       ? "bg-transparent hover:bg-white/10"
                       : "hover:bg-accent"
