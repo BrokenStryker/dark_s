@@ -175,26 +175,28 @@ export default function Navigation() {
         <div
           className={cn(
             "overflow-hidden transition-all duration-300 ease-in-out sm:hidden",
-            "bg-white/10 backdrop-blur-md border-t border-border/30",
             isMobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
           )}
         >
           <div className="px-6 py-4">
-            <div className="flex flex-col space-y-2">
-              {navigationItems.map((item) => (
-                <button
-                  key={item.sectionId}
-                  onClick={() => handleNavigationClick(item.sectionId)}
-                  className={cn(
-                    TYPOGRAPHY.bodySmall,
-                    TYPOGRAPHY.fontFutura,
-                    "text-left py-2 px-3 rounded-lg transition-all duration-200",
-                    "hover:bg-white/20 focus:bg-white/20",
-                  )}
-                >
-                  {item.label}
-                </button>
-              ))}
+            <div className="bg-[#e4e1dd]/30 backdrop-blur-sm rounded-xl p-4 border border-border/20">
+              <div className="flex flex-col space-y-2">
+                {navigationItems.map((item) => (
+                  <button
+                    key={item.sectionId}
+                    onClick={() => handleNavigationClick(item.sectionId)}
+                    className={cn(
+                      TYPOGRAPHY.bodySmall,
+                      TYPOGRAPHY.fontFutura,
+                      "text-left py-2 px-3 rounded-lg transition-all duration-200",
+                      "hover:bg-white/40 focus:bg-white/40",
+                      "text-foreground"
+                    )}
+                  >
+                    {item.label}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </div>
