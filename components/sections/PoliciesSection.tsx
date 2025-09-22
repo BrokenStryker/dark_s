@@ -16,7 +16,7 @@ export default function PoliciesSection() {
           </SectionTitle>
         </div>
         
-        <div className={cn("max-w-2xl mx-auto", TYPOGRAPHY.fontFutura)}>
+        <div className={cn("max-w-2xl mx-auto", TYPOGRAPHY.fontCourierRegular)}>
           <div className="bg-card/50 backdrop-blur-sm rounded-lg p-6 space-y-6 border border-border/50">
             {/* Appointment Requirements */}
             <div className="space-y-2">
@@ -39,7 +39,7 @@ export default function PoliciesSection() {
             <div className="space-y-4">
               <h3 className={cn(
                 TYPOGRAPHY.subTitle, 
-                TYPOGRAPHY.fontTrajan, 
+                TYPOGRAPHY.fontCourierBold, 
                 TYPOGRAPHY.fontSemibold, 
                 "text-foreground tracking-wide"
               )}>

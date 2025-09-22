@@ -38,6 +38,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
+      <head>
+        <link rel="stylesheet" href="https://use.typekit.net/kdr2xqb.css" />
+      </head>
       <body
         className="antialiased bg-background text-foreground"
         suppressHydrationWarning

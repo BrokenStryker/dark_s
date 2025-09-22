@@ -12,8 +12,7 @@ export function SectionTitle({ children, className, as: Component = 'h2' }: Sect
   return (
     <Component className={cn(
       TYPOGRAPHY.sectionTitle,
-      TYPOGRAPHY.fontFutura,
-      TYPOGRAPHY.fontBold,
+      TYPOGRAPHY.fontCourierBold,
       className
     )}>
       {children}
@@ -45,12 +44,12 @@ interface BodyTextProps {
   muted?: boolean;
 }
 
-export function BodyText({ 
-  children, 
-  className, 
+export function BodyText({
+  children,
+  className,
   size = 'large',
   as: Component = 'p',
-  muted = false 
+  muted = false
 }: BodyTextProps) {
   const sizeClasses = {
     small: TYPOGRAPHY.bodySmall,
@@ -59,10 +58,10 @@ export function BodyText({
   };
 
   return (
-    <Component 
+    <Component
       className={cn(
         sizeClasses[size],
-        TYPOGRAPHY.fontFutura,
+        TYPOGRAPHY.fontCourierRegular,
         muted && 'text-muted-foreground',
         className
       )}
@@ -80,11 +79,10 @@ interface HeroTitleProps {
 
 export function HeroTitle({ children, className }: HeroTitleProps) {
   return (
-    <h1 
+    <h1
       className={cn(
         TYPOGRAPHY.heroTitle,
-        TYPOGRAPHY.fontTrajan,
-        TYPOGRAPHY.fontBold,
+        TYPOGRAPHY.fontCourierBold,
         className
       )}
     >
@@ -102,10 +100,10 @@ interface SubTitleProps {
 
 export function SubTitle({ children, className, muted = true }: SubTitleProps) {
   return (
-    <p 
+    <p
       className={cn(
         TYPOGRAPHY.subTitle,
-        TYPOGRAPHY.fontTrajan,
+        TYPOGRAPHY.fontCourierRegular,
         muted && 'text-muted-foreground',
         className
       )}
@@ -123,10 +121,10 @@ interface ServiceNameProps {
 
 export function ServiceName({ children, className }: ServiceNameProps) {
   return (
-    <h4 
+    <h4
       className={cn(
         TYPOGRAPHY.cardTitle,
-        TYPOGRAPHY.fontTrajan,
+        TYPOGRAPHY.fontCourierBold,
         'service-name', // Keep existing CSS class for consistency
         className
       )}
@@ -144,11 +142,10 @@ interface OwnerNameProps {
 
 export function OwnerName({ children, className }: OwnerNameProps) {
   return (
-    <h2 
+    <h2
       className={cn(
         TYPOGRAPHY.sectionTitle,
-        TYPOGRAPHY.fontTrajan,
-        TYPOGRAPHY.fontBold,
+        TYPOGRAPHY.fontCourierBold,
         'owner-name', // Keep existing CSS class for consistency
         className
       )}

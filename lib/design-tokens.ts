@@ -50,9 +50,9 @@ export const TYPOGRAPHY = {
   fontSemibold: 'font-semibold',
   fontBold: 'font-bold',
   
-  // Font families
-  fontTrajan: 'font-trajan',
-  fontFutura: 'font-futura'
+  // Font families - Adobe Fonts Courier Prime
+  fontCourierRegular: 'font-courier-regular',
+  fontCourierBold: 'font-courier-bold'
 } as const;
 
 export const LAYOUT = {
@@ -188,8 +188,8 @@ export const COMMON_CLASSES = {
   sectionContainer: combineTokens(SPACING.section, LAYOUT.padding),
   sectionContent: combineTokens(LAYOUT.maxWidth, SPACING.contentGap),
   cardContainer: combineTokens(COMPONENTS.luxuryCard, SPACING.cardPadding),
-  sectionTitle: combineTokens(TYPOGRAPHY.sectionTitle, TYPOGRAPHY.fontTrajan, TYPOGRAPHY.fontBold),
-  cardTitle: combineTokens(TYPOGRAPHY.cardTitle, TYPOGRAPHY.fontTrajan, TYPOGRAPHY.fontSemibold),
-  bodyText: combineTokens(TYPOGRAPHY.bodyLarge, TYPOGRAPHY.fontFutura),
-  button: combineTokens(COMPONENTS.primaryButton, TYPOGRAPHY.fontFutura, COMPONENTS.transition)
+  sectionTitle: combineTokens(TYPOGRAPHY.sectionTitle, TYPOGRAPHY.fontCourierBold),
+  cardTitle: combineTokens(TYPOGRAPHY.cardTitle, TYPOGRAPHY.fontCourierBold),
+  bodyText: combineTokens(TYPOGRAPHY.bodyLarge, TYPOGRAPHY.fontCourierRegular),
+  button: combineTokens(COMPONENTS.primaryButton, TYPOGRAPHY.fontCourierRegular, COMPONENTS.transition)
 } as const;

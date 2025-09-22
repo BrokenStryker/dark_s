@@ -125,7 +125,7 @@ export default function Navigation() {
                     ? SEMANTIC_COLORS.navigation.secondary
                     : SEMANTIC_COLORS.navigation.primary,
                   "flex items-center gap-2 rounded-lg min-w-[110px]",
-                  TYPOGRAPHY.fontTrajan
+                  TYPOGRAPHY.fontCourierBold
                 )}
               >
                 <Instagram className="h-4 w-4" />
@@ -142,7 +142,7 @@ export default function Navigation() {
                     ? SEMANTIC_COLORS.navigation.secondary
                     : SEMANTIC_COLORS.navigation.primary,
                   "flex items-center gap-2 rounded-lg min-w-[110px]",
-                  TYPOGRAPHY.fontTrajan
+                  TYPOGRAPHY.fontCourierBold
                 )}
               >
                 <Instagram className="h-4 w-4" />
@@ -185,7 +185,7 @@ export default function Navigation() {
                     onClick={() => handleNavigationClick(item.sectionId)}
                     className={cn(
                       TYPOGRAPHY.bodySmall,
-                      TYPOGRAPHY.fontFutura,
+                      TYPOGRAPHY.fontCourierRegular,
                       "text-left py-2 px-3 rounded-lg transition-all duration-200",
                       "hover:bg-white/40 focus:bg-white/40",
                       "text-foreground"
@@ -212,7 +212,7 @@ export default function Navigation() {
                     ? SEMANTIC_COLORS.navigation.secondary
                     : SEMANTIC_COLORS.navigation.primary,
                   "flex items-center gap-2 rounded-lg min-w-[88px]",
-                  TYPOGRAPHY.fontTrajan
+                  TYPOGRAPHY.fontCourierBold
                 )}
               >
                 <Instagram className="h-4 w-4" />
@@ -229,7 +229,7 @@ export default function Navigation() {
                     ? SEMANTIC_COLORS.navigation.secondary
                     : SEMANTIC_COLORS.navigation.primary,
                   "flex items-center gap-2 rounded-lg min-w-[88px]",
-                  TYPOGRAPHY.fontTrajan
+                  TYPOGRAPHY.fontCourierBold
                 )}
               >
                 <Instagram className="h-4 w-4" />
@@ -265,7 +265,7 @@ export default function Navigation() {
                     onClick={() => handleNavigationClick(item.sectionId)}
                     className={cn(
                       TYPOGRAPHY.bodySmall,
-                      TYPOGRAPHY.fontFutura,
+                      TYPOGRAPHY.fontCourierRegular,
                       "cursor-pointer text-foreground",
                       SEMANTIC_COLORS.focus.dropdown
                     )}

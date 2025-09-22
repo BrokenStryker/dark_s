@@ -58,39 +58,40 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
     color: black;
-    font-family: 'courier-prime', serif;
+    font-family: 'courier-prime', monospace;
     font-weight: 400;
   }
 
   /* Font family classes */
-  .font-trajan {
-    font-family: 'ag', serif;
-  }
-
-  .font-futura {
-    font-family: 'courier-prime', serif;
+  .font-courier-regular {
+    font-family: 'courier-prime', monospace;
     font-weight: 400;
   }
 
-  /* Heading styles with Ag */
+  .font-courier-bold {
+    font-family: 'courier-prime', monospace;
+    font-weight: 700;
+  }
+
+  /* Heading styles with Courier Prime Bold */
   h1, h2, h3, h4, h5, h6, .heading {
-    font-family: 'ag', serif !important;
+    font-family: 'courier-prime', monospace !important;
     color: black !important;
-    font-weight: normal !important;
+    font-weight: 700 !important;
   }
 
   /* Body text styles with Courier Prime */
   p, span, div, li, .body-text {
-    font-family: 'courier-prime', serif !important;
+    font-family: 'courier-prime', monospace !important;
     color: black !important;
     font-weight: 400 !important;
   }
 
-  /* Special elements that should use Ag */
+  /* Section titles should use Courier Prime Bold */
   .title, .section-title, .service-name, .owner-name {
-    font-family: 'ag', serif !important;
+    font-family: 'courier-prime', monospace !important;
     color: black !important;
-    font-weight: normal !important;
+    font-weight: 700 !important;
   }
 
   /* Hero title override - allow custom styling */
@@ -147,7 +148,7 @@
   /* Typography Utilities */
   .heading-hero {
     font-size: 2.25rem;
-    font-family: 'ag', serif;
+    font-family: 'courier-prime', monospace;
     font-weight: 700;
   }
 
@@ -165,7 +166,7 @@
 
   .heading-section {
     font-size: 1.875rem;
-    font-family: 'ag', serif;
+    font-family: 'courier-prime', monospace;
     font-weight: 700;
   }
 
@@ -183,8 +184,8 @@
 
   .heading-card {
     font-size: 1.25rem;
-    font-family: 'ag', serif;
-    font-weight: 600;
+    font-family: 'courier-prime', monospace;
+    font-weight: 700;
   }
 
   @media (min-width: 768px) {
@@ -195,7 +196,7 @@
 
   .text-body {
     font-size: 1.125rem;
-    font-family: 'courier-prime', serif;
+    font-family: 'courier-prime', monospace;
     font-weight: 400;
   }
 

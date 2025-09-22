@@ -8,7 +8,9 @@
       "Bash(curl:*)",
       "Bash(rm:*)",
       "Bash(ls:*)",
-      "Bash(ffmpeg:*)"
+      "Bash(ffmpeg:*)",
+      "WebFetch(domain:use.typekit.net)",
+      "Bash(find:*)"
     ],
     "deny": []
   }

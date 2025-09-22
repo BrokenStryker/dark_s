@@ -58,7 +58,7 @@ export default function HeroSection() {
                   "px-8 py-4 text-lg",
                   SEMANTIC_COLORS.cta.primary,
                   "border-0 rounded-lg shadow-lg",
-                  TYPOGRAPHY.fontTrajan
+                  TYPOGRAPHY.fontCourierBold
                 )}
                 onClick={handleBookNowClick}
               >
