@@ -30,17 +30,14 @@ export function SectionContainer({
   };
 
   return (
-    <section 
+    <section
       id={id}
       className={cn(
         spacingClasses[spacing],
-        LAYOUT.padding,
         className
       )}
     >
-      <div className={cn(widthClasses[width])}>
-        {children}
-      </div>
+      {children}
     </section>
   );
 }

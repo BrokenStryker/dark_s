@@ -62,9 +62,9 @@ export const LAYOUT = {
   maxWidthWide: 'max-w-7xl mx-auto',
   maxWidthFull: 'max-w-full mx-auto',
   
-  // Padding (no padding on mobile for full width, add padding on larger screens)
-  padding: 'px-0 sm:px-4',
-  paddingLarge: 'px-0 sm:px-6 lg:px-8',
+  // Padding (no padding for full width sections)
+  padding: '',
+  paddingLarge: '',
   
   // Grid layouts (single column on mobile)
   grid2Col: 'grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12',
@@ -94,8 +94,8 @@ export const COMPONENTS = {
   simpleCard: `rounded-lg border`,
   glassCard: `backdrop-blur-md rounded-lg border`,
   
-  // Section specific styles (no rounded corners or borders on mobile for full width)
-  sectionCard: `rounded-none sm:rounded-lg border-0 sm:border`,
+  // Section specific styles (no borders or rounded corners for full width)
+  sectionCard: ``,
   
   // Button variants
   primaryButton: 'bg-primary hover:bg-primary/90 text-primary-foreground',

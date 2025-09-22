@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 
 export default function PoliciesSection() {
   return (
-    <SectionContainer id="policies" width="narrow">
+    <SectionContainer id="policies">
       <ContentCard variant="section">
         <div className={cn("text-center", SPACING.marginBottom.xxl)}>
           <SectionTitle className={SPACING.marginBottom.md}>

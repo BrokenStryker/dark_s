@@ -51,18 +51,22 @@ export default function ReviewSection() {
   React.useEffect(() => {
     if (scrollContainerRef.current) {
       const container = scrollContainerRef.current
-      const selectedButton = container.children[0].children[currentIndex] as HTMLElement
+      const buttonsContainer = container.querySelector('div') as HTMLElement
 
-      if (selectedButton) {
-        const containerRect = container.getBoundingClientRect()
-        const buttonRect = selectedButton.getBoundingClientRect()
-        const containerPadding = 16 // px-4 = 16px padding
-        const scrollLeft = container.scrollLeft + (buttonRect.left - containerRect.left) - containerPadding
+      if (buttonsContainer) {
+        const selectedButton = buttonsContainer.children[currentIndex] as HTMLElement
 
-        container.scrollTo({
-          left: Math.max(0, scrollLeft),
-          behavior: 'smooth'
-        })
+        if (selectedButton) {
+          const containerRect = container.getBoundingClientRect()
+          const buttonRect = selectedButton.getBoundingClientRect()
+          const containerPadding = 16 // px-4 = 16px padding
+          const scrollLeft = container.scrollLeft + (buttonRect.left - containerRect.left) - containerPadding
+
+          container.scrollTo({
+            left: Math.max(0, scrollLeft),
+            behavior: 'smooth'
+          })
+        }
       }
     }
   }, [currentIndex])
@@ -127,7 +131,7 @@ export default function ReviewSection() {
           </div>
 
           {/* Image Carousel with Review Overlay */}
-          <div className="flex justify-center mb-32">
+          <div className="flex justify-center mb-24">
             <div className="relative w-full max-w-lg">
               <div
                 className="flex overflow-hidden cursor-pointer"
@@ -164,12 +168,22 @@ export default function ReviewSection() {
                 </div>
               </div>
 
-              {/* Review Text Box - Positioned further down the page */}
-              <div className="absolute -bottom-36 left-0 right-0 mx-4">
-                <div className="bg-white rounded-2xl shadow-lg p-6 border border-border">
+              {/* Review Text Box - Overlapping the bottom of image */}
+              <div
+                className="absolute -bottom-20 left-0 right-0 mx-4"
+                onTouchStart={onTouchStart}
+                onTouchMove={onTouchMove}
+                onTouchEnd={onTouchEnd}
+              >
+                <div className="bg-white rounded-2xl shadow-lg p-8 border border-border">
                   <div className="space-y-4">
-                    {/* Rating */}
-                    <StarRating rating={currentReview.rating} readonly size="sm" />
+                    {/* Rating and Service Type */}
+                    <div className="flex items-center justify-between">
+                      <StarRating rating={currentReview.rating} readonly size="sm" />
+                      <div className="text-sm text-muted-foreground font-medium">
+                        {currentReview.serviceType}
+                      </div>
+                    </div>
 
                     {/* Review Text */}
                     <div className="relative">
@@ -178,18 +192,13 @@ export default function ReviewSection() {
                         {currentReview.reviewText}
                       </p>
                     </div>
-
-                    {/* Service Type */}
-                    <div className="text-xs text-muted-foreground font-medium">
-                      {currentReview.serviceType}
-                    </div>
                   </div>
                 </div>
               </div>
 
               {/* Carousel Indicators */}
               {staticReviews.length > 1 && (
-                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
+                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-3 z-10">
                   {staticReviews.map((_, reviewIndex) => (
                     <button
                       key={reviewIndex}
@@ -198,14 +207,17 @@ export default function ReviewSection() {
                         goToIndex(reviewIndex)
                       }}
                       className={cn(
-                        "w-2 h-2 rounded-full transition-colors",
-                        currentIndex === reviewIndex ? 'bg-white' : 'bg-white/50'
+                        "w-3 h-3 rounded-full transition-all duration-200 border-2",
+                        currentIndex === reviewIndex
+                          ? 'bg-white border-white scale-125'
+                          : 'bg-transparent border-white/70 hover:border-white hover:scale-110'
                       )}
                       aria-label={`Go to review ${reviewIndex + 1}`}
                     />
                   ))}
                 </div>
               )}
+
             </div>
           </div>
         </div>
