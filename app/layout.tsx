@@ -1,29 +1,7 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { PostHogProvider } from "@/components/providers/PostHogProvider";
-
-const trajanPro = localFont({
-  src: "../font/Trajan Pro Regular.ttf",
-  variable: "--font-trajan",
-  display: "swap",
-});
-
-const ebGaramond = localFont({
-  src: [
-    {
-      path: "../font/EBGaramond-VariableFont_wght.ttf",
-      style: "normal",
-    },
-    {
-      path: "../font/EBGaramond-Italic-VariableFont_wght.ttf", 
-      style: "italic",
-    },
-  ],
-  variable: "--font-futura",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title: "Dark Serenity | Luxury Hair Salon by Amberrose",
@@ -41,6 +19,13 @@ export const metadata: Metadata = {
   },
 };
 
+export const links = [
+  {
+    rel: "stylesheet",
+    href: "https://use.typekit.net/kdr2xqb.css",
+  },
+];
+
 export const viewport = {
   width: "device-width",
   initialScale: 1,
@@ -54,7 +39,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <body
-        className={`${trajanPro.variable} ${ebGaramond.variable} antialiased bg-background text-foreground`}
+        className="antialiased bg-background text-foreground"
         suppressHydrationWarning
       >
         <PostHogProvider>

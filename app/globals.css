@@ -58,37 +58,37 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
     color: black;
-    font-family: var(--font-futura), serif;
-    font-weight: 600;
+    font-family: 'courier-prime', serif;
+    font-weight: 400;
   }
 
   /* Font family classes */
   .font-trajan {
-    font-family: var(--font-trajan), serif;
+    font-family: 'ag', serif;
   }
 
   .font-futura {
-    font-family: var(--font-futura), serif;
-    font-weight: 600;
+    font-family: 'courier-prime', serif;
+    font-weight: 400;
   }
 
-  /* Heading styles with Trajan Pro */
+  /* Heading styles with Ag */
   h1, h2, h3, h4, h5, h6, .heading {
-    font-family: var(--font-trajan), serif !important;
+    font-family: 'ag', serif !important;
     color: black !important;
     font-weight: normal !important;
   }
 
-  /* Body text styles with EBGaramond */
+  /* Body text styles with Courier Prime */
   p, span, div, li, .body-text {
-    font-family: var(--font-futura), serif !important;
+    font-family: 'courier-prime', serif !important;
     color: black !important;
-    font-weight: 600 !important;
+    font-weight: 400 !important;
   }
 
-  /* Special elements that should use Trajan Pro */
+  /* Special elements that should use Ag */
   .title, .section-title, .service-name, .owner-name {
-    font-family: var(--font-trajan), serif !important;
+    font-family: 'ag', serif !important;
     color: black !important;
     font-weight: normal !important;
   }
@@ -147,7 +147,7 @@
   /* Typography Utilities */
   .heading-hero {
     font-size: 2.25rem;
-    font-family: var(--font-trajan), serif;
+    font-family: 'ag', serif;
     font-weight: 700;
   }
 
@@ -165,7 +165,7 @@
 
   .heading-section {
     font-size: 1.875rem;
-    font-family: var(--font-trajan), serif;
+    font-family: 'ag', serif;
     font-weight: 700;
   }
 
@@ -183,7 +183,7 @@
 
   .heading-card {
     font-size: 1.25rem;
-    font-family: var(--font-trajan), serif;
+    font-family: 'ag', serif;
     font-weight: 600;
   }
 
@@ -195,8 +195,8 @@
 
   .text-body {
     font-size: 1.125rem;
-    font-family: var(--font-futura), serif;
-    font-weight: 600;
+    font-family: 'courier-prime', serif;
+    font-weight: 400;
   }
 
   /* Layout Utilities */

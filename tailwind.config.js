@@ -50,6 +50,8 @@ module.exports = {
       },
       fontFamily: {
         sans: ["var(--font-inter)", "sans-serif"],
+        ag: ["ag", "serif"],
+        'courier-prime': ["courier-prime", "monospace"],
         playfair: ["var(--font-playfair)", "serif"],
         cinzel: ["var(--font-cinzel)", "serif"],
       },

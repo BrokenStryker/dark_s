@@ -168,6 +168,7 @@ export function ServiceCategorySection({ category, className }: ServiceCategoryP
           <BodyText muted className="max-w-3xl mx-auto text-center sm:text-center">
             {category.description.split('\n').map((line, index) => (
               <span key={index}>
+                
                 {line}
                 {index < category.description.split('\n').length - 1 && <br />}
               </span>
