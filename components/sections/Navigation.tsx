@@ -100,7 +100,7 @@ export default function Navigation() {
 
   return (
     <nav className={cn(
-      "fixed top-4 mx-4 z-50 rounded-xl border border-border/30 transition-all duration-300 ease-out",
+      "fixed top-4 left-4 right-4 z-50 rounded-xl border border-border/30 transition-all duration-300 ease-out",
       "bg-white/10 backdrop-blur-md shadow-lg"
     )}>
       <div className={cn(LAYOUT.maxWidthWide, LAYOUT.paddingLarge)}>
@@ -147,7 +147,7 @@ export default function Navigation() {
           <div className="flex-1"></div>
           
           {/* Right - Navigation Dropdown */}
-          <div className="flex items-center gap-0">
+          <div className="flex items-center gap-0 pr-2">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
