@@ -8,7 +8,7 @@ import { SPACING } from "@/lib/design-tokens";
 const serviceCategories: ServiceCategory[] = [
   {
     title: "Blonding Services",
-    description: "Transform your look.\nIncludes toner, haircut, and styling.\nAdditional product may be required for certain hair goals (extra bowl $20 each).",
+    description: "Includes toner, haircut, and styling.\nAdditional product may be required for certain hair goals (extra bowl $20 each).",
     services: [
       {
         name: "Full Blonding",
@@ -38,7 +38,7 @@ const serviceCategories: ServiceCategory[] = [
   },
   {
     title: "Color Services",
-    description: "For rich, even tones and vibrant color results. (Haircut not included unless noted.)",
+    description: "For rich, even tones and vibrant color results. Haircut not included ",
     services: [
       {
         name: "All Over Color",
