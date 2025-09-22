@@ -124,10 +124,10 @@ export function ServiceCategorySection({ category, className }: ServiceCategoryP
   return (
     <div className={className}>
       {/* Category Header */}
-      <div className={cn("text-center", SPACING.marginBottom.xl)}>
+      <div className={cn("text-center", SPACING.marginBottom.md)}>
         <SectionTitle
           as="h3"
-          className={cn(SPACING.marginBottom.sm, "section-title")}
+          className={cn(SPACING.marginBottom.sm, "section-title", "text-2xl sm:text-3xl md:text-4xl lg:text-5xl")}
         >
           {category.title}
         </SectionTitle>
