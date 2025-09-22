@@ -4,8 +4,8 @@ import { SPACING } from "@/lib/design-tokens";
 
 export default function Footer() {
   return (
-    <footer className="py-12 px-4 border-t border-border section-bg">
-      <div className="max-w-7xl mx-auto text-center">
+    <footer className="py-12 px-0 sm:px-4 border-t border-border section-bg">
+      <div className="max-w-7xl mx-auto text-center px-4">
         <CardTitle className={SPACING.marginBottom.sm}>
           Dark Serenity
         </CardTitle>
