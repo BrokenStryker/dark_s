@@ -158,10 +158,10 @@ export default function Navigation() {
               size="sm"
               onClick={toggleMobileMenu}
               className={cn(
-                "p-2 rounded-lg shadow-none",
                 isScrolling
-                  ? "bg-transparent hover:bg-white/10"
-                  : "bg-[#908476] hover:bg-[#48423b]/20"
+                  ? SEMANTIC_COLORS.navigation.secondary
+                  : SEMANTIC_COLORS.navigation.primary,
+                "p-2 rounded-lg shadow-none"
               )}
             >
               <Menu className="h-8 w-8" />
@@ -246,10 +246,10 @@ export default function Navigation() {
                   variant="ghost"
                   size="sm"
                   className={cn(
-                    "p-2 shadow-none",
                     isScrolling
                       ? SEMANTIC_COLORS.navigation.secondary
-                      : "bg-[#908476] hover:bg-[#48423b]/20"
+                      : SEMANTIC_COLORS.navigation.primary,
+                    "p-2 shadow-none"
                   )}
                 >
                   <Menu className="h-8 w-8" />
