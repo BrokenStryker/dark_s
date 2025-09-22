@@ -6,6 +6,7 @@ export interface StaticReview {
   serviceType: string;
   createdAt: string;
   updatedAt: string;
+  image: string;
 }
 
 export const staticReviews: StaticReview[] = [

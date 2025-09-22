@@ -1,3 +1,4 @@
+import React from "react";
 import { Service } from "@/components/ui/service-card";
 import { SectionTitle, BodyText } from "@/components/ui/typography";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
@@ -25,6 +26,35 @@ interface ServiceAccordionItemProps {
 
 function ServiceAccordionItem({ service, index }: ServiceAccordionItemProps) {
   const { currentIndex, goToNext, goToPrevious, goToIndex } = useImageCarousel(service.images.length);
+
+  // Touch handling for mobile swipe
+  const [touchStart, setTouchStart] = React.useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = React.useState<number | null>(null);
+
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      goToNext();
+    } else if (isRightSwipe) {
+      goToPrevious();
+    }
+  };
 
   // Check if this service has dynamic content
   const isDynamic = service.names && service.prices && service.descriptions;
@@ -65,6 +95,9 @@ function ServiceAccordionItem({ service, index }: ServiceAccordionItemProps) {
               <div
                 className="flex overflow-hidden cursor-pointer"
                 onClick={goToNext}
+                onTouchStart={onTouchStart}
+                onTouchMove={onTouchMove}
+                onTouchEnd={onTouchEnd}
               >
                 <div
                   className="flex transition-transform duration-300 ease-out"

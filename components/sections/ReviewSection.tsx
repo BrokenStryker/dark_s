@@ -32,7 +32,7 @@ export default function ReviewSection() {
                 "text-foreground"
               )}
             >
-              Client Reviews
+              What People Have To Say
             </SectionTitle>
             <BodyText muted className={SPACING.marginBottom.lg}>
               Discover what our clients say about their experiences at Dark Serenity.
