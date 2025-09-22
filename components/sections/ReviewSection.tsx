@@ -104,7 +104,7 @@ export default function ReviewSection() {
           </div>
 
           {/* Image Carousel with Review Overlay */}
-          <div className="flex justify-center mb-32">
+          <div className="flex justify-center mb-40">
             <div className="relative w-full max-w-lg">
               <div
                 className="flex overflow-hidden cursor-pointer"
@@ -141,10 +141,10 @@ export default function ReviewSection() {
 
               {/* Review Text Box - Overlapping the bottom of image */}
               <div
-                className="absolute -bottom-32 left-0 right-0 mx-4"
+                className="absolute -bottom-32 left-4 right-4 z-20"
                 {...touchHandlers}
               >
-                <div className="bg-white rounded-2xl shadow-lg p-8 border border-border">
+                <div className="bg-white rounded-2xl shadow-lg p-6 border border-border max-w-full">
                   <div className="space-y-4">
                     {/* Rating and Service Type */}
                     <div className="flex items-center justify-between">
@@ -156,8 +156,8 @@ export default function ReviewSection() {
 
                     {/* Review Text */}
                     <div className="relative">
-                      <Quote className="w-4 h-4 text-muted-foreground/30 absolute -top-1 -left-1" />
-                      <p className="text-foreground text-sm leading-relaxed pl-5">
+                      <Quote className="w-4 h-4 text-muted-foreground/30 absolute -top-1 -left-1 z-10" />
+                      <p className="text-foreground text-sm leading-relaxed pl-5 relative z-20">
                         {currentReview.reviewText}
                       </p>
                     </div>

@@ -42,19 +42,6 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Brand colors based on existing design
-        sage: {
-          200: '#e4e1dd', // Light sage (existing sectionBg)
-          300: '#d8d5cf',
-          400: '#c8c2bb', // Medium sage (existing cardBg)
-          500: '#908476', // Navigation primary
-          600: '#7a705f',
-          700: '#645a4b',
-        },
-        warmBrown: {
-          600: '#48423b', // Dark brown for accents
-          700: '#3d3730', // Darker brown for CTA buttons
-        },
       },
       borderRadius: {
         lg: "var(--radius)",
