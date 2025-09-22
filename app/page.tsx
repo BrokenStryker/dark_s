@@ -26,30 +26,11 @@ export default function Home() {
     <div className="min-h-screen bg-background">
       <Navigation />
       <HeroSection />
-      
-      {/* Spacing between sections */}
-      <div className="h-10" />
-      
       <ReviewSection />
-      
-      <div className="h-10" />
-      
       <AboutOwner />
-      
-      <div className="h-10" />
-
       <ServicesSection />
-      
-      <div className="h-10" />
-      
       <PoliciesSection />
-      
-      <div className="h-10" />
-      
       <ContactSection />
-      
-      <div className="h-10" />
-      
       <Footer />
 
       {/* Mobile sticky book now button */}
