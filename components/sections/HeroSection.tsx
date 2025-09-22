@@ -1,81 +1,73 @@
 "use client";
 
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { SectionContainer } from "@/components/ui/section-container";
-import { ContentCard } from "@/components/ui/content-card";
-import { SectionTitle, BodyText } from "@/components/ui/typography";
-import { LAYOUT, SPACING, TYPOGRAPHY, COMPONENTS } from "@/lib/design-tokens";
+import { SectionTitle } from "@/components/ui/typography";
+import { TYPOGRAPHY } from "@/lib/design-tokens";
 import { cn } from "@/lib/utils";
+import { usePostHog } from "@/hooks/use-posthog";
 
 export default function HeroSection() {
-  const handleViewServices = () => {
-    const element = document.getElementById('services');
-    if (element) {
-      const navbarHeight = 80;
-      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-      const offsetPosition = elementPosition - navbarHeight;
-      
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
+  const { track } = usePostHog();
+
+  const handleBookNowClick = () => {
+    track('hero_book_now_clicked', {
+      button_location: 'hero',
+      button_type: 'book_now',
+      url: 'https://www.vagaro.com/darkserenityhairsalon',
+      timestamp: new Date().toISOString()
+    });
   };
 
   return (
-    <SectionContainer id="hero">
-      <ContentCard variant="section">
-        <div className={LAYOUT.grid2Col}>
-          {/* Logo - Above text on mobile, right side on large screens */}
-          <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
-            <Image
-              src="/logo.png"
-              alt="Dark Serenity Logo"
-              width={350}
-              height={350}
-              className="object-contain opacity-90"
-            />
-          </div>
-          
-          {/* Description - Below logo on mobile, left side on large screens */}
-          <div className="order-2 lg:order-1 text-center lg:text-left">
-            <SectionTitle 
+    <section id="hero" className="relative h-screen w-full overflow-hidden">
+      {/* Video Background */}
+      <video
+        className="absolute top-0 left-0 w-full h-full object-cover z-0"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+      >
+        <source src="/ScreenRecording_09-17-2025 13-55-14_1 (2).MOV" type="video/mp4" />
+        {/* Fallback for browsers that don't support video */}
+        Your browser does not support the video tag.
+      </video>
+
+      {/* Content Overlay */}
+      <div className="absolute inset-0 z-10 flex items-center">
+        <div className="w-full max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="text-left">
+            <SectionTitle
               className={cn(
-                SPACING.marginBottom.sm,
+                "mb-8 text-white drop-shadow-lg",
                 TYPOGRAPHY.fontLight,
-                "text-foreground"
+                "text-4xl md:text-6xl lg:text-7xl"
               )}
             >
-              Hair you'll love, no matter what.
+              Hair You'll Love, No Matter What
             </SectionTitle>
-            
-            <BodyText 
-              muted 
-              className={SPACING.marginBottom.lg}
-            >
-              My salon is a sanctuary for those who see beauty as an art form. 
-              I specialize in high-end, precision hair services designed for clients who value artistry, exclusivity, and transformation. 
-              At Dark Serenity, it's not just about your hair—it's about how you feel when you leave: confident, empowered, and unforgettable.
-            </BodyText>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center">
-              <Button 
-                size="lg" 
+
+            <a href="https://www.vagaro.com/darkserenityhairsalon" target="_blank" rel="noopener noreferrer">
+              <Button
+                size="lg"
                 className={cn(
-                  "px-8 py-3 text-lg",
-                  "bg-[#908476] text-white hover:bg-[#908476]/90",
-                  "border-0 rounded-lg",
-                  TYPOGRAPHY.fontFutura
+                  "px-8 py-4 text-lg",
+                  "bg-[#48423b] text-white hover:bg-[#48423b]/90",
+                  "border-0 rounded-lg shadow-lg",
+                  TYPOGRAPHY.fontTrajan
                 )}
-                onClick={handleViewServices}
+                onClick={handleBookNowClick}
               >
-                View Services
+                Book Now
               </Button>
-            </div>
+            </a>
           </div>
         </div>
-      </ContentCard>
-    </SectionContainer>
+      </div>
+
+      {/* Dark overlay for better text readability */}
+      <div className="absolute inset-0 bg-black/30 z-5"></div>
+    </section>
   );
 }

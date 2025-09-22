@@ -144,22 +144,8 @@ export default function Navigation() {
           {/* Spacer */}
           <div className="flex-1"></div>
           
-          {/* Right - Book Now Button and Navigation Dropdown */}
+          {/* Right - Navigation Dropdown */}
           <div className="flex items-center gap-0">
-            <a href="https://www.vagaro.com/darkserenityhairsalon" target="_blank" rel="noopener noreferrer">
-              <Button 
-                size="sm" 
-                onClick={handleBookNowClick}
-                className={cn(
-                  "bg-[#48423b] text-white hover:bg-[#48423b]/90",
-                  "border-0 ml-2 rounded-lg",
-                  TYPOGRAPHY.fontTrajan
-                )}
-              >
-                Book Now
-              </Button>
-            </a>
-            
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
@@ -195,7 +181,7 @@ export default function Navigation() {
         </div>
 
         {/* Desktop Layout */}
-        <div className="hidden sm:grid grid-cols-3 items-center py-4">
+        <div className="hidden sm:grid grid-cols-2 items-center py-4">
           {/* Left - Instagram Links */}
           <div className="flex justify-start pl-10 gap-2">
             <a href="https://www.instagram.com/amberrose.seiferth/?hl=en" target="_blank" rel="noopener noreferrer">
@@ -225,22 +211,6 @@ export default function Navigation() {
               >
                 <Instagram className="h-4 w-4" />
                 Salon
-              </Button>
-            </a>
-          </div>
-          
-          {/* Center - Book Now Button */}
-          <div className="flex justify-center">
-            <a href="https://www.vagaro.com/darkserenityhairsalon" target="_blank" rel="noopener noreferrer">
-              <Button 
-                size="sm" 
-                className={cn(
-                  "bg-[#48423b] text-white hover:bg-[#48423b]/90",
-                  "border-0",
-                  TYPOGRAPHY.fontTrajan
-                )}
-              >
-                Book Now
               </Button>
             </a>
           </div>

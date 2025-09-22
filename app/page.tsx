@@ -24,10 +24,6 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      
-      {/* Spacing between Navigation and Hero */}
-      <div className="h-17" />
-      
       <HeroSection />
       
       {/* Spacing between sections */}
