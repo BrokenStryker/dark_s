@@ -16,7 +16,7 @@ export default function PoliciesSection() {
           </SectionTitle>
         </div>
         
-        <div className={cn("max-w-2xl mx-auto", TYPOGRAPHY.fontCourierRegular)}>
+        <div className={cn("max-w-2xl mx-auto", TYPOGRAPHY.fontArial)}>
           <div className="bg-card/50 backdrop-blur-sm rounded-lg p-6 space-y-6 border border-border/50">
             {/* Appointment Requirements */}
             <div className="space-y-2">
@@ -38,9 +38,9 @@ export default function PoliciesSection() {
             {/* Cancellation Policy */}
             <div className="space-y-4">
               <h3 className={cn(
-                TYPOGRAPHY.subTitle, 
-                TYPOGRAPHY.fontCourierBold, 
-                TYPOGRAPHY.fontSemibold, 
+                TYPOGRAPHY.subTitle,
+                TYPOGRAPHY.fontTimesNewRoman,
+                TYPOGRAPHY.fontBold,
                 "text-foreground tracking-wide"
               )}>
                 Cancellation Policy

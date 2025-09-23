@@ -8,9 +8,10 @@ export const metadata: Metadata = {
   description: "Experience the art of luxury hair styling with gothic elegance and personalized artistry.",
   keywords: "luxury hair salon, premium hair services, gothic hair styling, Amberrose, dark aesthetic hair, high-end salon, exclusive hair services",
   icons: {
-    icon: "/favicon.png",
-    shortcut: "/favicon.png",
-    apple: "/favicon.png",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.png", sizes: "32x32", type: "image/png" },
+    ],
   },
   openGraph: {
     title: "Dark Serenity | Luxury Hair Salon",
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
 export const links = [
   {
     rel: "stylesheet",
-    href: "https://use.typekit.net/kdr2xqb.css",
+    href: "https://use.typekit.net/krx0woh.css",
   },
 ];
 
@@ -39,7 +40,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <head>
-        <link rel="stylesheet" href="https://use.typekit.net/kdr2xqb.css" />
+        <link rel="stylesheet" href="https://use.typekit.net/krx0woh.css" />
       </head>
       <body
         className="antialiased bg-background text-foreground"

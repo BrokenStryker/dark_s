@@ -55,10 +55,11 @@ export default function HeroSection() {
               <Button
                 size="lg"
                 className={cn(
-                  "px-8 py-4 text-lg",
+                  "px-12 py-4 text-lg",
                   SEMANTIC_COLORS.cta.primary,
-                  "border-0 rounded-lg shadow-lg",
-                  TYPOGRAPHY.fontCourierBold
+                  "border-0 rounded-full shadow-lg",
+                  TYPOGRAPHY.fontTimesNewRoman,
+                TYPOGRAPHY.fontBold
                 )}
                 onClick={handleBookNowClick}
               >

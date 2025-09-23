@@ -12,7 +12,8 @@ export function SectionTitle({ children, className, as: Component = 'h2' }: Sect
   return (
     <Component className={cn(
       TYPOGRAPHY.sectionTitle,
-      TYPOGRAPHY.fontCourierBold,
+      TYPOGRAPHY.fontTimesNewRoman,
+      TYPOGRAPHY.fontBold,
       className
     )}>
       {children}
@@ -61,7 +62,7 @@ export function BodyText({
     <Component
       className={cn(
         sizeClasses[size],
-        TYPOGRAPHY.fontCourierRegular,
+        TYPOGRAPHY.fontArial,
         muted && 'text-muted-foreground',
         className
       )}
@@ -82,7 +83,8 @@ export function HeroTitle({ children, className }: HeroTitleProps) {
     <h1
       className={cn(
         TYPOGRAPHY.heroTitle,
-        TYPOGRAPHY.fontCourierBold,
+        TYPOGRAPHY.fontTimesNewRoman,
+        TYPOGRAPHY.fontBold,
         className
       )}
     >
@@ -103,7 +105,7 @@ export function SubTitle({ children, className, muted = true }: SubTitleProps) {
     <p
       className={cn(
         TYPOGRAPHY.subTitle,
-        TYPOGRAPHY.fontCourierRegular,
+        TYPOGRAPHY.fontArial,
         muted && 'text-muted-foreground',
         className
       )}
@@ -124,7 +126,8 @@ export function ServiceName({ children, className }: ServiceNameProps) {
     <h4
       className={cn(
         TYPOGRAPHY.cardTitle,
-        TYPOGRAPHY.fontCourierBold,
+        TYPOGRAPHY.fontTimesNewRoman,
+        TYPOGRAPHY.fontBold,
         'service-name', // Keep existing CSS class for consistency
         className
       )}
@@ -145,7 +148,8 @@ export function OwnerName({ children, className }: OwnerNameProps) {
     <h2
       className={cn(
         TYPOGRAPHY.sectionTitle,
-        TYPOGRAPHY.fontCourierBold,
+        TYPOGRAPHY.fontTimesNewRoman,
+        TYPOGRAPHY.fontBold,
         'owner-name', // Keep existing CSS class for consistency
         className
       )}

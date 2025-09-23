@@ -26,8 +26,9 @@ export default function MobileStickyButton() {
           className={cn(
             "w-full px-8 py-6 text-lg",
             SEMANTIC_COLORS.cta.primary,
-            "border-0 rounded-lg shadow-lg",
-            TYPOGRAPHY.fontCourierBold
+            "border-0 rounded-full shadow-lg",
+            TYPOGRAPHY.fontTimesNewRoman,
+            TYPOGRAPHY.fontBold
           )}
           onClick={handleBookNowClick}
         >

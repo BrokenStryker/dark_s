@@ -58,38 +58,36 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
     color: black;
-    font-family: 'courier-prime', monospace;
+    font-family: arial, Arial, sans-serif;
     font-weight: 400;
   }
 
   /* Font family classes */
-  .font-courier-regular {
-    font-family: 'courier-prime', monospace;
-    font-weight: 400;
+  .font-times {
+    font-family: times-new-roman, 'Times New Roman', serif;
   }
 
-  .font-courier-bold {
-    font-family: 'courier-prime', monospace;
-    font-weight: 700;
+  .font-arial {
+    font-family: arial, Arial, sans-serif;
   }
 
-  /* Heading styles with Courier Prime Bold */
+  /* Heading styles with Times New Roman Bold */
   h1, h2, h3, h4, h5, h6, .heading {
-    font-family: 'courier-prime', monospace !important;
+    font-family: times-new-roman, 'Times New Roman', serif !important;
     color: black !important;
     font-weight: 700 !important;
   }
 
-  /* Body text styles with Courier Prime */
+  /* Body text styles with Arial */
   p, span, div, li, .body-text {
-    font-family: 'courier-prime', monospace !important;
+    font-family: arial, Arial, sans-serif !important;
     color: black !important;
     font-weight: 400 !important;
   }
 
-  /* Section titles should use Courier Prime Bold */
+  /* Section titles should use Times New Roman Bold */
   .title, .section-title, .service-name, .owner-name {
-    font-family: 'courier-prime', monospace !important;
+    font-family: times-new-roman, 'Times New Roman', serif !important;
     color: black !important;
     font-weight: 700 !important;
   }
@@ -148,7 +146,7 @@
   /* Typography Utilities */
   .heading-hero {
     font-size: 2.25rem;
-    font-family: 'courier-prime', monospace;
+    font-family: times-new-roman, 'Times New Roman', serif;
     font-weight: 700;
   }
 
@@ -166,7 +164,7 @@
 
   .heading-section {
     font-size: 1.875rem;
-    font-family: 'courier-prime', monospace;
+    font-family: times-new-roman, 'Times New Roman', serif;
     font-weight: 700;
   }
 
@@ -184,7 +182,7 @@
 
   .heading-card {
     font-size: 1.25rem;
-    font-family: 'courier-prime', monospace;
+    font-family: times-new-roman, 'Times New Roman', serif;
     font-weight: 700;
   }
 
@@ -196,7 +194,7 @@
 
   .text-body {
     font-size: 1.125rem;
-    font-family: 'courier-prime', monospace;
+    font-family: arial, Arial, sans-serif;
     font-weight: 400;
   }
 
