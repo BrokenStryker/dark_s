@@ -54,10 +54,9 @@ export default function ReviewSection() {
       <ContentCard variant="section">
         <div className={SPACING.contentGap}>
           {/* Header Section */}
-          <div className="text-left mb-4">
+          <div className="text-left mb-1">
             <SectionTitle
               className={cn(
-                SPACING.marginBottom.sm,
                 TYPOGRAPHY.fontLight,
                 "text-foreground"
               )}
@@ -67,7 +66,7 @@ export default function ReviewSection() {
           </div>
 
           {/* Review Link - Flush Left */}
-          <div className="text-left mb-2">
+          <div className="text-left mb-8">
             <a
               href="https://g.page/r/CZNXAlFktbS1EAE/review"
               target="_blank"
@@ -82,10 +81,10 @@ export default function ReviewSection() {
           {/* Reviewer Names Navigation */}
           <div
             ref={scrollContainerRef}
-            className="overflow-x-auto pb-2 scrollbar-hide"
+            className="overflow-x-auto pb-2 scrollbar-hide mb-1"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
-            <div className="flex gap-6 min-w-max px-4 lg:justify-center lg:min-w-full">
+            <div className="flex gap-6 min-w-max lg:justify-center lg:min-w-full">
               {staticReviews.map((review, index) => (
                 <button
                   key={review.id}

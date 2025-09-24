@@ -46,10 +46,10 @@ function ServiceAccordionItem({ service, index }: ServiceAccordionItemProps) {
     <AccordionItem value={`service-${index}`}>
       <AccordionTrigger className="hover:no-underline">
         <div className="flex items-center justify-between w-full mr-4">
-          <h4 className="text-lg font-medium text-left">{service.name}</h4>
+          <h4 className="text-base font-medium text-left font-arial">{service.name}</h4>
           <Badge
             variant="secondary"
-            className="bg-primary/20 text-primary px-3 py-1 text-lg font-medium"
+            className="bg-primary/20 text-primary px-3 py-1 text-base font-medium font-arial"
           >
             {service.price}
           </Badge>
@@ -58,7 +58,7 @@ function ServiceAccordionItem({ service, index }: ServiceAccordionItemProps) {
       <AccordionContent>
         <div className="space-y-6">
           {/* Service Description */}
-          <BodyText className="leading-relaxed">
+          <BodyText size="medium" className="leading-relaxed">
             {currentDescription}
           </BodyText>
 
@@ -131,12 +131,12 @@ export function ServiceCategorySection({ category, className }: ServiceCategoryP
       <div className={cn("text-center", SPACING.marginBottom.md)}>
         <SectionTitle
           as="h3"
-          className={cn(SPACING.marginBottom.xs, "section-title", "text-2xl sm:text-3xl md:text-4xl lg:text-5xl")}
+          className={cn(SPACING.marginBottom.xs, "section-title")}
         >
           {category.title}
         </SectionTitle>
         {category.description && (
-          <BodyText muted className="max-w-3xl mx-auto text-center sm:text-center">
+          <BodyText size="medium" muted className="max-w-3xl mx-auto text-center sm:text-center">
             {category.description.split('\n').map((line, index) => (
               <span key={index}>
                 
