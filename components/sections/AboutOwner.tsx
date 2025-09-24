@@ -14,7 +14,7 @@ export default function AboutOwner() {
           <div className="order-1 lg:order-1">
             <div className="flex justify-center mb-2 lg:mb-0">
               <Image
-                src="/about-me-photo.jpg"
+                src="/about-me-photo.png"
                 alt="Amberrose"
                 width={400}
                 height={400}
