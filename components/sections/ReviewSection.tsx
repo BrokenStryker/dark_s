@@ -10,15 +10,37 @@ import { staticReviews } from "@/lib/static-reviews"
 import { useSwipeableCarousel } from "@/hooks/use-swipeable-carousel"
 import { SPACING, TYPOGRAPHY } from "@/lib/design-tokens"
 import { cn } from "@/lib/utils"
-import { Quote, ArrowUpRight } from "lucide-react"
+import { Quote, ArrowUpRight, ChevronDown, ChevronUp } from "lucide-react"
 
 export default function ReviewSection() {
   const { currentIndex, goToNext, goToPrevious, goToIndex, touchHandlers } = useSwipeableCarousel({
     totalItems: staticReviews.length
   })
   const scrollContainerRef = React.useRef<HTMLDivElement>(null)
+  const [expandedReviews, setExpandedReviews] = React.useState<Set<number>>(new Set())
 
   const currentReview = staticReviews[currentIndex]
+
+  // Toggle read more for a specific review
+  const toggleReadMore = (reviewIndex: number) => {
+    setExpandedReviews(prev => {
+      const newSet = new Set(prev)
+      if (newSet.has(reviewIndex)) {
+        newSet.delete(reviewIndex)
+      } else {
+        newSet.add(reviewIndex)
+      }
+      return newSet
+    })
+  }
+
+  // Truncate text to approximately 3 lines (about 150 characters)
+  const truncateText = (text: string, maxLength: number = 150) => {
+    if (text.length <= maxLength) return text
+    const truncated = text.substring(0, maxLength)
+    const lastSpace = truncated.lastIndexOf(' ')
+    return lastSpace > 0 ? truncated.substring(0, lastSpace) : truncated
+  }
 
   // Auto-scroll selected name to flush left
   React.useEffect(() => {
@@ -143,8 +165,8 @@ export default function ReviewSection() {
                 className="absolute -bottom-32 left-4 right-4 z-20"
                 {...touchHandlers}
               >
-                <div className="bg-white rounded-2xl shadow-lg p-6 border border-border max-w-full">
-                  <div className="space-y-4">
+                <div className="bg-white rounded-2xl shadow-lg p-6 border border-border max-w-full min-h-[180px] flex flex-col">
+                  <div className="space-y-4 flex-1">
                     {/* Rating and Service Type */}
                     <div className="flex items-center justify-between">
                       <StarRating rating={currentReview.rating} readonly size="sm" />
@@ -154,11 +176,35 @@ export default function ReviewSection() {
                     </div>
 
                     {/* Review Text */}
-                    <div className="relative">
+                    <div className="relative flex-1">
                       <Quote className="w-4 h-4 text-muted-foreground/30 absolute -top-1 -left-1 z-10" />
-                      <p className="text-foreground text-sm leading-relaxed pl-5 relative z-20">
-                        {currentReview.reviewText}
-                      </p>
+                      <div className="pl-5 relative z-20">
+                        <p className="text-foreground text-sm leading-relaxed">
+                          {expandedReviews.has(currentIndex)
+                            ? currentReview.reviewText
+                            : truncateText(currentReview.reviewText)
+                          }
+                          {currentReview.reviewText.length > 150 && !expandedReviews.has(currentIndex) && (
+                            <span className="text-muted-foreground">...</span>
+                          )}
+                        </p>
+                        {currentReview.reviewText.length > 150 && (
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation()
+                              toggleReadMore(currentIndex)
+                            }}
+                            className="inline-flex items-center gap-1 text-xs text-blue-600 hover:text-blue-800 mt-2 underline focus:outline-none transition-colors"
+                          >
+                            {expandedReviews.has(currentIndex) ? 'Read less' : 'Read more'}
+                            {expandedReviews.has(currentIndex) ? (
+                              <ChevronUp className="w-3 h-3" />
+                            ) : (
+                              <ChevronDown className="w-3 h-3" />
+                            )}
+                          </button>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
